@@ -16,13 +16,13 @@
   --color-cream:        #FBF7F4;
   --color-linen:        #F5ECE6;
   --color-blush:        #EFE0D8;
-  --color-rose:         #C9A08E;
-  --color-rose-dark:    #B08974;
-  --color-rose-glow:    rgba(201, 160, 142, 0.10);
+  --color-rose:         #855E4A;
+  --color-rose-dark:    #6F4C3A;
+  --color-rose-glow:    rgba(133, 94, 74, 0.10);
   --color-white:        #FFFFFF;
   --color-ink:          #2A2119;
   --color-ink-soft:     #5C4D42;
-  --color-ink-muted:    #9A8B80;
+  --color-ink-muted:    #726358;
   --color-divider:      #DDD0C7;
   --color-card-border:  #E8DCD5;
 
@@ -256,6 +256,55 @@ h1, h2, h3, h4 {
 /* ---------- Utility ---------- */
 .text-center { text-align: center; }
 .mx-auto { margin-left: auto; margin-right: auto; }
+/* ---------- Skip Link ---------- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  z-index: 10000;
+  padding: 12px 24px;
+  background: var(--color-ink);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: none;
+}
+
+/* ---------- Focus Indicators ---------- */
+*:focus-visible {
+  outline: 2px solid var(--color-rose);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Remove outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ---------- Touch Targets ---------- */
+@media (pointer: coarse) {
+  .btn,
+  .nav__link,
+  .footer__social a,
+  .faq__question {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

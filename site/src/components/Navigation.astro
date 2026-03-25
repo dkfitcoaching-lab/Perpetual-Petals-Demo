@@ -20,7 +20,7 @@
       <span class="nav__toggle-bar"></span>
     </button>
 
-    <nav class="nav__menu" id="navMenu" role="navigation" aria-label="Main navigation">
+    <nav class="nav__menu" id="navMenu" aria-label="Main navigation">
       <ul class="nav__list">
         <li><a href="#about" class="nav__link">About</a></li>
         <li><a href="#experience" class="nav__link">Experience</a></li>
@@ -86,13 +86,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 6px;
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 4px;
+    padding: 10px;
     z-index: 1001;
   }
 
@@ -198,8 +199,19 @@
     color: var(--color-rose-dark);
   }
 
+  .nav__link {
+    padding: 10px 0;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
   @media (min-width: 768px) {
-    .nav__link { font-size: 11px; }
+    .nav__link {
+      font-size: 11px;
+      padding: 8px 0;
+      min-height: auto;
+    }
   }
 </style>
 
@@ -234,6 +246,17 @@
     toggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
     menu?.classList.toggle('open');
     document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      menu?.classList.remove('open');
+      document.body.style.overflow = '';
+      toggle.focus();
+    }
   });
 
   // Close menu on link click

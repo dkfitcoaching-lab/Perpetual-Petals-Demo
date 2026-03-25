@@ -128,7 +128,14 @@ const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID';
   .form-group input:focus,
   .form-group textarea:focus {
     border-bottom-color: var(--color-rose);
-    box-shadow: 0 2px 0 0 rgba(201, 160, 142, 0.25);
+    box-shadow: 0 2px 0 0 var(--color-rose-glow);
+  }
+
+  .form-group input:focus-visible,
+  .form-group textarea:focus-visible {
+    outline: 2px solid var(--color-rose);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   .form-group input::placeholder,
