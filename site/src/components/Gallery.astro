@@ -1,0 +1,151 @@
+---
+/**
+ * Gallery component with lightbox integration.
+ * Displays a responsive grid of portfolio images with lazy loading
+ * and click-to-expand lightbox functionality.
+ */
+import Lightbox from './Lightbox.astro';
+
+interface GalleryImage {
+  src: string;
+  alt: string;
+}
+
+const images: GalleryImage[] = [
+  {
+    src: 'https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/8e211f7d-52fe-4494-a674-363c5f8d533a/955BFB50-E0B7-4128-A27B-056D68E9B551.png',
+    alt: 'Garden rose arrangement by Perpetual Petals',
+  },
+  {
+    src: 'https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/a11d62ea-4e18-4c12-b57b-fcdf473fab9c/IMG_1601.jpeg',
+    alt: 'Seasonal floral arrangement by Perpetual Petals',
+  },
+  {
+    src: 'https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/3eff6aa3-cbd2-49fc-8a9b-0543f2c9bcaa/IMG_1605.jpeg',
+    alt: 'Luxury floral design by Perpetual Petals',
+  },
+  {
+    src: 'https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/f4b847ea-4ded-4c99-9420-00bd6051fe0c/IMG_1604.jpeg',
+    alt: 'Romantic floral composition by Perpetual Petals',
+  },
+  {
+    src: 'https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/2f85d785-8127-4587-9359-561f766d8b50/IMG_1611.jpeg',
+    alt: 'Artful floral arrangement by Perpetual Petals',
+  },
+];
+---
+
+<section class="gallery" aria-label="Gallery">
+  <div class="gallery__inner">
+    <h2 class="gallery__heading">Portfolio</h2>
+    <div class="gallery__grid">
+      {images.map((image) => (
+        <div class="gallery__item">
+          <img
+            src={image.src}
+            alt={image.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<Lightbox />
+
+<style>
+  .gallery {
+    padding: 100px 24px;
+    background: #F9F0EC;
+  }
+
+  @media (min-width: 768px) {
+    .gallery { padding: 100px 48px; }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery { padding: 100px 64px; }
+  }
+
+  .gallery__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .gallery__heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #3D2B1F;
+    margin-bottom: 48px;
+    letter-spacing: 0.04em;
+  }
+
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  @media (min-width: 768px) {
+    .gallery__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+  }
+
+  .gallery__item {
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .gallery__item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+  }
+
+  @media (min-width: 768px) {
+    .gallery__item img { height: 420px; }
+
+    .gallery__item:first-child {
+      grid-column: span 2;
+    }
+
+    .gallery__item:first-child img {
+      height: 100%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery__item img { height: 380px; }
+
+    .gallery__item:first-child {
+      grid-column: span 2;
+    }
+
+    .gallery__item:first-child img {
+      height: 100%;
+    }
+  }
+
+  @media (hover: hover) {
+    .gallery__item:hover img {
+      transform: scale(1.015);
+      box-shadow: 0 12px 40px rgba(212,171,139,0.12);
+    }
+  }
+</style>
