@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perpetual Petals — Private Floral Membership | Windermere, Florida</title>
+<meta name="description" content="Perpetual Petals is a private floral membership serving luxury homes in Windermere, Florida. Premium garden roses, seasonal blooms, and bespoke arrangements.">
+
+<!-- Preload hero image -->
+<link rel="preload" as="image" href="https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/1c4891d4-52f1-48ae-9697-bc3d7aa38368/D31CF352-ABAE-4303-B99C-35444922CB52.png">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   PERPETUAL PETALS — Luxury Floral Membership
+   ============================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cream: #FDFBF7;
+  --linen: #F5EFE6;
+  --warm: #EDE6DB;
+  --bronze: #8B6E4F;
+  --bronze-light: #C4A882;
+  --bronze-glow: rgba(139, 110, 79, 0.08);
+  --text: #2C2420;
+  --text-secondary: #6B5E54;
+  --text-caption: #9E9188;
+  --blush: #F0E4D8;
+  --rose: #D4AB8B;
+  --white: #FFFFFF;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: var(--text);
+  background-color: var(--cream);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .container { padding: 0 48px; }
+}
+
+@media (min-width: 1024px) {
+  .container { padding: 0 64px; }
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-stagger > .reveal-child {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal-stagger.visible > .reveal-child {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-stagger > .reveal-child {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================
+   1. OPENING — Full Viewport
+   ============================================ */
+
+.opening {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 40%, rgba(245, 239, 230, 0.5) 0%, var(--cream) 70%);
+  position: relative;
+  padding: 40px 24px;
+}
+
+.opening__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 56px;
+  color: var(--text);
+  letter-spacing: 2px;
+  line-height: 1.1;
+  opacity: 0;
+  animation: titleReveal 1.2s ease-out 0.3s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opening__title {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    letter-spacing: 6px;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 2px;
+  }
+}
+
+@media (min-width: 768px) {
+  .opening__title {
+    font-size: 80px;
+  }
+  @keyframes titleReveal {
+    from {
+      opacity: 0;
+      letter-spacing: 8px;
+    }
+    to {
+      opacity: 1;
+      letter-spacing: 3px;
+    }
+  }
+}
+
+.opening__line {
+  width: 60px;
+  height: 1px;
+  background-color: var(--bronze);
+  margin: 28px auto 24px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opening__line, .opening__subtitle, .opening__location {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.opening__subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-caption);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.3s forwards;
+}
+
+.opening__location {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-caption);
+  margin-top: 6px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.5s forwards;
+}
+
+@media (min-width: 768px) {
+  .opening__subtitle, .opening__location {
+    font-size: 13px;
+  }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 2s forwards, scrollPulse 2.5s ease-in-out 2.8s infinite;
+  transition: opacity 0.6s ease;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-indicator {
+    opacity: 0.6;
+    animation: none;
+  }
+}
+
+.scroll-indicator__line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--bronze-light), transparent);
+  margin: 0 auto;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+  50% { transform: translateX(-50%) translateY(8px); opacity: 0.3; }
+}
+
+/* ============================================
+   2. HERO IMAGE — Full Bleed
+   ============================================ */
+
+.hero-image {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .hero-image img {
+    height: 70vh;
+    object-fit: cover;
+  }
+}
+
+/* ============================================
+   3. INTRODUCTION
+   ============================================ */
+
+.introduction {
+  padding: 80px 24px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .introduction { padding: 120px 48px; }
+}
+
+@media (min-width: 1024px) {
+  .introduction { padding: 140px 64px; }
+}
+
+.introduction__inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.introduction__text {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+  .introduction__text { font-size: 16px; }
+}
+
+.introduction__text + .introduction__text {
+  margin-top: 28px;
+}
+
+/* ============================================
+   4. THE FOUNDER
+   ============================================ */
+
+.founder {
+  padding: 60px 24px 80px;
+}
+
+@media (min-width: 768px) {
+  .founder { padding: 80px 48px 120px; }
+}
+
+@media (min-width: 1024px) {
+  .founder { padding: 100px 64px 140px; }
+}
+
+.founder__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .founder__inner {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    gap: 60px;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .founder__inner { gap: 80px; }
+}
+
+.founder__image-wrapper {
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .founder__image-wrapper { margin-bottom: 0; }
+}
+
+.founder__image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .founder__image {
+    height: 560px;
+    object-fit: cover;
+  }
+}
+
+.founder__content {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .founder__content { padding: 20px 0; }
+}
+
+.founder__name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--bronze);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .founder__name { font-size: 32px; }
+}
+
+.founder__role {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-caption);
+  margin-bottom: 28px;
+  font-variant: small-caps;
+}
+
+.founder__bio {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+  .founder__bio { font-size: 16px; }
+}
+
+/* ============================================
+   5. THE EXPERIENCE (How It Works)
+   ============================================ */
+
+.experience {
+  padding: 80px 24px;
+  background-color: var(--cream);
+}
+
+@media (min-width: 768px) {
+  .experience { padding: 120px 48px; }
+}
+
+@media (min-width: 1024px) {
+  .experience { padding: 140px 64px; }
+}
+
+.experience__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 36px;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 60px;
+  letter-spacing: 1px;
+}
+
+@media (min-width: 768px) {
+  .section-heading {
+    font-size: 44px;
+    margin-bottom: 80px;
+  }
+}
+
+.experience__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+@media (min-width: 768px) {
+  .experience__steps {
+    flex-direction: row;
+    gap: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .experience__steps { gap: 64px; }
+}
+
+.experience__step {
+  flex: 1;
+  text-align: center;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--warm);
+}
+
+@media (min-width: 768px) {
+  .experience__step {
+    border-bottom: none;
+    padding: 0;
+  }
+}
+
+.experience__step:last-child {
+  border-bottom: none;
+}
+
+.experience__step-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--bronze);
+  margin-bottom: 16px;
+}
+
+.experience__step-text {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .experience__step-text { font-size: 15px; }
+}
+
+/* ============================================
+   6. SERVICES
+   ============================================ */
+
+.services {
+  padding: 80px 24px;
+  background: var(--linen);
+}
+
+@media (min-width: 768px) {
+  .services { padding: 120px 48px; }
+}
+
+@media (min-width: 1024px) {
+  .services { padding: 140px 64px; }
+}
+
+.services__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .services__grid {
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .services__grid { gap: 40px; }
+}
+
+.service-card {
+  flex: 1;
+  background: var(--white);
+  border: 1px solid var(--bronze-light);
+  border-radius: 2px;
+  padding: 40px 32px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .service-card { padding: 48px 40px; }
+}
+
+.service-card__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--text);
+  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+}
+
+@media (min-width: 768px) {
+  .service-card__title { font-size: 28px; }
+}
+
+.service-card__list {
+  list-style: none;
+  margin-bottom: 36px;
+}
+
+.service-card__list li {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--bronze-glow);
+}
+
+@media (min-width: 768px) {
+  .service-card__list li { font-size: 15px; }
+}
+
+.service-card__list li:last-child {
+  border-bottom: none;
+}
+
+.btn {
+  display: inline-block;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bronze);
+  border: 1px solid var(--bronze);
+  padding: 14px 36px;
+  border-radius: 2px;
+  cursor: pointer;
+  background: transparent;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.btn:hover {
+  background-color: var(--bronze);
+  color: var(--white);
+}
+
+/* ============================================
+   7. GALLERY
+   ============================================ */
+
+.gallery {
+  padding: 80px 24px;
+  background: var(--cream);
+}
+
+@media (min-width: 768px) {
+  .gallery { padding: 120px 48px; }
+}
+
+@media (min-width: 1024px) {
+  .gallery { padding: 140px 64px; }
+}
+
+.gallery__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.gallery__item {
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+@media (min-width: 768px) {
+  .gallery__item img { height: 420px; }
+
+  .gallery__item:first-child {
+    grid-row: span 2;
+  }
+
+  .gallery__item:first-child img {
+    height: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery__item img { height: 380px; }
+
+  .gallery__item:first-child img {
+    height: 100%;
+  }
+}
+
+@media (hover: hover) {
+  .gallery__item:hover img {
+    transform: scale(1.02);
+  }
+}
+
+/* ============================================
+   8. TESTIMONIAL
+   ============================================ */
+
+.testimonial {
+  padding: 80px 24px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 50%, rgba(245, 239, 230, 0.6) 0%, var(--cream) 70%);
+}
+
+@media (min-width: 768px) {
+  .testimonial { padding: 120px 48px; }
+}
+
+@media (min-width: 1024px) {
+  .testimonial { padding: 140px 64px; }
+}
+
+.testimonial__inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.testimonial__quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+
+@media (min-width: 768px) {
+  .testimonial__quote { font-size: 26px; }
+}
+
+.testimonial__line {
+  width: 40px;
+  height: 1px;
+  background-color: var(--bronze-light);
+  margin: 28px auto;
+}
+
+.testimonial__attribution {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-caption);
+}
+
+/* ============================================
+   9. MEMBERSHIP APPLICATION
+   ============================================ */
+
+.application {
+  padding: 80px 24px;
+  background: var(--linen);
+}
+
+@media (min-width: 768px) {
+  .application { padding: 120px 48px; }
+}
+
+@media (min-width: 1024px) {
+  .application { padding: 140px 64px; }
+}
+
+.application__inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.application__subtext {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-caption);
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .application__subtext { font-size: 15px; }
+}
+
+.application__form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 32px;
+}
+
+.form-group label {
+  display: block;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-caption);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--warm);
+  padding: 10px 0;
+  outline: none;
+  transition: border-color 0.4s ease;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-bottom-color: var(--bronze);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-caption);
+  opacity: 0.6;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.7;
+}
+
+.application__submit {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.application__confirm {
+  display: none;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.application__confirm.active {
+  display: block;
+}
+
+.application__confirm-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.application__confirm-text {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ============================================
+   10. FOOTER
+   ============================================ */
+
+.footer {
+  padding: 60px 24px 32px;
+  background: var(--linen);
+  text-align: center;
+  border-top: 1px solid var(--warm);
+}
+
+@media (min-width: 768px) {
+  .footer { padding: 80px 48px 40px; }
+}
+
+.footer__brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.footer__location {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-caption);
+  margin-bottom: 24px;
+}
+
+.footer__social {
+  margin-bottom: 24px;
+}
+
+.footer__social a {
+  display: inline-block;
+  color: var(--bronze-light);
+  transition: color 0.4s ease;
+}
+
+.footer__social a:hover {
+  color: var(--bronze);
+}
+
+.footer__social svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer__copyright {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  color: var(--text-caption);
+  margin-bottom: 16px;
+}
+
+.footer__credit {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  color: var(--bronze-light);
+  letter-spacing: 0.5px;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     1. OPENING
+     ============================================ -->
+<section class="opening" aria-label="Welcome">
+  <h1 class="opening__title">Perpetual Petals</h1>
+  <div class="opening__line"></div>
+  <p class="opening__subtitle">Private Floral Membership</p>
+  <p class="opening__location">Windermere, Florida</p>
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-indicator__line"></div>
+  </div>
+</section>
+
+<!-- ============================================
+     2. HERO IMAGE
+     ============================================ -->
+<section class="hero-image reveal" aria-label="Featured arrangement">
+  <img
+    src="https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/1c4891d4-52f1-48ae-9697-bc3d7aa38368/D31CF352-ABAE-4303-B99C-35444922CB52.png"
+    alt="A lush arrangement of premium garden roses by Perpetual Petals"
+    fetchpriority="high"
+  >
+</section>
+
+<!-- ============================================
+     3. INTRODUCTION
+     ============================================ -->
+<section class="introduction" aria-label="About">
+  <div class="introduction__inner reveal">
+    <p class="introduction__text">
+      Perpetual Petals is a private floral membership serving a limited number of homes in Windermere, Florida.
+    </p>
+    <p class="introduction__text">
+      Using premium garden roses, seasonal blooms, and delicate natural greenery, every design is composed to feel airy, romantic, and quietly luxurious. Arrangements are delivered, refreshed, and exchanged regularly&thinsp;&mdash;&thinsp;allowing flowers to become a living element of the space rather than a one-time detail.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================
+     4. THE FOUNDER
+     ============================================ -->
+<section class="founder" aria-label="Founder">
+  <div class="founder__inner">
+    <div class="founder__image-wrapper reveal">
+      <img
+        class="founder__image"
+        src="https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/2f85d785-8127-4587-9359-561f766d8b50/IMG_1611.jpeg"
+        alt="Floral arrangement by Perpetual Petals founder"
+        loading="lazy"
+      >
+    </div>
+    <div class="founder__content reveal">
+      <h2 class="founder__name">Lori Fronzak</h2>
+      <p class="founder__role">Founder &amp; Floral Designer</p>
+      <p class="founder__bio">
+        Founded by Lori Fronzak (Ell), a female veteran whose background instilled a deep sense of discipline, integrity, and service. With a refined eye for composition and a deep appreciation for natural form, she creates airy, romantic arrangements that feel effortless yet intentional.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     5. THE EXPERIENCE
+     ============================================ -->
+<section class="experience" aria-label="How it works">
+  <div class="experience__inner">
+    <h2 class="section-heading reveal">The Experience</h2>
+    <div class="experience__steps reveal-stagger">
+      <div class="experience__step reveal-child">
+        <p class="experience__step-label">Inquiry</p>
+        <p class="experience__step-text">Share your vision and space. Membership begins with an approved application.</p>
+      </div>
+      <div class="experience__step reveal-child">
+        <p class="experience__step-label">Design</p>
+        <p class="experience__step-text">Arrangements are curated seasonally and intuitively. No design is ever repeated.</p>
+      </div>
+      <div class="experience__step reveal-child">
+        <p class="experience__step-label">Placement</p>
+        <p class="experience__step-text">Delivered and placed with intention. Refreshed regularly. Always alive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     6. SERVICES
+     ============================================ -->
+<section class="services" aria-label="Services">
+  <div class="services__inner">
+    <h2 class="section-heading reveal">Services</h2>
+    <div class="services__grid reveal-stagger">
+      <div class="service-card reveal-child">
+        <h3 class="service-card__title">Private Membership</h3>
+        <ul class="service-card__list">
+          <li>Weekly or seasonal floral placement</li>
+          <li>Premium garden roses &amp; seasonal blooms</li>
+          <li>Vessel rotation &amp; arrangement exchange</li>
+          <li>Priority access for special occasions</li>
+        </ul>
+        <a href="#apply" class="btn">Inquire</a>
+      </div>
+      <div class="service-card reveal-child">
+        <h3 class="service-card__title">Events &amp; Gatherings</h3>
+        <ul class="service-card__list">
+          <li>Custom floral styling for your occasion</li>
+          <li>Dinner parties, celebrations, holidays</li>
+          <li>Thoughtfully curated to complement your space</li>
+        </ul>
+        <a href="#apply" class="btn">Submit Inquiry</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     7. GALLERY
+     ============================================ -->
+<section class="gallery" aria-label="Gallery">
+  <div class="gallery__inner">
+    <h2 class="section-heading reveal">Portfolio</h2>
+    <div class="gallery__grid reveal-stagger">
+      <div class="gallery__item reveal-child">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/8e211f7d-52fe-4494-a674-363c5f8d533a/955BFB50-E0B7-4128-A27B-056D68E9B551.png"
+          alt="Garden rose arrangement by Perpetual Petals"
+          loading="lazy"
+        >
+      </div>
+      <div class="gallery__item reveal-child">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/a11d62ea-4e18-4c12-b57b-fcdf473fab9c/IMG_1601.jpeg"
+          alt="Seasonal floral arrangement by Perpetual Petals"
+          loading="lazy"
+        >
+      </div>
+      <div class="gallery__item reveal-child">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/3eff6aa3-cbd2-49fc-8a9b-0543f2c9bcaa/IMG_1605.jpeg"
+          alt="Luxury floral design by Perpetual Petals"
+          loading="lazy"
+        >
+      </div>
+      <div class="gallery__item reveal-child">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/f4b847ea-4ded-4c99-9420-00bd6051fe0c/IMG_1604.jpeg"
+          alt="Romantic floral composition by Perpetual Petals"
+          loading="lazy"
+        >
+      </div>
+      <div class="gallery__item reveal-child">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/69554e660742d90936c71689/2f85d785-8127-4587-9359-561f766d8b50/IMG_1611.jpeg"
+          alt="Artful floral arrangement by Perpetual Petals"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     8. TESTIMONIAL
+     ============================================ -->
+<section class="testimonial" aria-label="Testimonial">
+  <div class="testimonial__inner reveal">
+    <p class="testimonial__quote">&ldquo;Each arrangement arrives as it is meant to.&rdquo;</p>
+    <div class="testimonial__line"></div>
+    <p class="testimonial__attribution">&mdash; A Perpetual Petals Member</p>
+  </div>
+</section>
+
+<!-- ============================================
+     9. MEMBERSHIP APPLICATION
+     ============================================ -->
+<section class="application" id="apply" aria-label="Apply for membership">
+  <div class="application__inner">
+    <h2 class="section-heading reveal">Request Membership</h2>
+    <p class="application__subtext reveal">Availability is intentionally limited. Applications are reviewed within 48 hours.</p>
+    <form class="application__form reveal" id="applicationForm" novalidate>
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" required autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel">
+      </div>
+      <div class="form-group">
+        <label for="address">Windermere Address</label>
+        <input type="text" id="address" name="address" autocomplete="street-address">
+      </div>
+      <div class="form-group">
+        <label for="vision">Tell us about your home and what you envision</label>
+        <textarea id="vision" name="vision" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="referral">How did you hear about us?</label>
+        <input type="text" id="referral" name="referral">
+      </div>
+      <div class="application__submit">
+        <button type="submit" class="btn">Submit Application</button>
+      </div>
+    </form>
+    <div class="application__confirm" id="confirmMessage">
+      <p class="application__confirm-heading">Thank You</p>
+      <p class="application__confirm-text">Your application has been received. We will be in touch within 48 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     10. FOOTER
+     ============================================ -->
+<footer class="footer">
+  <p class="footer__brand">Perpetual Petals</p>
+  <p class="footer__location">Windermere, Florida</p>
+  <div class="footer__social">
+    <a href="#" aria-label="Follow Perpetual Petals on Instagram" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+  </div>
+  <p class="footer__copyright">&copy; 2026 Perpetual Petals. All rights reserved.</p>
+  <p class="footer__credit">Designed by Vermillion Axis Technologies</p>
+</footer>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+(function() {
+  'use strict';
+
+  // Scroll indicator — hide on scroll
+  var scrollIndicator = document.querySelector('.scroll-indicator');
+  var scrollHidden = false;
+
+  function handleScroll() {
+    if (!scrollHidden && window.scrollY > 60) {
+      scrollIndicator.classList.add('hidden');
+      scrollHidden = true;
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // Intersection Observer for reveal animations
+  if ('IntersectionObserver' in window) {
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      // Single elements
+      var revealElements = document.querySelectorAll('.reveal');
+      var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealElements.forEach(function(el) {
+        revealObserver.observe(el);
+      });
+
+      // Staggered groups
+      var staggerGroups = document.querySelectorAll('.reveal-stagger');
+      var staggerObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            var children = entry.target.querySelectorAll('.reveal-child');
+            children.forEach(function(child, i) {
+              child.style.transitionDelay = (i * 0.15) + 's';
+            });
+            staggerObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      staggerGroups.forEach(function(el) {
+        staggerObserver.observe(el);
+      });
+    }
+  }
+
+  // Form submission
+  var form = document.getElementById('applicationForm');
+  var confirm = document.getElementById('confirmMessage');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    form.style.display = 'none';
+    confirm.classList.add('active');
+    confirm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
+</script>
+</body>
+</html>
