@@ -26,18 +26,21 @@
 }
 
 :root {
-  --cream: #FDFBF7;
-  --linen: #F5EFE6;
-  --warm: #EDE6DB;
-  --bronze: #8B6E4F;
+  --cream: #FDF9F6;
+  --linen: #F9F0EC;
+  --warm: #E8D5CC;
+  --bronze: #D4AB8B;
   --bronze-light: #C4A882;
-  --bronze-glow: rgba(139, 110, 79, 0.08);
+  --bronze-glow: rgba(212, 171, 139, 0.08);
   --text: #2C2420;
-  --text-secondary: #6B5E54;
-  --text-caption: #9E9188;
-  --blush: #F0E4D8;
+  --text-secondary: #6B5A50;
+  --text-caption: #A09088;
+  --blush: #F9F0EC;
   --rose: #D4AB8B;
   --white: #FFFFFF;
+  --divider: #C4A882;
+  --card-border: #E8D5CC;
+  --accent: #D4AB8B;
 }
 
 html {
@@ -52,7 +55,7 @@ body {
   color: var(--text);
   background-color: var(--cream);
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 2.0;
 }
 
 img {
@@ -134,7 +137,8 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: radial-gradient(ellipse at 50% 40%, rgba(245, 239, 230, 0.5) 0%, var(--cream) 70%);
+  background: var(--cream);
+  background-image: radial-gradient(ellipse at center, rgba(212,171,139,0.07), transparent 70%);
   position: relative;
   padding: 40px 24px;
 }
@@ -142,9 +146,9 @@ section {
 .opening__title {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  font-size: 56px;
+  font-size: 52px;
   color: var(--text);
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   line-height: 1.1;
   opacity: 0;
   animation: titleReveal 1.5s ease-out 0.3s forwards;
@@ -170,7 +174,7 @@ section {
 
 @media (min-width: 768px) {
   .opening__title {
-    font-size: 80px;
+    font-size: 96px;
   }
   @keyframes titleReveal {
     from {
@@ -187,7 +191,7 @@ section {
 .opening__line {
   width: 60px;
   height: 1px;
-  background-color: var(--bronze);
+  background-color: var(--accent);
   margin: 28px auto 24px;
   opacity: 0;
   animation: fadeIn 0.8s ease-out 1s forwards;
@@ -208,9 +212,9 @@ section {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-size: 12px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--text-caption);
+  color: var(--accent);
   opacity: 0;
   animation: fadeIn 0.8s ease-out 1.3s forwards;
 }
@@ -257,7 +261,7 @@ section {
 .scroll-indicator__line {
   width: 1px;
   height: 40px;
-  background: linear-gradient(to bottom, var(--bronze-light), transparent);
+  background: linear-gradient(to bottom, var(--accent), transparent);
   margin: 0 auto;
 }
 
@@ -271,19 +275,30 @@ section {
    ============================================ */
 
 .hero-image {
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   overflow: hidden;
+  position: relative;
+}
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--cream) 0%, transparent 15%, transparent 85%, var(--cream) 100%);
+  pointer-events: none;
 }
 
 .hero-image img {
   width: 100%;
-  height: auto;
+  height: 50vh;
   object-fit: cover;
+  border-radius: 0;
 }
 
 @media (min-width: 768px) {
   .hero-image img {
-    height: 70vh;
+    height: 80vh;
     object-fit: cover;
   }
 }
@@ -314,7 +329,7 @@ section {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
   font-size: 15px;
-  line-height: 1.9;
+  line-height: 2.0;
   color: var(--text-secondary);
 }
 
@@ -398,8 +413,8 @@ section {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
   font-style: italic;
-  font-size: 22px;
-  color: #D4AB8B;
+  font-size: 28px;
+  color: var(--accent);
   margin-bottom: 8px;
   line-height: 1.2;
 }
@@ -410,7 +425,7 @@ section {
   font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #A09088;
+  color: var(--text-caption);
   margin-bottom: 28px;
 }
 
@@ -418,7 +433,7 @@ section {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
   font-size: 15px;
-  line-height: 1.9;
+  line-height: 2.0;
   color: var(--text-secondary);
 }
 
@@ -432,7 +447,7 @@ section {
 
 .experience {
   padding: 80px 24px;
-  background-color: #F9F0EC;
+  background-color: var(--linen);
 }
 
 @media (min-width: 768px) {
@@ -451,16 +466,25 @@ section {
 .section-heading {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  font-size: 36px;
+  font-size: 38px;
   text-align: center;
   color: var(--text);
   margin-bottom: 60px;
   letter-spacing: 1px;
 }
 
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 0;
+  border-top: 1px solid var(--accent);
+  margin: 12px auto 0;
+}
+
 @media (min-width: 768px) {
   .section-heading {
-    font-size: 44px;
+    font-size: 38px;
     margin-bottom: 80px;
   }
 }
@@ -486,9 +510,9 @@ section {
   flex: 1;
   text-align: center;
   padding: 48px;
-  border: 1px solid #E8D5CC;
+  border: 1px solid var(--card-border);
   border-radius: 2px;
-  background: #FFFFFF;
+  background: var(--white);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -499,12 +523,12 @@ section {
 }
 
 .experience__step:last-child {
-  border: 1px solid #E8D5CC;
+  border: 1px solid var(--card-border);
 }
 
 @media (hover: hover) {
   .experience__step:hover {
-    border-color: #D4AB8B;
+    border-color: var(--accent);
     box-shadow: 0 8px 30px rgba(212,171,139,0.08);
   }
 }
@@ -514,14 +538,14 @@ section {
   font-weight: 400;
   font-style: italic;
   font-size: 24px;
-  color: #D4AB8B;
+  color: var(--accent);
   margin-bottom: 16px;
 }
 
 .experience__step-label::before {
   content: '✦';
   display: block;
-  color: #D4AB8B;
+  color: var(--accent);
   font-size: 12px;
   margin-bottom: 12px;
   font-style: normal;
@@ -531,7 +555,7 @@ section {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
   font-size: 14px;
-  line-height: 1.8;
+  line-height: 2.0;
   color: var(--text-secondary);
   max-width: 300px;
   margin: 0 auto;
@@ -582,8 +606,8 @@ section {
 
 .service-card {
   flex: 1;
-  background: #FFFFFF;
-  border: 1px solid #E8D5CC;
+  background: var(--white);
+  border: 1px solid var(--card-border);
   border-radius: 2px;
   padding: 44px;
   text-align: center;
@@ -592,7 +616,7 @@ section {
 
 @media (hover: hover) {
   .service-card:hover {
-    border-color: #D4AB8B;
+    border-color: var(--accent);
     box-shadow: 0 8px 30px rgba(212,171,139,0.08);
   }
 }
@@ -615,7 +639,7 @@ section {
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #A09088;
+  color: var(--text-caption);
   margin-bottom: 24px;
 }
 
@@ -628,7 +652,7 @@ section {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 2.0;
   color: var(--text-secondary);
   padding: 10px 0;
   border-bottom: 1px solid var(--bronze-glow);
@@ -650,8 +674,8 @@ section {
   letter-spacing: 2px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #D4AB8B;
-  border: 1px solid #D4AB8B;
+  color: var(--accent);
+  border: 1px solid var(--accent);
   padding: 14px 36px;
   border-radius: 30px;
   cursor: pointer;
@@ -660,8 +684,8 @@ section {
 }
 
 .btn:hover {
-  background-color: #D4AB8B;
-  color: #FFFFFF;
+  background-color: var(--accent);
+  color: var(--white);
 }
 
 /* ============================================
@@ -670,7 +694,7 @@ section {
 
 .gallery {
   padding: 100px 24px;
-  background: #F9F0EC;
+  background: var(--linen);
 }
 
 @media (min-width: 768px) {
@@ -757,7 +781,7 @@ section {
 .testimonial {
   padding: 120px 24px;
   text-align: center;
-  background: #FFFFFF;
+  background: var(--white);
   position: relative;
 }
 
@@ -770,7 +794,7 @@ section {
 .testimonial__quote-mark {
   font-family: 'Cormorant Garamond', serif;
   font-size: 72px;
-  color: #D4AB8B;
+  color: var(--accent);
   opacity: 0.4;
   position: absolute;
   line-height: 1;
@@ -792,7 +816,7 @@ section {
   font-style: italic;
   font-size: 24px;
   line-height: 1.6;
-  color: #2C2420;
+  color: var(--text);
   max-width: 700px;
   margin: 0 auto;
   text-align: center;
@@ -808,7 +832,7 @@ section {
   font-size: 12px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #8B6E4F;
+  color: var(--accent);
   margin-top: 24px;
 }
 
@@ -818,7 +842,7 @@ section {
 
 .application {
   padding: 80px 24px;
-  background: #F9F0EC;
+  background: var(--linen);
 }
 
 @media (min-width: 768px) {
@@ -840,7 +864,7 @@ section {
   font-weight: 300;
   font-size: 14px;
   color: var(--text-caption);
-  line-height: 1.7;
+  line-height: 2.0;
   margin-bottom: 48px;
 }
 
@@ -849,7 +873,7 @@ section {
 }
 
 .application__form-wrapper {
-  background: #FFFFFF;
+  background: var(--white);
   padding: 40px 24px;
   border-radius: 2px;
   box-shadow: 0 4px 30px rgba(139,110,79,0.06);
@@ -874,7 +898,7 @@ section {
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #8B6E4F;
+  color: var(--accent);
   margin-bottom: 6px;
 }
 
@@ -884,10 +908,10 @@ section {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
   font-size: 16px;
-  color: #2C2420;
+  color: var(--text);
   background: transparent;
   border: none;
-  border-bottom: 1px solid #E8D5CC;
+  border-bottom: 1px solid var(--card-border);
   padding: 14px 0;
   outline: none;
   transition: border-bottom-color 0.3s, box-shadow 0.3s;
@@ -897,7 +921,7 @@ section {
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-bottom-color: #D4AB8B;
+  border-bottom-color: var(--accent);
   box-shadow: 0 2px 0 0 rgba(212,171,139,0.3);
 }
 
@@ -919,8 +943,8 @@ section {
 }
 
 .application__submit .btn {
-  background: #D4AB8B;
-  color: #FFFFFF;
+  background: var(--accent);
+  color: var(--white);
   border: none;
   border-radius: 30px;
   padding: 16px 48px;
@@ -933,7 +957,7 @@ section {
 
 .application__submit .btn:hover {
   background: #C49A7A;
-  color: #FFFFFF;
+  color: var(--white);
 }
 
 .application__confirm {
@@ -976,7 +1000,7 @@ section {
   font-weight: 300;
   font-size: 15px;
   color: var(--text-secondary);
-  line-height: 1.8;
+  line-height: 2.0;
 }
 
 /* ============================================
@@ -985,8 +1009,9 @@ section {
 
 .footer {
   padding: 60px 24px 40px;
-  background: #F5EFE6;
+  background: var(--linen);
   text-align: center;
+  border-top: 1px solid var(--divider);
 }
 
 .footer__brand {
@@ -1014,12 +1039,13 @@ section {
 
 .footer__social a {
   display: inline-block;
-  color: var(--bronze-light);
+  color: var(--accent);
   transition: color 0.4s ease;
 }
 
 .footer__social a:hover {
-  color: var(--bronze);
+  color: var(--accent);
+  opacity: 0.7;
 }
 
 .footer__social svg {
@@ -1039,7 +1065,7 @@ section {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
   font-size: 9px;
-  color: #C4A882;
+  color: var(--accent);
   letter-spacing: 1px;
   margin-top: 30px;
 }
