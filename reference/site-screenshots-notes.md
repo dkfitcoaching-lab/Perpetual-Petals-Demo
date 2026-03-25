@@ -70,6 +70,50 @@
 - Dark section below
 - Card: "Windermeres private floral experience" (missing apostrophe again)
 
+## Screenshot 11 - Event Inquiry Form (Top)
+- Heading: "EVENT INQUIRY" (large, italic serif, mauve/pink color)
+- Subtext: "Please share a few details about your gathering."
+- "We'll be in touch to confirm availability and next steps."
+- Form fields (all with thick black borders):
+  - Name: First Name (required), Last Name (required) — side by side
+  - Email (required)
+  - Phone (required)
+  - Occasion: dropdown "Select an option"
+  - Event Date (required)
+  - Event Location (starts below)
+
+## Screenshot 12 - Event Inquiry Form (Occasion Dropdown Open)
+- Dropdown options for "Occasion":
+  - Select an option (checked)
+  - Dinner Party
+  - Birthday Celebration
+  - Intimate Gathering
+  - Hosting / Entertaining
+  - Other
+- reCAPTCHA badge visible (bottom right)
+
+## Screenshot 13 - Event Inquiry Form (Bottom)
+- Event Date (required)
+- Event Location: City / Neighborhood field
+- Event Details (required): "Share any details that will help us understand your vision" (textarea)
+- Preferred Floral Style: dropdown
+- Investment Range: dropdown
+- "Submit Inquiry" button (rounded, mauve/pink filled)
+- reCAPTCHA badge visible
+
+## Screenshot 14 - Private Floral Membership Page (Top)
+- Heading: "PRIVATE FLORAL MEMBERSHIP" (centered, serif)
+- Large oval image: soft floral arrangement (roses, white flowers, greenery) in round white vase
+
+## Screenshot 15 - Private Floral Membership Page (Content)
+- Text blocks (serif, left-aligned):
+  - "Every week, new arrangements are created- guided by season, instinct, and atmosphere."
+    - **Note: "created-" should be "created —" (em dash with spaces, not hyphen)**
+  - "The Perpetual Petal is an ongoing floral narrative. Each design reflects the season, the light within your space, and the atmosphere it deserves."
+  - "Floral selection is intuitive. Each arrangement arrives as it is meant to."
+  - "No arrangement is repeated. Each design is composed thoughtfully and with intention, never assembled from a formula."
+- Below: pink box with large heading "YOUR QUESTIONS, ANSWERED" (FAQ section)
+
 ---
 
 ## Issues Noticed So Far
@@ -80,3 +124,6 @@
 5. Blue horizontal line under header seems out of place with the pink/mauve color scheme
 6. Plus (+) icon in header - unclear purpose on mobile
 7. Text on Gatherings page is left-aligned while main page is centered - inconsistent
+8. "created-" should use an em dash "created —" (Screenshot 15)
+9. Form field borders are very thick/black - doesn't match the soft, elegant aesthetic
+10. "The Perpetual Petal" - inconsistent naming (singular vs "Perpetual Petals")
