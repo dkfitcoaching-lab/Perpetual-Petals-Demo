@@ -1,0 +1,47 @@
+---
+/* Full-bleed hero image with soft gradient edges */
+---
+
+<section class="hero-image reveal" aria-label="Featured arrangement">
+  <img
+    src="/images/hero-arrangement.png"
+    alt="A lush arrangement of premium garden roses in soft pinks and creams by Perpetual Petals"
+    fetchpriority="high"
+    width="1800"
+    height="1200"
+  >
+</section>
+
+<style>
+  .hero-image {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--color-cream) 0%,
+      transparent 12%,
+      transparent 88%,
+      var(--color-cream) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 55vh;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .hero-image img {
+      height: 80vh;
+    }
+  }
+</style>

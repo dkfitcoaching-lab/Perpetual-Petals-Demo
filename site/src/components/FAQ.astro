@@ -1,0 +1,125 @@
+---
+/* FAQ accordion — all copy corrected, consistent third-person voice */
+const faqs = [
+  {
+    question: 'What is Perpetual Petals?',
+    answer: 'Perpetual Petals is a private floral design membership reserved for residents in Windermere, Florida. Each membership is tailored to the home and the homeowner.',
+  },
+  {
+    question: 'How does the membership work?',
+    answer: 'Membership begins with an approved application and a selected placement level. Floral designs are curated and delivered according to your chosen schedule — weekly, seasonal, or monthly. Each placement includes custom design, delivery, vessel rotation, and removal of prior arrangements where applicable.',
+  },
+  {
+    question: 'Can I request something special?',
+    answer: 'Absolutely. Members have priority access for additional arrangements, events, or moments that call for something extra — dinner parties, guests, celebrations, or simply when you want something beautiful right now.',
+  },
+  {
+    question: 'How do I become a member?',
+    answer: 'Membership is by request. A limited number of Windermere homes are accepted each season to maintain design integrity and quality standards. Upon approval, you will receive confirmation and next steps to begin service.',
+  },
+];
+---
+
+<section class="faq section section-linen" id="faq" aria-label="Frequently asked questions">
+  <div class="faq__inner">
+    <h2 class="heading-section reveal">Your Questions, Answered</h2>
+    <div class="faq__list reveal">
+      {faqs.map((faq, i) => (
+        <details class="faq__item" name="faq">
+          <summary class="faq__question">
+            <span>{faq.question}</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__answer">
+            <p class="body-text">{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  .faq__item {
+    border-top: 1px solid var(--color-divider);
+  }
+
+  .faq__item:last-child {
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  .faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+    cursor: pointer;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(18px, 2.5vw, 22px);
+    color: var(--color-ink);
+    list-style: none;
+    user-select: none;
+    transition: color 0.3s;
+  }
+
+  .faq__question::-webkit-details-marker { display: none; }
+  .faq__question::marker { display: none; content: ''; }
+
+  .faq__question:hover { color: var(--color-rose); }
+
+  /* Plus/minus icon */
+  .faq__icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+
+  .faq__icon::before,
+  .faq__icon::after {
+    content: '';
+    position: absolute;
+    background: var(--color-ink);
+    transition: transform 0.3s var(--ease-out), opacity 0.3s;
+  }
+
+  .faq__icon::before {
+    /* Horizontal bar */
+    width: 20px;
+    height: 1px;
+    top: 50%;
+    left: 0;
+  }
+
+  .faq__icon::after {
+    /* Vertical bar */
+    width: 1px;
+    height: 20px;
+    left: 50%;
+    top: 0;
+  }
+
+  .faq__item[open] .faq__icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+
+  /* Answer */
+  .faq__answer {
+    padding: 0 0 var(--space-md);
+    overflow: hidden;
+  }
+
+  .faq__answer .body-text {
+    font-size: 15px;
+    color: var(--color-ink-soft);
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+/* Testimonial — needs a REAL quote. Using placeholder until client provides one. */
+---
+
+<section class="testimonial section section-white" aria-label="Testimonial">
+  <div class="testimonial__inner reveal">
+    <span class="testimonial__mark testimonial__mark--open" aria-hidden="true">&ldquo;</span>
+    <blockquote class="testimonial__quote">
+      The flowers she brings into our home aren't just arrangements&thinsp;&mdash;&thinsp;they change the entire feeling of a room. It's the one thing I never knew I needed.
+    </blockquote>
+    <span class="testimonial__mark testimonial__mark--close" aria-hidden="true">&rdquo;</span>
+    <p class="label testimonial__attribution">&mdash; Windermere Member</p>
+  </div>
+</section>
+
+<style>
+  .testimonial {
+    text-align: center;
+    position: relative;
+  }
+
+  .testimonial__inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 var(--space-md);
+  }
+
+  .testimonial__mark {
+    font-family: var(--font-serif);
+    font-size: 80px;
+    color: var(--color-rose);
+    opacity: 0.3;
+    position: absolute;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .testimonial__mark--open {
+    top: -44px;
+    left: -8px;
+  }
+
+  .testimonial__mark--close {
+    bottom: -24px;
+    right: -8px;
+  }
+
+  .testimonial__quote {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(22px, 4vw, 36px);
+    line-height: 1.55;
+    color: var(--color-ink);
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .testimonial__attribution {
+    margin-top: var(--space-md);
+  }
+</style>

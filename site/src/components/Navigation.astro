@@ -1,0 +1,248 @@
+---
+/*  Sticky header with mobile hamburger menu.
+    Transparent on top, frosted glass on scroll. */
+---
+
+<header class="nav" id="mainNav">
+  <div class="nav__inner">
+    <a href="/" class="nav__brand" aria-label="Perpetual Petals — Home">
+      Perpetual Petals
+    </a>
+
+    <button
+      class="nav__toggle"
+      id="navToggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="navMenu"
+    >
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+    </button>
+
+    <nav class="nav__menu" id="navMenu" role="navigation" aria-label="Main navigation">
+      <ul class="nav__list">
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#experience" class="nav__link">Experience</a></li>
+        <li><a href="#services" class="nav__link">Services</a></li>
+        <li><a href="#portfolio" class="nav__link">Portfolio</a></li>
+        <li><a href="#faq" class="nav__link">FAQ</a></li>
+        <li><a href="#apply" class="nav__link nav__link--cta">Apply</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: background 0.4s var(--ease-out), padding 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  }
+
+  .nav.scrolled {
+    background: rgba(251, 247, 244, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 14px 0;
+    box-shadow: 0 1px 0 var(--color-divider);
+  }
+
+  .nav__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 768px) {
+    .nav__inner { padding: 0 48px; }
+  }
+
+  @media (min-width: 1024px) {
+    .nav__inner { padding: 0 var(--space-xl); }
+  }
+
+  .nav__brand {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+
+  .nav__brand:hover { opacity: 0.7; }
+
+  /* Hamburger */
+  .nav__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 1001;
+  }
+
+  .nav__toggle-bar {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--color-ink);
+    transition: transform 0.3s var(--ease-out), opacity 0.3s;
+  }
+
+  .nav__toggle[aria-expanded="true"] .nav__toggle-bar:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+
+  .nav__toggle[aria-expanded="true"] .nav__toggle-bar:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+
+  @media (min-width: 768px) {
+    .nav__toggle { display: none; }
+  }
+
+  /* Menu */
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 85vw);
+    background: var(--color-cream);
+    padding: 100px var(--space-lg) var(--space-lg);
+    transform: translateX(100%);
+    transition: transform 0.4s var(--ease-out);
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.06);
+    z-index: 999;
+  }
+
+  .nav__menu.open {
+    transform: translateX(0);
+  }
+
+  @media (min-width: 768px) {
+    .nav__menu {
+      position: static;
+      width: auto;
+      background: none;
+      padding: 0;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  .nav__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .nav__list {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+  }
+
+  .nav__link {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-rose);
+    transition: width 0.3s var(--ease-out);
+  }
+
+  .nav__link:hover { color: var(--color-ink); }
+  .nav__link:hover::after { width: 100%; }
+
+  .nav__link--cta {
+    color: var(--color-rose);
+    font-weight: 500;
+  }
+
+  .nav__link--cta::after { display: none; }
+
+  .nav__link--cta:hover {
+    color: var(--color-rose-dark);
+  }
+
+  @media (min-width: 768px) {
+    .nav__link { font-size: 11px; }
+  }
+</style>
+
+<script>
+  // Scroll behavior — add frosted glass effect
+  const nav = document.getElementById('mainNav');
+  let ticking = false;
+
+  function updateNav() {
+    if (window.scrollY > 60) {
+      nav?.classList.add('scrolled');
+    } else {
+      nav?.classList.remove('scrolled');
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateNav);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    menu?.classList.toggle('open');
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  // Close menu on link click
+  menu?.querySelectorAll('.nav__link').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.setAttribute('aria-label', 'Open menu');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
