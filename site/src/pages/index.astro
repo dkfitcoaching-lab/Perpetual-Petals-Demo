@@ -1,12 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Opening from '../components/Opening.astro';
+import HeroImage from '../components/HeroImage.astro';
+import Introduction from '../components/Introduction.astro';
+import Founder from '../components/Founder.astro';
+import Experience from '../components/Experience.astro';
+import Services from '../components/Services.astro';
+import Gallery from '../components/Gallery.astro';
+import Testimonial from '../components/Testimonial.astro';
+import FAQ from '../components/FAQ.astro';
+import Application from '../components/Application.astro';
 ---
 
-<BaseLayout title="Perpetual Petals — Private Floral Membership | Windermere, Florida">
-  <section style="min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 24px;">
-    <div>
-      <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--text); margin-bottom: 16px;">Perpetual Petals</h1>
-      <p style="color: var(--text-secondary); font-size: 1.1rem; letter-spacing: 0.06em;">Private Floral Membership — Windermere, Florida</p>
-    </div>
-  </section>
+<BaseLayout>
+  <Opening />
+  <HeroImage />
+  <Introduction />
+  <Founder />
+  <Experience />
+  <Services />
+  <Gallery />
+  <Testimonial />
+  <FAQ />
+  <Application />
 </BaseLayout>

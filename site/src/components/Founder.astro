@@ -1,0 +1,109 @@
+---
+/* The Founder — Lori Fronzak. No redundant "Founded by" repetition. */
+---
+
+<section class="founder section" id="founder" aria-label="About the founder">
+  <div class="founder__inner">
+    <div class="founder__image-wrapper reveal">
+      <picture>
+        <source
+          type="image/webp"
+          srcset="/images/founder-400w.webp 400w, /images/founder-800w.webp 800w"
+          sizes="(min-width: 768px) 45vw, 100vw"
+        >
+        <source
+          type="image/jpeg"
+          srcset="/images/founder-400w.jpeg 400w, /images/founder-800w.jpeg 800w"
+          sizes="(min-width: 768px) 45vw, 100vw"
+        >
+        <img
+          class="founder__image"
+          src="/images/founder.jpeg"
+          alt="Lori Fronzak arranging premium garden roses"
+          loading="lazy"
+          width="800"
+          height="1000"
+        >
+      </picture>
+    </div>
+    <div class="founder__content reveal">
+      <h2 class="founder__name">Lori Fronzak</h2>
+      <p class="label-muted founder__role">Founder &amp; Floral Designer</p>
+      <p class="body-text">
+        A female veteran whose background instilled a deep sense of discipline, integrity, and service. With a refined eye for composition and a sincere appreciation for natural form, Lori creates airy, romantic arrangements that feel effortless yet intentional&thinsp;&mdash;&thinsp;each one a quiet expression of care for the spaces they inhabit.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .founder__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .founder__inner {
+      display: grid;
+      grid-template-columns: 45% 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      padding: 0 48px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .founder__inner {
+      gap: 80px;
+      padding: 0 var(--space-xl);
+    }
+  }
+
+  .founder__image-wrapper {
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .founder__image-wrapper { margin-bottom: 0; }
+  }
+
+  .founder__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 16px 16px 50px rgba(201, 160, 142, 0.15);
+    border-radius: 4px;
+  }
+
+  @media (min-width: 768px) {
+    .founder__image {
+      height: 560px;
+      object-fit: cover;
+    }
+  }
+
+  .founder__content {
+    padding: 0 var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .founder__content { padding: 20px 0; }
+  }
+
+  .founder__name {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(26px, 3vw, 32px);
+    color: var(--color-rose);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .founder__role {
+    margin-bottom: var(--space-md);
+  }
+</style>

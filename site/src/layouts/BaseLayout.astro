@@ -1,10 +1,24 @@
 ---
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
+import '../styles/global.css';
+
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, description = 'Perpetual Petals — Private Floral Membership | Windermere, Florida' } = Astro.props;
+const {
+  title = 'Perpetual Petals — Private Floral Membership | Windermere, Florida',
+  description = 'Perpetual Petals is a private floral design membership in Windermere, Florida. Premium garden roses, seasonal blooms, and bespoke arrangements.',
+  ogImage = '/images/og-image.jpg',
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -14,76 +28,102 @@ const { title, description = 'Perpetual Petals — Private Floral Membership | W
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content={description}>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+  {noindex && <meta name="robots" content="noindex, nofollow">}
+  <meta name="theme-color" content="#FBF7F4">
+  <link rel="canonical" href={canonicalURL}>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={new URL(ogImage, Astro.site).href}>
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Perpetual Petals">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site).href}>
+
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="/fonts/cormorant-garamond-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/raleway-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Structured Data: LocalBusiness -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Perpetual Petals",
+      "description": "Private floral design membership serving luxury homes in Windermere, Florida.",
+      "url": "https://perpetual-petals.com",
+      "image": "https://perpetual-petals.com/images/hero-arrangement.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Windermere",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Windermere, Florida"
+      },
+      "serviceType": ["Floral Design", "Floral Membership", "Event Florals"],
+      "priceRange": "$$$$"
+    }
+  </script>
 </head>
 <body>
-  <nav class="site-nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">Perpetual Petals</a>
-    </div>
-  </nav>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <Navigation />
 
-  <main>
+  <main id="main-content">
     <slot />
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p>&copy; {new Date().getFullYear()} Perpetual Petals. All rights reserved.</p>
-    </div>
-  </footer>
+  <Footer />
+
+  <Analytics />
+
+  <!-- Scroll reveal observer -->
+  <script>
+    if ('IntersectionObserver' in window) {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReduced) {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        const staggerObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              entry.target.querySelectorAll('.reveal-child').forEach((child, i) => {
+                (child as HTMLElement).style.transitionDelay = `${i * 0.15}s`;
+              });
+              staggerObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll('.reveal-stagger').forEach(el => staggerObserver.observe(el));
+      }
+    }
+  </script>
 </body>
 </html>
-
-<style is:global>
-  @import '../styles/global.css';
-</style>
-
-<style>
-  .site-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: rgba(253, 249, 246, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--warm);
-  }
-
-  .nav-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 48px;
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--text);
-  }
-
-  main {
-    padding-top: 80px;
-  }
-
-  .site-footer {
-    border-top: 1px solid var(--warm);
-    padding: 40px 48px;
-    text-align: center;
-  }
-
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    font-size: 0.85rem;
-    color: var(--text-caption);
-    letter-spacing: 0.04em;
-  }
-</style>

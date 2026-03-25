@@ -1,0 +1,226 @@
+---
+/**
+ * Analytics component with GA4 integration and cookie consent banner.
+ * Replace G-XXXXXXXXXX with your real GA4 measurement ID.
+ */
+const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+---
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-consent" class="consent-banner" role="dialog" aria-label="Cookie consent" aria-hidden="true">
+  <p class="consent-banner__text">
+    We use cookies to understand how you interact with our site and improve your experience.
+  </p>
+  <div class="consent-banner__actions">
+    <button id="consent-decline" class="consent-banner__btn consent-banner__btn--decline" type="button">
+      Decline
+    </button>
+    <button id="consent-accept" class="consent-banner__btn consent-banner__btn--accept" type="button">
+      Accept
+    </button>
+  </div>
+</div>
+
+<!-- GA4: loaded only after consent -->
+<script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+(function() {
+  var CONSENT_KEY = 'pp_analytics_consent';
+  var banner = document.getElementById('cookie-consent');
+  var acceptBtn = document.getElementById('consent-accept');
+  var declineBtn = document.getElementById('consent-decline');
+
+  function loadGA() {
+    if (document.getElementById('ga-script')) return;
+
+    var s = document.createElement('script');
+    s.id = 'ga-script';
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { send_page_view: true });
+
+    // Defer tracking setup until DOM is fully parsed (elements may not exist yet)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        trackCTAClicks();
+        trackFormSubmissions();
+      });
+    } else {
+      trackCTAClicks();
+      trackFormSubmissions();
+    }
+  }
+
+  function applyTrackingAttributes() {
+    var cta = document.querySelector('.nav__link--cta');
+    if (cta) cta.setAttribute('data-track-cta', 'nav_apply');
+
+    document.querySelectorAll('.btn-outline').forEach(function(el) {
+      if (!el.getAttribute('data-track-cta')) {
+        var label = (el.textContent || '').trim().toLowerCase().replace(/\s+/g, '_');
+        el.setAttribute('data-track-cta', 'service_' + label);
+      }
+    });
+
+    var submitBtn = document.getElementById('submitBtn');
+    if (submitBtn) submitBtn.setAttribute('data-track-cta', 'submit_application');
+  }
+
+  function trackCTAClicks() {
+    applyTrackingAttributes();
+
+    document.querySelectorAll('[data-track-cta]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        if (window.gtag) {
+          window.gtag('event', 'cta_click', {
+            event_category: 'engagement',
+            event_label: el.getAttribute('data-track-cta'),
+          });
+        }
+      });
+    });
+  }
+
+  function trackFormSubmissions() {
+    var form = document.querySelector('.application__form');
+    if (form) {
+      form.addEventListener('submit', function() {
+        if (window.gtag) {
+          window.gtag('event', 'form_submit', {
+            event_category: 'conversion',
+            event_label: 'membership_application',
+          });
+          window.gtag('event', 'conversion', {
+            send_to: GA_MEASUREMENT_ID + '/membership_application',
+          });
+        }
+      });
+    }
+  }
+
+  function showBanner() {
+    banner.setAttribute('aria-hidden', 'false');
+    banner.classList.add('consent-banner--visible');
+  }
+
+  function hideBanner() {
+    banner.classList.remove('consent-banner--visible');
+    banner.setAttribute('aria-hidden', 'true');
+  }
+
+  var stored = localStorage.getItem(CONSENT_KEY);
+  if (stored === 'granted') {
+    loadGA();
+  } else if (stored !== 'denied') {
+    showBanner();
+  }
+
+  acceptBtn.addEventListener('click', function() {
+    localStorage.setItem(CONSENT_KEY, 'granted');
+    hideBanner();
+    loadGA();
+  });
+
+  declineBtn.addEventListener('click', function() {
+    localStorage.setItem(CONSENT_KEY, 'denied');
+    hideBanner();
+  });
+})();
+</script>
+
+<style>
+  .consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 16px 32px;
+    background: var(--color-cream, #FBF7F4);
+    border-top: 1px solid var(--color-card-border, #E8DCD5);
+    box-shadow: 0 -2px 12px rgba(42, 33, 25, 0.06);
+    font-family: 'Raleway', sans-serif;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .consent-banner--visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .consent-banner__text {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-ink-soft, #5C4D42);
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+    max-width: 480px;
+  }
+
+  .consent-banner__actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .consent-banner__btn {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    min-height: 44px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .consent-banner__btn--accept {
+    background: var(--color-rose, #855E4A);
+    color: var(--color-white, #FFFFFF);
+    border: 1px solid var(--color-rose, #855E4A);
+  }
+
+  .consent-banner__btn--accept:hover {
+    background: var(--color-rose-dark, #6F4C3A);
+    border-color: var(--color-rose-dark, #6F4C3A);
+  }
+
+  .consent-banner__btn--decline {
+    background: transparent;
+    color: var(--color-ink-soft, #5C4D42);
+    border: 1px solid var(--color-card-border, #C4B5AB);
+  }
+
+  .consent-banner__btn--decline:hover {
+    color: var(--color-ink-soft, #5C4D42);
+    border-color: var(--color-ink-muted, #9A8B80);
+  }
+
+  @media (max-width: 600px) {
+    .consent-banner {
+      flex-direction: column;
+      gap: 14px;
+      padding: 18px 20px;
+      text-align: center;
+    }
+
+    .consent-banner__text {
+      font-size: 0.82rem;
+    }
+  }
+</style>
