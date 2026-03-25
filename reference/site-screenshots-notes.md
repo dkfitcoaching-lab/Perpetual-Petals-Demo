@@ -38,11 +38,45 @@
 - Card: "Windermeres private floral experience" (missing apostrophe)
 - Bottom browser bar: perpetual-petals.com
 
+## Screenshot 6 - "Private Floral Placement" Section
+- Large heading: "PRIVATE FLORAL PLACEMENT" (bold serif, left-aligned)
+- Large circular image: close-up of roses arrangement in white vase with wine glass, candle, on table
+- Pink background continues
+
+## Screenshot 7 - Body Text (scrolled down from Screenshot 6)
+- Same hero text repeated from Screenshot 1 (about private floral membership in Windermere)
+- Same founder text repeated from Screenshot 2
+- Scrolling marquee at bottom: "ACED   SEASONALI" (parts of "THOUGHTFULLY PLACED" and "SEASONALLY...")
+
+## Screenshot 8 - "Floral Styling for Gatherings" Page
+- Large heading: "FLORAL STYLING FOR GATHERINGS" (bold serif, left-aligned)
+- Step 1 - "Inquiry": Photo of pink roses laid on wooden surface with scissors/tools
+  - Text: "Share your date, space, and overall vision."
+- Step 2 - "Design": Photo of hands arranging flowers in white bowl/vase
+  - Text starts: "Florals are..."
+
+## Screenshot 9 - Design & Delivery Steps
+- Step 2 continued - "Design":
+  - Text: "Florals are thoughtfully curated in the Perpetual Petals signature style to compliment your setting."
+  - **TYPO: "compliment" should be "complement"**
+- Step 3 - "Delivery & Placement":
+  - Photo: elegant table setting with floral centerpiece, candles, gold utensils, linen napkins
+  - Text starts below
+
+## Screenshot 10 - Delivery Step + Submit Button
+- Step 3 continued - "Delivery & Placement":
+  - Text: "Arrangements are delivered and placed, with intention, ready to elevate your gathering."
+- "Submit Inquiry" button (rounded pill shape, mauve/pink outline)
+- Dark section below
+- Card: "Windermeres private floral experience" (missing apostrophe again)
+
 ---
 
 ## Issues Noticed So Far
-1. "Windermeres" should be "Windermere's" (missing apostrophe)
-2. Scrolling marquee text gets cut off on mobile
-3. Content is quite repetitive (similar descriptions in hero and "What Sets Us Apart")
-4. Blue horizontal line under header seems out of place with the pink/mauve color scheme
-5. Plus (+) icon in header - unclear purpose on mobile
+1. "Windermeres" should be "Windermere's" (missing apostrophe) - appears multiple times
+2. "compliment" should be "complement" in the Design step
+3. Scrolling marquee text gets cut off on mobile
+4. Content is quite repetitive (similar descriptions in hero and "What Sets Us Apart")
+5. Blue horizontal line under header seems out of place with the pink/mauve color scheme
+6. Plus (+) icon in header - unclear purpose on mobile
+7. Text on Gatherings page is left-aligned while main page is centered - inconsistent
