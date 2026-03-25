@@ -5,3 +5,6 @@ site/.astro/
 .env.*
 .DS_Store
 *.log
+node_modules/
+package-lock.json
+!/site/package-lock.json
