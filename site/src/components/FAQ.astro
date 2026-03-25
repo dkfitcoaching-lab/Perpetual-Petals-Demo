@@ -1,0 +1,274 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: "What types of floral arrangements do you offer?",
+    answer: "We offer a full range of floral designs including wedding bouquets, centerpieces, ceremony installations, reception décor, boutonnieres, corsages, and large-scale floral sculptures. Every arrangement is custom-designed to match your vision and event aesthetic."
+  },
+  {
+    question: "How far in advance should I book?",
+    answer: "We recommend booking at least 3–6 months in advance for weddings and large events. For smaller arrangements or last-minute needs, we do our best to accommodate requests with at least 2 weeks' notice, subject to availability."
+  },
+  {
+    question: "Do you offer consultations?",
+    answer: "Yes! We offer complimentary initial consultations where we discuss your vision, color palette, venue details, and budget. This can be done in person at our studio or virtually. We want to make sure we're the perfect fit for your event."
+  },
+  {
+    question: "What is your delivery and setup process?",
+    answer: "Our team handles delivery, setup, and styling on the day of your event. We coordinate directly with your venue and event planner to ensure every detail is placed perfectly and on schedule. Breakdown and pickup services are also available."
+  },
+  {
+    question: "Can you work within my budget?",
+    answer: "Absolutely. We work with a range of budgets and can suggest seasonal blooms, alternative varieties, or creative design approaches that achieve a stunning look at your price point. We'll always be transparent about costs upfront."
+  },
+  {
+    question: "Do you provide flowers for non-wedding events?",
+    answer: "Yes — we design for corporate events, galas, anniversaries, memorials, holidays, and more. Whether it's an intimate dinner or a large-scale production, we bring the same level of care and artistry to every project."
+  }
+];
+---
+
+<section class="faq-section" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="faq-title">Frequently Asked Questions</h2>
+
+  <div class="faq-list" role="list">
+    {faqs.map((faq, index) => (
+      <details class="faq-item" name="faq" role="listitem">
+        <summary
+          class="faq-question"
+          aria-controls={`faq-answer-${index}`}
+          id={`faq-question-${index}`}
+        >
+          <span class="faq-question-text">{faq.question}</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </summary>
+        <div
+          class="faq-answer"
+          id={`faq-answer-${index}`}
+          role="region"
+          aria-labelledby={`faq-question-${index}`}
+        >
+          <p>{faq.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    max-width: 48rem;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+  }
+
+  .faq-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* --- Details / Accordion Item --- */
+  .faq-item {
+    border: 1px solid #e5e5e5;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .faq-item[open] {
+    background-color: #faf7f5;
+    border-color: #d4c5b9;
+  }
+
+  /* --- Summary / Question --- */
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    line-height: 1.5;
+    list-style: none;
+    user-select: none;
+    transition: color 0.2s ease;
+  }
+
+  /* Remove default marker in all browsers */
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::marker {
+    content: "";
+  }
+
+  .faq-question:hover {
+    color: #8b6f5a;
+  }
+
+  .faq-question:focus-visible {
+    outline: 2px solid #8b6f5a;
+    outline-offset: -2px;
+    border-radius: 0.75rem;
+  }
+
+  .faq-question-text {
+    flex: 1;
+  }
+
+  /* --- Chevron Icon --- */
+  .faq-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #f0ebe7;
+    color: #8b6f5a;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .faq-item[open] > .faq-question .faq-icon {
+    transform: rotate(180deg);
+    background-color: #e2d5c9;
+  }
+
+  /* --- Answer Panel — CSS Grid animation trick --- */
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease, padding 0.35s ease;
+    padding: 0 1.5rem;
+  }
+
+  .faq-answer > p {
+    overflow: hidden;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  .faq-item[open] > .faq-answer {
+    grid-template-rows: 1fr;
+    padding: 0 1.5rem 1.25rem;
+  }
+
+  /*
+   * Safari <17.2 doesn't animate grid-template-rows on <details>.
+   * For those browsers the content simply appears/disappears without
+   * animation — this is an acceptable graceful degradation since the
+   * component remains fully functional.
+   *
+   * Safari 17.2+ supports the ::details-content pseudo and animates
+   * the grid trick correctly.
+   */
+
+  /* --- Reduced motion --- */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item,
+    .faq-question,
+    .faq-icon,
+    .faq-answer {
+      transition: none;
+    }
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 640px) {
+    .faq-section {
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .faq-title {
+      font-size: 1.5rem;
+    }
+
+    .faq-question {
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+    }
+
+    .faq-answer {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .faq-item[open] > .faq-answer {
+      padding: 0 1.25rem 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Enhance <details name="faq"> for browsers that don't support
+  // the `name` attribute (mutual exclusivity). Modern Chrome, Edge,
+  // and Safari 17.2+ support it natively; this script is a polyfill
+  // for older browsers.
+  function initFAQAccordion() {
+    const details = document.querySelectorAll<HTMLDetailsElement>('details.faq-item[name="faq"]');
+
+    // Feature-detect: if the browser supports `name` on <details>,
+    // we don't need the polyfill. We test by opening two items
+    // and checking if the browser auto-closes the first.
+    if (details.length >= 2) {
+      const first = details[0];
+      const second = details[1];
+      first.open = true;
+      second.open = true;
+      const nativeSupport = !first.open;
+      // Reset state
+      first.open = false;
+      second.open = false;
+
+      if (!nativeSupport) {
+        // Polyfill: close others when one opens
+        details.forEach((el) => {
+          el.addEventListener('toggle', () => {
+            if (el.open) {
+              details.forEach((other) => {
+                if (other !== el && other.open) {
+                  other.open = false;
+                }
+              });
+            }
+          });
+        });
+      }
+    }
+  }
+
+  // Run on initial load and on Astro page transitions
+  document.addEventListener('DOMContentLoaded', initFAQAccordion);
+  document.addEventListener('astro:page-load', initFAQAccordion);
+
+  // If script runs after DOMContentLoaded (e.g. module script)
+  if (document.readyState !== 'loading') {
+    initFAQAccordion();
+  }
+</script>
