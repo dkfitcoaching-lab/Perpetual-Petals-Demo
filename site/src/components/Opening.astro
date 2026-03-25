@@ -1,0 +1,333 @@
+---
+/**
+ * Opening Section — Full-viewport hero with animated title reveal,
+ * scroll-driven parallax gradient, decorative ornament, and scroll indicator.
+ */
+---
+
+<section class="opening" aria-label="Welcome">
+  <!-- Parallax gradient overlay that shifts on scroll -->
+  <div class="opening__gradient-overlay" aria-hidden="true"></div>
+
+  <h1 class="opening__title">Perpetual Petals</h1>
+
+  <!-- Decorative ornamental element -->
+  <div class="opening__ornament" aria-hidden="true">
+    <svg class="opening__ornament-svg" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="12" x2="44" y2="12" stroke="currentColor" stroke-width="0.5" />
+      <!-- Petal motif -->
+      <g transform="translate(60, 12)">
+        <ellipse cx="0" cy="-4" rx="2.5" ry="5" transform="rotate(-30)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+        <ellipse cx="0" cy="-4" rx="2.5" ry="5" transform="rotate(0)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+        <ellipse cx="0" cy="-4" rx="2.5" ry="5" transform="rotate(30)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+        <circle cx="0" cy="0" r="1" fill="currentColor" opacity="0.5" />
+      </g>
+      <line x1="76" y1="12" x2="120" y2="12" stroke="currentColor" stroke-width="0.5" />
+    </svg>
+  </div>
+
+  <p class="opening__subtitle">Private Floral Membership</p>
+  <p class="opening__location">Windermere, Florida</p>
+
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-indicator__line"></div>
+  </div>
+</section>
+
+<style>
+  /* ============================================
+     OPENING — Full Viewport Hero
+     ============================================ */
+
+  .opening {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--cream);
+    background-image: radial-gradient(ellipse at center, rgba(212,171,139,0.07), transparent 70%);
+    position: relative;
+    padding: 40px 24px;
+    overflow: hidden;
+  }
+
+  /* Gradient overlay for parallax scroll effect */
+  .opening__gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 50% 50%,
+      rgba(212,171,139,0.10),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+    will-change: opacity, background;
+  }
+
+  /* ---- Title ---- */
+
+  .opening__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 52px;
+    color: var(--text);
+    letter-spacing: 3px;
+    line-height: 1.1;
+    opacity: 0;
+    transform: scale(1.04);
+    animation: titleReveal 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes titleReveal {
+    0% {
+      opacity: 0;
+      letter-spacing: 6px;
+      transform: scale(1.04);
+      filter: blur(2px);
+    }
+    50% {
+      filter: blur(0px);
+    }
+    100% {
+      opacity: 1;
+      letter-spacing: 3px;
+      transform: scale(1);
+      filter: blur(0px);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .opening__title {
+      font-size: 96px;
+    }
+
+    @keyframes titleReveal {
+      0% {
+        opacity: 0;
+        letter-spacing: 8px;
+        transform: scale(1.04);
+        filter: blur(3px);
+      }
+      50% {
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        letter-spacing: 3px;
+        transform: scale(1);
+        filter: blur(0px);
+      }
+    }
+  }
+
+  /* ---- Decorative Ornament ---- */
+
+  .opening__ornament {
+    color: var(--accent);
+    margin: 24px auto 20px;
+    opacity: 0;
+    animation: ornamentReveal 1s ease-out 1s forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  .opening__ornament-svg {
+    width: 120px;
+    height: 24px;
+    display: block;
+  }
+
+  @keyframes ornamentReveal {
+    from {
+      opacity: 0;
+      transform: scaleX(0.3);
+    }
+    to {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  /* ---- Subtitle & Location ---- */
+
+  .opening__subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 1.3s forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  .opening__location {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-caption);
+    margin-top: 6px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 1.5s forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .opening__subtitle,
+    .opening__location {
+      font-size: 13px;
+    }
+  }
+
+  /* ---- Scroll Indicator ---- */
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 2s forwards, scrollPulse 2.5s ease-in-out 2.8s infinite;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .scroll-indicator.hidden {
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(12px);
+    pointer-events: none;
+  }
+
+  .scroll-indicator__line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    margin: 0 auto;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateX(-50%) translateY(8px);
+      opacity: 0.3;
+    }
+  }
+
+  /* ============================================
+     prefers-reduced-motion
+     ============================================ */
+
+  @media (prefers-reduced-motion: reduce) {
+    .opening__title {
+      opacity: 1;
+      transform: none;
+      animation: none;
+      filter: none;
+    }
+
+    .opening__ornament {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .opening__subtitle,
+    .opening__location {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .scroll-indicator {
+      opacity: 0.6;
+      animation: none;
+    }
+
+    .scroll-indicator.hidden {
+      opacity: 0 !important;
+      transform: translateX(-50%);
+    }
+
+    .opening__gradient-overlay {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    'use strict';
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const opening = document.querySelector('.opening') as HTMLElement | null;
+    const gradientOverlay = document.querySelector('.opening__gradient-overlay') as HTMLElement | null;
+    const scrollIndicator = document.querySelector('.scroll-indicator') as HTMLElement | null;
+
+    if (!opening) return;
+
+    let scrollHidden = false;
+    let ticking = false;
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const viewportHeight = window.innerHeight;
+
+        // Hide scroll indicator after user scrolls past ~10% of viewport
+        if (!scrollHidden && scrollIndicator && scrollY > viewportHeight * 0.1) {
+          scrollIndicator.classList.add('hidden');
+          scrollHidden = true;
+        }
+
+        // Parallax gradient shift — only when opening is in view and motion is allowed
+        if (!prefersReducedMotion && gradientOverlay && scrollY < viewportHeight) {
+          const progress = scrollY / viewportHeight;
+          // Shift gradient center downward and increase warmth as user scrolls
+          const yOffset = 50 + progress * 25;
+          gradientOverlay.style.opacity = String(Math.min(progress * 1.5, 1));
+          gradientOverlay.style.background = `radial-gradient(
+            ellipse at 50% ${yOffset}%,
+            rgba(212,171,139,${0.06 + progress * 0.08}),
+            transparent 70%
+          )`;
+        }
+
+        ticking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>

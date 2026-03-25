@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <slot />
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --cream: #FDF9F6;
+    --linen: #F9F0EC;
+    --warm: #E8D5CC;
+    --bronze: #D4AB8B;
+    --bronze-light: #C4A882;
+    --bronze-glow: rgba(212, 171, 139, 0.08);
+    --text: #2C2420;
+    --text-secondary: #6B5A50;
+    --text-caption: #A09088;
+    --accent: #D4AB8B;
+  }
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    color: var(--text);
+    background-color: var(--cream);
+    overflow-x: hidden;
+    line-height: 2.0;
+  }
+</style>
