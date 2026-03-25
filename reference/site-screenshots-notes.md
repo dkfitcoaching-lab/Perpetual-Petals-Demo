@@ -114,6 +114,32 @@
   - "No arrangement is repeated. Each design is composed thoughtfully and with intention, never assembled from a formula."
 - Below: pink box with large heading "YOUR QUESTIONS, ANSWERED" (FAQ section)
 
+## Screenshot 16 - FAQ Section (Collapsed)
+- "YOUR QUESTIONS, ANSWERED" heading (bold serif, pink background card)
+- 4 accordion items (with + icons), all collapsed:
+  1. What is Perpetual Petals?
+  2. How does the membership work?
+  3. Can I request something special?
+  4. How do I become a member?
+
+## Screenshot 17 - FAQ: "What is Perpetual Petals?" (Expanded)
+- Answer: "Perpetual Petals is a private floral design membership reserved for residents in Windermere, Florida."
+
+## Screenshot 18 - FAQ: "How does the membership work?" (Expanded)
+- Answer: "Membership begins with an approved application and selected placement level. Floral designs are curate and delivered according to your chosen schedule- weekly, seasonal, or monthly. Each placement includes custom design, delivery, vessel rotation, and removal of prior arrangements where applicable."
+- **TYPO: "are curate" should be "are curated"**
+- **TYPO: "schedule-" should use em dash "schedule —"**
+
+## Screenshot 19 - FAQ: "Can I request something special?" (Expanded)
+- Answer: "Yes. Members have priority access to me for additional arrangements, events, or moments that need something extra- dinner parties, guests, celebrations, or simply when you want something beautiful now."
+- **Note: "access to me" — first-person voice, inconsistent with rest of site (third person)**
+- **TYPO: "extra-" should use em dash "extra —"**
+- "Apply for Membership" button visible (rounded, mauve/pink filled)
+
+## Screenshot 20 - FAQ: "How do I become a member?" (Expanded)
+- Answer: "Membership is by request. A limited number of Windermere homes are accepted each season to maintain design integrity and quality standards. Upon approval, you will receive confirmation and next steps to initiate service."
+- "Apply for Membership" button (rounded, mauve/pink filled)
+
 ---
 
 ## Issues Noticed So Far
@@ -127,3 +153,6 @@
 8. "created-" should use an em dash "created —" (Screenshot 15)
 9. Form field borders are very thick/black - doesn't match the soft, elegant aesthetic
 10. "The Perpetual Petal" - inconsistent naming (singular vs "Perpetual Petals")
+11. "are curate" should be "are curated" in FAQ answer (Screenshot 18)
+12. "schedule-" and "extra-" should use em dashes throughout FAQ answers
+13. "access to me" - first-person voice inconsistent with rest of site (Screenshot 19)
