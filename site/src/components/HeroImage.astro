@@ -3,13 +3,25 @@
 ---
 
 <section class="hero-image reveal" aria-label="Featured arrangement">
-  <img
-    src="/images/hero-arrangement.png"
-    alt="A lush arrangement of premium garden roses in soft pinks and creams by Perpetual Petals"
-    fetchpriority="high"
-    width="1800"
-    height="1200"
-  >
+  <picture>
+    <source
+      type="image/webp"
+      srcset="/images/hero-arrangement-400w.webp 400w, /images/hero-arrangement-800w.webp 800w, /images/hero-arrangement-1200w.webp 1200w, /images/hero-arrangement-1800w.webp 1800w"
+      sizes="100vw"
+    >
+    <source
+      type="image/png"
+      srcset="/images/hero-arrangement-400w.png 400w, /images/hero-arrangement-800w.png 800w, /images/hero-arrangement-1200w.png 1200w, /images/hero-arrangement-1800w.png 1800w"
+      sizes="100vw"
+    >
+    <img
+      src="/images/hero-arrangement.png"
+      alt="A lush arrangement of premium garden roses in soft pinks and creams by Perpetual Petals"
+      fetchpriority="high"
+      width="1800"
+      height="1200"
+    >
+  </picture>
 </section>
 
 <style>

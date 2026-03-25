@@ -5,14 +5,26 @@
 <section class="founder section" aria-label="About the founder">
   <div class="founder__inner">
     <div class="founder__image-wrapper reveal">
-      <img
-        class="founder__image"
-        src="/images/founder.jpeg"
-        alt="Lori Fronzak arranging premium garden roses"
-        loading="lazy"
-        width="800"
-        height="1000"
-      >
+      <picture>
+        <source
+          type="image/webp"
+          srcset="/images/founder-400w.webp 400w, /images/founder-800w.webp 800w"
+          sizes="(min-width: 768px) 45vw, 100vw"
+        >
+        <source
+          type="image/jpeg"
+          srcset="/images/founder-400w.jpeg 400w, /images/founder-800w.jpeg 800w"
+          sizes="(min-width: 768px) 45vw, 100vw"
+        >
+        <img
+          class="founder__image"
+          src="/images/founder.jpeg"
+          alt="Lori Fronzak arranging premium garden roses"
+          loading="lazy"
+          width="800"
+          height="1000"
+        >
+      </picture>
     </div>
     <div class="founder__content reveal">
       <h2 class="founder__name">Lori Fronzak</h2>
