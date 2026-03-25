@@ -1,0 +1,612 @@
+---
+/**
+ * Membership Application Form
+ * - Client-side validation with elegant inline errors
+ * - Email & phone format validation
+ * - Loading spinner on submit
+ * - Success confirmation with animation
+ * - Error state with retry
+ * - Formspree integration
+ */
+---
+
+<section class="application" id="apply" aria-label="Apply for membership">
+  <div class="application__inner">
+    <h2 class="section-heading">Request Membership</h2>
+    <p class="application__subtext">Availability is intentionally limited. Applications are reviewed within 48 hours.</p>
+
+    <div class="application__form-wrapper" id="formWrapper">
+      <form
+        class="application__form"
+        id="applicationForm"
+        action="https://formspree.io/f/xpzvqkrl"
+        method="POST"
+        novalidate
+      >
+        <div class="form-group">
+          <label for="fullName">Full Name <span class="required" aria-hidden="true">*</span></label>
+          <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="e.g. Jane Smith">
+          <span class="form-error" id="fullName-error" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="e.g. jane@example.com">
+          <span class="form-error" id="email-error" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="e.g. (407) 555-0123">
+          <span class="form-error" id="phone-error" role="alert"></span>
+          <span class="form-hint">Format: (XXX) XXX-XXXX or XXX-XXX-XXXX</span>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Windermere Address</label>
+          <input type="text" id="address" name="address" autocomplete="street-address">
+        </div>
+
+        <div class="form-group">
+          <label for="vision">Tell us about your home and what you envision</label>
+          <textarea id="vision" name="vision" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="referral">How did you hear about us?</label>
+          <input type="text" id="referral" name="referral">
+        </div>
+
+        <div class="application__submit">
+          <button type="submit" class="btn" id="submitBtn">
+            <span class="btn__text">Submit Application</span>
+            <span class="btn__spinner" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
+                <path d="M12 2a10 10 0 0 1 10 10"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Success confirmation -->
+    <div class="application__confirm" id="confirmMessage" aria-live="polite">
+      <div class="application__confirm-icon">
+        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="22" class="confirm-circle"/>
+          <path d="M14 24l7 7 13-13" class="confirm-check"/>
+        </svg>
+      </div>
+      <p class="application__confirm-heading application__confirm-line">Thank You</p>
+      <p class="application__confirm-text application__confirm-line">Your application has been received. We will be in touch within 48 hours.</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="application__error" id="errorMessage" aria-live="polite">
+      <p class="application__error-heading">Something went wrong</p>
+      <p class="application__error-text">We couldn't submit your application. Please check your connection and try again.</p>
+      <button type="button" class="btn btn--retry" id="retryBtn">Try Again</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ============================================
+     MEMBERSHIP APPLICATION
+     ============================================ */
+  .application {
+    padding: 80px 24px;
+    background: var(--linen, #F9F0EC);
+  }
+
+  @media (min-width: 768px) {
+    .application { padding: 120px 48px; }
+  }
+
+  @media (min-width: 1024px) {
+    .application { padding: 140px 64px; }
+  }
+
+  .application__inner {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 32px;
+    color: var(--text, #4A3728);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  @media (min-width: 768px) {
+    .section-heading { font-size: 40px; }
+  }
+
+  .application__subtext {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--text-caption, #9B8579);
+    line-height: 2.0;
+    margin-bottom: 48px;
+  }
+
+  @media (min-width: 768px) {
+    .application__subtext { font-size: 15px; }
+  }
+
+  /* Form wrapper */
+  .application__form-wrapper {
+    background: var(--white, #FFFFFF);
+    padding: 40px 24px;
+    border-radius: 2px;
+    box-shadow: 0 4px 30px rgba(139,110,79,0.06);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  @media (min-width: 768px) {
+    .application__form-wrapper { padding: 56px; }
+  }
+
+  .application__form-wrapper.hiding {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .application__form {
+    text-align: left;
+  }
+
+  /* Form groups */
+  .form-group {
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent, #D4AB8B);
+    margin-bottom: 6px;
+  }
+
+  .required {
+    color: var(--accent, #D4AB8B);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: var(--text, #4A3728);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--card-border, #E6DDD5);
+    padding: 14px 0;
+    outline: none;
+    transition: border-bottom-color 0.3s, box-shadow 0.3s;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-bottom-color: var(--accent, #D4AB8B);
+    box-shadow: 0 2px 0 0 rgba(212,171,139,0.3);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-caption, #9B8579);
+    opacity: 0.6;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.7;
+  }
+
+  /* Validation states */
+  .form-group.has-error input,
+  .form-group.has-error textarea {
+    border-bottom-color: #C47A6E;
+    box-shadow: 0 2px 0 0 rgba(196,122,110,0.3);
+  }
+
+  .form-error {
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #C47A6E;
+    margin-top: 6px;
+    min-height: 0;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease, min-height 0.25s ease;
+  }
+
+  .form-error.visible {
+    opacity: 1;
+    transform: translateY(0);
+    min-height: 18px;
+  }
+
+  .form-hint {
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--text-caption, #9B8579);
+    margin-top: 4px;
+    opacity: 0.7;
+  }
+
+  /* Submit button */
+  .application__submit {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--accent, #D4AB8B);
+    color: var(--white, #FFFFFF);
+    border: none;
+    border-radius: 30px;
+    padding: 16px 48px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, opacity 0.3s;
+    min-width: 220px;
+    position: relative;
+  }
+
+  .btn:hover {
+    background: #C49A7A;
+  }
+
+  .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .btn__spinner {
+    display: none;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .btn.loading .btn__text {
+    opacity: 0;
+  }
+
+  .btn.loading .btn__spinner {
+    display: block;
+    position: absolute;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Success confirmation */
+  .application__confirm {
+    display: none;
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .application__confirm.active {
+    display: block;
+  }
+
+  .application__confirm-icon {
+    margin-bottom: 24px;
+    color: var(--accent, #D4AB8B);
+  }
+
+  .confirm-circle {
+    stroke-dasharray: 138;
+    stroke-dashoffset: 138;
+    animation: drawCircle 0.6s ease-out 0.1s forwards;
+  }
+
+  .confirm-check {
+    stroke-dasharray: 30;
+    stroke-dashoffset: 30;
+    animation: drawCheck 0.4s ease-out 0.5s forwards;
+  }
+
+  @keyframes drawCircle {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .application__confirm-line {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: confirmFadeIn 0.6s ease-out forwards;
+  }
+
+  .application__confirm-line:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  .application__confirm-line:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes confirmFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .application__confirm-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 28px;
+    color: var(--text, #4A3728);
+    margin-bottom: 16px;
+  }
+
+  .application__confirm-text {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--text-secondary, #7A6A5E);
+    line-height: 2.0;
+  }
+
+  /* Error state */
+  .application__error {
+    display: none;
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .application__error.active {
+    display: block;
+    animation: confirmFadeIn 0.4s ease-out forwards;
+  }
+
+  .application__error-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 28px;
+    color: var(--text, #4A3728);
+    margin-bottom: 12px;
+  }
+
+  .application__error-text {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--text-secondary, #7A6A5E);
+    line-height: 2.0;
+    margin-bottom: 32px;
+  }
+
+  .btn--retry {
+    background: transparent;
+    color: var(--accent, #D4AB8B);
+    border: 1px solid var(--accent, #D4AB8B);
+    padding: 12px 36px;
+    min-width: auto;
+  }
+
+  .btn--retry:hover {
+    background: var(--accent, #D4AB8B);
+    color: var(--white, #FFFFFF);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .form-group input,
+    .form-group textarea {
+      font-size: 16px; /* Prevents iOS zoom */
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('applicationForm') as HTMLFormElement;
+  const formWrapper = document.getElementById('formWrapper') as HTMLElement;
+  const confirmMessage = document.getElementById('confirmMessage') as HTMLElement;
+  const errorMessage = document.getElementById('errorMessage') as HTMLElement;
+  const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+  const retryBtn = document.getElementById('retryBtn') as HTMLButtonElement;
+
+  interface ValidationRule {
+    field: HTMLInputElement | HTMLTextAreaElement;
+    errorEl: HTMLElement | null;
+    validate: () => string;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[\d\s\-().+]+$/;
+
+  function getField(id: string): HTMLInputElement {
+    return document.getElementById(id) as HTMLInputElement;
+  }
+
+  const validations: ValidationRule[] = [
+    {
+      field: getField('fullName'),
+      errorEl: document.getElementById('fullName-error'),
+      validate() {
+        const val = this.field.value.trim();
+        if (!val) return 'Please enter your full name';
+        if (val.length < 2) return 'Name must be at least 2 characters';
+        return '';
+      }
+    },
+    {
+      field: getField('email'),
+      errorEl: document.getElementById('email-error'),
+      validate() {
+        const val = this.field.value.trim();
+        if (!val) return 'Please enter your email address';
+        if (!emailRegex.test(val)) return 'Please enter a valid email (e.g. jane@example.com)';
+        return '';
+      }
+    },
+    {
+      field: getField('phone'),
+      errorEl: document.getElementById('phone-error'),
+      validate() {
+        const val = this.field.value.trim();
+        if (!val) return ''; // Phone is optional
+        if (!phoneRegex.test(val)) return 'Please use only digits, spaces, dashes, and parentheses';
+        if (val.replace(/\D/g, '').length < 7) return 'Phone number seems too short';
+        return '';
+      }
+    }
+  ];
+
+  function showError(group: HTMLElement | null, errorEl: HTMLElement | null, message: string) {
+    if (group) group.classList.add('has-error');
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.classList.add('visible');
+    }
+  }
+
+  function clearError(group: HTMLElement | null, errorEl: HTMLElement | null) {
+    if (group) group.classList.remove('has-error');
+    if (errorEl) {
+      errorEl.textContent = '';
+      errorEl.classList.remove('visible');
+    }
+  }
+
+  // Live validation: clear errors on input
+  validations.forEach(({ field, errorEl }) => {
+    field.addEventListener('input', () => {
+      const group = field.closest('.form-group') as HTMLElement;
+      clearError(group, errorEl);
+    });
+  });
+
+  function validateAll(): boolean {
+    let isValid = true;
+
+    validations.forEach(({ field, errorEl, validate }) => {
+      const group = field.closest('.form-group') as HTMLElement;
+      const error = validate();
+
+      if (error) {
+        showError(group, errorEl, error);
+        isValid = false;
+      } else {
+        clearError(group, errorEl);
+      }
+    });
+
+    return isValid;
+  }
+
+  function setLoading(loading: boolean) {
+    if (loading) {
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+    } else {
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+      submitBtn.setAttribute('aria-busy', 'false');
+    }
+  }
+
+  function showConfirm() {
+    formWrapper.classList.add('hiding');
+    setTimeout(() => {
+      formWrapper.style.display = 'none';
+      confirmMessage.classList.add('active');
+      confirmMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 400);
+  }
+
+  function showErrorState() {
+    formWrapper.classList.add('hiding');
+    setTimeout(() => {
+      formWrapper.style.display = 'none';
+      errorMessage.classList.add('active');
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 400);
+  }
+
+  function resetToForm() {
+    errorMessage.classList.remove('active');
+    formWrapper.style.display = '';
+    // Force reflow before removing hiding class
+    void formWrapper.offsetHeight;
+    formWrapper.classList.remove('hiding');
+    setLoading(false);
+    formWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  async function submitForm(formData: FormData) {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Submission failed: ${response.status}`);
+    }
+
+    return response.json();
+  }
+
+  form.addEventListener('submit', async (e: Event) => {
+    e.preventDefault();
+
+    if (!validateAll()) {
+      // Focus the first field with an error
+      const firstError = form.querySelector('.has-error input, .has-error textarea') as HTMLElement;
+      if (firstError) firstError.focus();
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const formData = new FormData(form);
+      await submitForm(formData);
+      showConfirm();
+    } catch {
+      setLoading(false);
+      showErrorState();
+    }
+  });
+
+  retryBtn.addEventListener('click', () => {
+    resetToForm();
+  });
+</script>
