@@ -59,13 +59,25 @@
     border-radius: 3px;
     padding: 44px;
     text-align: center;
-    transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    transition: border-color var(--duration) var(--ease-out),
+                box-shadow var(--duration) var(--ease-out),
+                transform var(--duration) var(--ease-out);
   }
 
   @media (hover: hover) {
     .service-card:hover {
       border-color: var(--color-rose);
-      box-shadow: 0 8px 30px var(--color-rose-glow);
+      box-shadow: 0 12px 40px var(--color-rose-glow);
+      transform: translateY(-4px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-card {
+      transition: none;
+    }
+    .service-card:hover {
+      transform: none;
     }
   }
 

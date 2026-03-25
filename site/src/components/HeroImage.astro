@@ -44,4 +44,39 @@
       height: 80vh;
     }
   }
+
+  /* Subtle parallax — CSS-only via scroll-driven transform */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-image img {
+      height: 65vh;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    @media (min-width: 768px) {
+      .hero-image img {
+        height: 90vh;
+      }
+    }
+  }
 </style>
+
+<script>
+  // Minimal JS parallax — shifts hero image on scroll
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const hero = document.querySelector('.hero-image img') as HTMLElement | null;
+    if (hero) {
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(() => {
+            const offset = window.scrollY;
+            hero.style.transform = `translateY(${offset * 0.15}px)`;
+            ticking = false;
+          });
+        }
+      }, { passive: true });
+    }
+  }
+</script>
