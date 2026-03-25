@@ -1,0 +1,93 @@
+---
+/* Portfolio gallery — masonry-ish grid */
+const images = [
+  { src: '/images/gallery-1.png',  alt: 'Garden rose arrangement in a ceramic vessel' },
+  { src: '/images/gallery-2.jpeg', alt: 'Seasonal floral arrangement with soft pink tones' },
+  { src: '/images/gallery-3.jpeg', alt: 'Luxury floral design with natural greenery' },
+  { src: '/images/gallery-4.jpeg', alt: 'Romantic floral composition for a living space' },
+  { src: '/images/founder.jpeg',   alt: 'Artful arrangement in a Windermere home' },
+];
+---
+
+<section class="gallery section section-linen" id="portfolio" aria-label="Portfolio">
+  <div class="container">
+    <h2 class="heading-section reveal">Portfolio</h2>
+    <div class="gallery__grid reveal-stagger">
+      {images.map((img, i) => (
+        <div class={`gallery__item reveal-child ${i === 0 ? 'gallery__item--wide' : ''}`}>
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading="lazy"
+            width="800"
+            height="600"
+          >
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  @media (min-width: 768px) {
+    .gallery__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .gallery__item--wide {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .gallery__item--wide {
+      grid-column: span 2;
+    }
+  }
+
+  .gallery__item {
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .gallery__item img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  .gallery__item--wide img {
+    height: 100%;
+    min-height: 380px;
+  }
+
+  @media (min-width: 768px) {
+    .gallery__item img { height: 420px; }
+  }
+
+  @media (hover: hover) {
+    .gallery__item:hover img {
+      transform: scale(1.02);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .gallery__grid { gap: 0; }
+    .gallery__item { border-radius: 0; }
+    .gallery__item img { border-radius: 0; }
+  }
+</style>

@@ -1,0 +1,94 @@
+---
+/* The Experience — 3-step process cards */
+const steps = [
+  {
+    label: 'Inquiry',
+    text: 'Share your vision and space. Membership begins with an approved application and a conversation about what you love.',
+  },
+  {
+    label: 'Design',
+    text: 'Arrangements are curated seasonally and intuitively. No two designs are ever alike — each reflects the moment and the setting.',
+  },
+  {
+    label: 'Placement',
+    text: 'Delivered and placed with intention. Refreshed on your schedule — weekly, seasonal, or monthly. Always alive.',
+  },
+];
+---
+
+<section class="experience section section-linen" id="experience" aria-label="How it works">
+  <div class="container">
+    <h2 class="heading-section reveal">The Experience</h2>
+    <div class="experience__steps reveal-stagger">
+      {steps.map(step => (
+        <div class="experience__step reveal-child">
+          <span class="experience__star" aria-hidden="true">&#10022;</span>
+          <p class="experience__label">{step.label}</p>
+          <p class="body-text">{step.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience__steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .experience__steps {
+      flex-direction: row;
+      gap: var(--space-lg);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .experience__steps { gap: var(--space-xl); }
+  }
+
+  .experience__step {
+    flex: 1;
+    text-align: center;
+    padding: var(--space-lg) var(--space-lg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 3px;
+    background: var(--color-white);
+    transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    .experience__step:hover {
+      border-color: var(--color-rose);
+      box-shadow: 0 8px 30px var(--color-rose-glow);
+    }
+  }
+
+  .experience__star {
+    display: block;
+    font-size: 12px;
+    color: var(--color-rose);
+    margin-bottom: 14px;
+  }
+
+  .experience__label {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--color-rose);
+    margin-bottom: var(--space-sm);
+  }
+
+  .experience__step .body-text {
+    max-width: 300px;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+
+  @media (min-width: 768px) {
+    .experience__step .body-text { font-size: 15px; }
+  }
+</style>

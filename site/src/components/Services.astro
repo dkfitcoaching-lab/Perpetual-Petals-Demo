@@ -1,0 +1,102 @@
+---
+/* Services — two service cards side by side */
+---
+
+<section class="services section section-linen" id="services" aria-label="Services">
+  <div class="container">
+    <h2 class="heading-section reveal">Services</h2>
+    <div class="services__grid reveal-stagger">
+
+      <div class="service-card reveal-child">
+        <h3 class="heading-card">Private Membership</h3>
+        <p class="label-muted service-card__avail">Limited Availability</p>
+        <ul class="service-card__list">
+          <li>Weekly, seasonal, or monthly floral placement</li>
+          <li>Premium garden roses &amp; seasonal blooms</li>
+          <li>Vessel rotation &amp; arrangement exchange</li>
+          <li>Priority access for special occasions</li>
+        </ul>
+        <a href="#apply" class="btn btn-outline">Inquire</a>
+      </div>
+
+      <div class="service-card reveal-child">
+        <h3 class="heading-card">Events &amp; Gatherings</h3>
+        <p class="label-muted service-card__avail">By Request</p>
+        <ul class="service-card__list">
+          <li>Custom floral styling for your occasion</li>
+          <li>Dinner parties, celebrations, holidays</li>
+          <li>Thoughtfully curated to complement your space</li>
+        </ul>
+        <a href="#apply" class="btn btn-outline">Submit Inquiry</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .services__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .services__grid {
+      flex-direction: row;
+      gap: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services__grid { gap: var(--space-lg); }
+  }
+
+  .service-card {
+    flex: 1;
+    background: var(--color-white);
+    border: 1px solid var(--color-card-border);
+    border-radius: 3px;
+    padding: 44px;
+    text-align: center;
+    transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    .service-card:hover {
+      border-color: var(--color-rose);
+      box-shadow: 0 8px 30px var(--color-rose-glow);
+    }
+  }
+
+  .service-card .heading-card {
+    margin-bottom: var(--space-md);
+  }
+
+  .service-card__avail {
+    margin-bottom: var(--space-md);
+  }
+
+  .service-card__list {
+    list-style: none;
+    margin-bottom: 36px;
+  }
+
+  .service-card__list li {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--color-ink-soft);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-rose-glow);
+  }
+
+  @media (min-width: 768px) {
+    .service-card__list li { font-size: 15px; }
+  }
+
+  .service-card__list li:last-child {
+    border-bottom: none;
+  }
+</style>

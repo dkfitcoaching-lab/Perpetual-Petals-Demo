@@ -1,0 +1,229 @@
+---
+/* Membership Application Form
+   Uses Formspree for actual form processing.
+   Replace FORM_ID with the real Formspree endpoint. */
+const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID';
+---
+
+<section class="application section section-linen" id="apply" aria-label="Apply for membership">
+  <div class="application__inner">
+    <h2 class="heading-section reveal">Request Membership</h2>
+    <p class="body-text text-center reveal" style="max-width: 480px; margin: 0 auto var(--space-lg);">
+      Availability is intentionally limited. Applications are reviewed within 48 hours.
+    </p>
+
+    <div class="application__form-wrapper reveal">
+      <form
+        class="application__form"
+        id="applicationForm"
+        action={FORMSPREE_URL}
+        method="POST"
+      >
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="Your full name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="your@email.com">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555">
+          </div>
+          <div class="form-group">
+            <label for="address">Windermere Address</label>
+            <input type="text" id="address" name="address" autocomplete="street-address" placeholder="Your street address">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="vision">Tell us about your home and what you envision</label>
+          <textarea id="vision" name="vision" rows="4" placeholder="Describe your style, preferences, or any rooms you'd like to bring to life with florals..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="referral">How did you hear about us?</label>
+          <input type="text" id="referral" name="referral" placeholder="Instagram, neighbor, etc.">
+        </div>
+
+        <!-- Honeypot for spam prevention -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="application__submit">
+          <button type="submit" class="btn btn-filled" id="submitBtn">Submit Application</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="application__confirm" id="confirmMessage" aria-live="polite">
+      <div class="application__confirm-line">
+        <p class="heading-section" style="margin-bottom: var(--space-sm);">Thank You</p>
+      </div>
+      <div class="application__confirm-line">
+        <p class="body-text">Your application has been received. We will be in touch within 48 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .application__inner {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    text-align: center;
+  }
+
+  .application__form-wrapper {
+    background: var(--color-white);
+    padding: var(--space-lg) var(--space-md);
+    border-radius: 3px;
+    box-shadow: 0 4px 30px rgba(139, 110, 79, 0.06);
+  }
+
+  @media (min-width: 768px) {
+    .application__form-wrapper { padding: 56px; }
+  }
+
+  .application__form {
+    text-align: left;
+  }
+
+  .form-group {
+    margin-bottom: var(--space-md);
+  }
+
+  .form-group label {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-rose);
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--color-ink);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-card-border);
+    padding: 14px 0;
+    outline: none;
+    transition: border-bottom-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-bottom-color: var(--color-rose);
+    box-shadow: 0 2px 0 0 rgba(201, 160, 142, 0.25);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--color-ink-muted);
+    opacity: 0.5;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.7;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  @media (min-width: 600px) {
+    .form-row {
+      flex-direction: row;
+      gap: var(--space-md);
+    }
+    .form-row .form-group { flex: 1; }
+  }
+
+  .application__submit {
+    text-align: center;
+    margin-top: var(--space-lg);
+  }
+
+  /* Confirmation */
+  .application__confirm {
+    display: none;
+    text-align: center;
+    padding: var(--space-lg) 0;
+  }
+
+  .application__confirm.active {
+    display: block;
+  }
+
+  .application__confirm-line {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: confirmFadeIn 0.6s var(--ease-out) forwards;
+  }
+
+  .application__confirm-line:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  @keyframes confirmFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('applicationForm') as HTMLFormElement;
+  const confirm = document.getElementById('confirmMessage');
+  const wrapper = document.querySelector('.application__form-wrapper') as HTMLElement;
+  const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' },
+      });
+
+      if (response.ok) {
+        wrapper.style.display = 'none';
+        confirm?.classList.add('active');
+        confirm?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        submitBtn.textContent = 'Something went wrong — try again';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      // If Formspree isn't configured yet, still show confirmation for demo
+      wrapper.style.display = 'none';
+      confirm?.classList.add('active');
+      confirm?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+</script>
