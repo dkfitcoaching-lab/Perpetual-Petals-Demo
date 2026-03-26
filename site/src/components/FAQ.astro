@@ -32,8 +32,9 @@ const faqs: FAQItem[] = [
 ];
 ---
 
-<section class="faq-section" aria-labelledby="faq-heading">
-  <h2 id="faq-heading" class="faq-title">Frequently Asked Questions</h2>
+<section class="faq-section section" aria-labelledby="faq-heading">
+  <p class="overline">Common Questions</p>
+  <h2 id="faq-heading" class="heading-section faq-title">Frequently Asked Questions</h2>
 
   <div class="faq-list">
     {faqs.map((faq, index) => (
@@ -64,31 +65,26 @@ const faqs: FAQItem[] = [
 
 <style>
   .faq-section {
-    max-width: 48rem;
-    margin: 4rem auto;
+    max-width: 720px;
+    margin: 0 auto;
     padding: 0 1.5rem;
   }
 
   .faq-title {
-    font-family: var(--font-serif);
-    font-size: 2.5rem;
-    font-weight: 300;
     text-align: center;
     margin-bottom: 2.5rem;
-    letter-spacing: 0.04em;
-    color: var(--color-ink, #2A2119);
   }
 
   .faq-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 12px;
   }
 
   /* --- Details / Accordion Item --- */
   .faq-item {
     border: 1px solid var(--color-card-border, #E8DCD5);
-    border-radius: 4px;
+    border-radius: 8px;
     overflow: hidden;
     transition: background-color 0.3s ease, border-color 0.3s ease;
   }
@@ -106,13 +102,13 @@ const faqs: FAQItem[] = [
     gap: 1rem;
     padding: 1.25rem 1.5rem;
     cursor: pointer;
-    font-size: 1.0625rem;
+    font-size: 18px;
     font-weight: 500;
     color: var(--color-ink, #2A2119);
     line-height: 1.5;
     list-style: none;
     user-select: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, background-color 0.2s ease;
   }
 
   /* Remove default marker in all browsers */
@@ -125,13 +121,13 @@ const faqs: FAQItem[] = [
   }
 
   .faq-question:hover {
-    color: var(--color-rose, #855E4A);
+    background-color: rgba(184, 117, 122, 0.04);
   }
 
   .faq-question:focus-visible {
-    outline: 2px solid var(--color-rose, #855E4A);
+    outline: 2px solid var(--color-rose, #B8757A);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 8px;
   }
 
   .faq-question-text {
@@ -144,11 +140,11 @@ const faqs: FAQItem[] = [
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background-color: var(--color-linen, #F5ECE6);
-    color: var(--color-rose, #855E4A);
+    background: var(--color-rose-glow, rgba(184, 117, 122, 0.12));
+    color: var(--color-rose, #B8757A);
     transition: transform 0.3s ease, background-color 0.3s ease;
   }
 
@@ -168,8 +164,9 @@ const faqs: FAQItem[] = [
   .faq-answer > p {
     overflow: hidden;
     margin: 0;
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 17px;
+    line-height: 1.9;
+    letter-spacing: 0.3px;
     color: var(--color-ink-soft, #5C4D42);
   }
 
@@ -201,17 +198,12 @@ const faqs: FAQItem[] = [
   /* --- Responsive --- */
   @media (max-width: 640px) {
     .faq-section {
-      margin: 2rem auto;
       padding: 0 1rem;
-    }
-
-    .faq-title {
-      font-size: 1.5rem;
     }
 
     .faq-question {
       padding: 1rem 1.25rem;
-      font-size: 1rem;
+      font-size: 16px;
     }
 
     .faq-answer {

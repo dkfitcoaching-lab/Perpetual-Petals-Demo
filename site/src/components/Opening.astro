@@ -1,7 +1,7 @@
 ---
 /**
  * Opening Section — Full-viewport hero with animated title reveal,
- * scroll-driven parallax gradient, decorative ornament, and scroll indicator.
+ * scroll-driven parallax gradient, gold botanical ornament, and scroll indicator.
  */
 ---
 
@@ -11,18 +11,19 @@
 
   <h1 class="opening__title">Perpetual Petals</h1>
 
-  <!-- Decorative ornamental element -->
+  <!-- Gold botanical ornament: 5 petal ellipses + center circle -->
   <div class="opening__ornament" aria-hidden="true">
-    <svg class="opening__ornament-svg" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="0" y1="12" x2="44" y2="12" stroke="currentColor" stroke-width="0.5" />
-      <!-- Petal motif -->
-      <g transform="translate(60, 12)">
-        <ellipse cx="0" cy="-4" rx="2.5" ry="5" transform="rotate(-30)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
-        <ellipse cx="0" cy="-4" rx="2.5" ry="5" transform="rotate(0)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
-        <ellipse cx="0" cy="-4" rx="2.5" ry="5" transform="rotate(30)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
-        <circle cx="0" cy="0" r="1" fill="currentColor" opacity="0.5" />
+    <svg class="opening__ornament-svg" viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="16" x2="56" y2="16" stroke="currentColor" stroke-width="0.5" />
+      <g transform="translate(80, 16)">
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(-36)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(-18)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(0)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(18)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(36)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+        <circle cx="0" cy="0" r="1.2" fill="currentColor" opacity="0.6" />
       </g>
-      <line x1="76" y1="12" x2="120" y2="12" stroke="currentColor" stroke-width="0.5" />
+      <line x1="104" y1="16" x2="160" y2="16" stroke="currentColor" stroke-width="0.5" />
     </svg>
   </div>
 
@@ -47,8 +48,12 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: var(--color-cream);
-    background-image: radial-gradient(ellipse at center, rgba(212,171,139,0.07), transparent 70%);
+    background: var(--color-cream, #FBF7F4);
+    background-image: radial-gradient(
+      ellipse at center,
+      rgba(184, 117, 122, 0.05),
+      transparent 70%
+    );
     position: relative;
     padding: 40px 24px;
     overflow: hidden;
@@ -60,11 +65,11 @@
     inset: 0;
     background: radial-gradient(
       ellipse at 50% 50%,
-      rgba(212,171,139,0.10),
+      rgba(184, 117, 122, 0.08),
       transparent 70%
     );
     opacity: 0;
-    transition: opacity 0.3s ease-out;
+    transition: opacity 0.3s ease;
     pointer-events: none;
     will-change: opacity, background;
   }
@@ -74,13 +79,13 @@
   .opening__title {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: 52px;
-    color: var(--color-ink);
-    letter-spacing: 3px;
+    font-size: clamp(56px, 10vw, 120px);
+    color: var(--color-ink, #2A2119);
+    letter-spacing: 2px;
     line-height: 1.1;
     opacity: 0;
-    transform: scale(1.04);
-    animation: titleReveal 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+    transform: translateY(16px) scale(0.97);
+    animation: titleReveal 1.4s ease 0.3s forwards;
     position: relative;
     z-index: 1;
   }
@@ -89,58 +94,44 @@
     0% {
       opacity: 0;
       letter-spacing: 6px;
-      transform: scale(1.04);
-      filter: blur(2px);
-    }
-    50% {
-      filter: blur(0px);
+      transform: translateY(16px) scale(0.97);
     }
     100% {
       opacity: 1;
-      letter-spacing: 3px;
-      transform: scale(1);
-      filter: blur(0px);
+      letter-spacing: 2px;
+      transform: translateY(0) scale(1);
     }
   }
 
   @media (min-width: 768px) {
-    .opening__title {
-      font-size: 96px;
-    }
-
     @keyframes titleReveal {
       0% {
         opacity: 0;
         letter-spacing: 8px;
-        transform: scale(1.04);
-        filter: blur(3px);
-      }
-      50% {
-        filter: blur(0px);
+        transform: translateY(16px) scale(0.97);
       }
       100% {
         opacity: 1;
-        letter-spacing: 3px;
-        transform: scale(1);
-        filter: blur(0px);
+        letter-spacing: 2px;
+        transform: translateY(0) scale(1);
       }
     }
   }
 
-  /* ---- Decorative Ornament ---- */
+  /* ---- Gold Botanical Ornament ---- */
 
   .opening__ornament {
-    color: var(--color-rose);
+    color: var(--color-gold, #C9A87C);
     margin: 24px auto 20px;
     opacity: 0;
-    animation: ornamentReveal 1s ease-out 1s forwards;
+    animation: ornamentReveal 1s ease 1s forwards;
     position: relative;
     z-index: 1;
   }
 
   .opening__ornament-svg {
-    width: 120px;
-    height: 24px;
+    width: 160px;
+    height: 32px;
     display: block;
   }
 
@@ -159,13 +150,13 @@
 
   .opening__subtitle {
     font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    letter-spacing: 4px;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    color: var(--color-rose);
+    color: var(--color-rose, #855E4A);
     opacity: 0;
-    animation: fadeInUp 0.8s ease-out 1.3s forwards;
+    animation: fadeInUp 0.8s ease 1.3s forwards;
     position: relative;
     z-index: 1;
   }
@@ -173,13 +164,13 @@
   .opening__location {
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    font-size: 12px;
-    letter-spacing: 3px;
+    font-size: 13px;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--color-ink-muted);
+    color: var(--color-ink-muted, #9A8E85);
     margin-top: 6px;
     opacity: 0;
-    animation: fadeInUp 0.8s ease-out 1.5s forwards;
+    animation: fadeInUp 0.8s ease 1.5s forwards;
     position: relative;
     z-index: 1;
   }
@@ -195,13 +186,6 @@
     }
   }
 
-  @media (min-width: 768px) {
-    .opening__subtitle,
-    .opening__location {
-      font-size: 13px;
-    }
-  }
-
   /* ---- Scroll Indicator ---- */
 
   .scroll-indicator {
@@ -210,7 +194,7 @@
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
-    animation: fadeIn 0.8s ease-out 2s forwards, scrollPulse 2.5s ease-in-out 2.8s infinite;
+    animation: fadeIn 0.8s ease 2s forwards, scrollPulse 2.5s ease-in-out 2.8s infinite;
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
@@ -221,9 +205,13 @@
   }
 
   .scroll-indicator__line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--color-rose), transparent);
+    width: 1.5px;
+    height: 48px;
+    background: linear-gradient(
+      to bottom,
+      var(--color-rose, #855E4A),
+      transparent
+    );
     margin: 0 auto;
   }
 
@@ -251,7 +239,7 @@
       opacity: 1;
       transform: none;
       animation: none;
-      filter: none;
+      letter-spacing: 2px;
     }
 
     .opening__ornament {
@@ -314,12 +302,11 @@
         // Parallax gradient shift — only when opening is in view and motion is allowed
         if (!prefersReducedMotion && gradientOverlay && scrollY < viewportHeight) {
           const progress = scrollY / viewportHeight;
-          // Shift gradient center downward and increase warmth as user scrolls
           const yOffset = 50 + progress * 25;
           gradientOverlay.style.opacity = String(Math.min(progress * 1.5, 1));
           gradientOverlay.style.background = `radial-gradient(
             ellipse at 50% ${yOffset}%,
-            rgba(212,171,139,${0.06 + progress * 0.08}),
+            rgba(184, 117, 122, ${0.04 + progress * 0.08}),
             transparent 70%
           )`;
         }

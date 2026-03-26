@@ -29,7 +29,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <title>{title}</title>
   <meta name="description" content={description}>
   {noindex && <meta name="robots" content="noindex, nofollow">}
-  <meta name="theme-color" content="#FBF7F4">
+  <meta name="theme-color" content="#FDF8F6">
   <link rel="canonical" href={canonicalURL}>
 
   <!-- Favicon -->
@@ -105,7 +105,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               revealObserver.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
@@ -114,12 +114,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
               entry.target.querySelectorAll('.reveal-child').forEach((child, i) => {
-                (child as HTMLElement).style.transitionDelay = `${i * 0.15}s`;
+                (child as HTMLElement).style.transitionDelay = `${i * 0.18}s`;
               });
               staggerObserver.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.08 });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal-stagger').forEach(el => staggerObserver.observe(el));
       }

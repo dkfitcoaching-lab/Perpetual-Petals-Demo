@@ -1,5 +1,5 @@
 ---
-/* The Founder — Lori Fronzak. No redundant "Founded by" repetition. */
+/* The Founder — Lori Fronzak */
 ---
 
 <section class="founder section" id="founder" aria-label="About the founder">
@@ -27,14 +27,26 @@
       </picture>
     </div>
     <div class="founder__content reveal">
+      <span class="overline">Founder & Creative Director</span>
+      <div class="founder__line" aria-hidden="true"></div>
       <h2 class="founder__name">Lori Fronzak</h2>
-      <p class="label-muted founder__role">Founder &amp; Floral Designer</p>
       <p class="body-text">
         A female veteran whose background instilled a deep sense of discipline, integrity, and service. With a refined eye for composition and a sincere appreciation for natural form, Lori creates airy, romantic arrangements that feel effortless yet intentional&thinsp;&mdash;&thinsp;each one a quiet expression of care for the spaces they inhabit.
       </p>
     </div>
   </div>
 </section>
+
+<!-- Botanical SVG divider -->
+<div class="botanical-divider" aria-hidden="true">
+  <svg width="160" height="32" viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="16" x2="48" y2="16" stroke="var(--color-rose)" stroke-width="0.75" />
+    <line x1="112" y1="16" x2="160" y2="16" stroke="var(--color-rose)" stroke-width="0.75" />
+    <ellipse cx="68" cy="16" rx="6" ry="10" stroke="var(--color-rose)" stroke-width="0.75" fill="none" transform="rotate(-25 68 16)" />
+    <ellipse cx="80" cy="14" rx="6" ry="10" stroke="var(--color-rose)" stroke-width="0.75" fill="none" />
+    <ellipse cx="92" cy="16" rx="6" ry="10" stroke="var(--color-rose)" stroke-width="0.75" fill="none" transform="rotate(25 92 16)" />
+  </svg>
+</div>
 
 <style>
   .founder__inner {
@@ -62,7 +74,7 @@
 
   .founder__image-wrapper {
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 12px;
     margin-bottom: var(--space-lg);
   }
 
@@ -74,13 +86,15 @@
     width: 100%;
     height: auto;
     object-fit: cover;
-    box-shadow: 16px 16px 50px rgba(201, 160, 142, 0.15);
-    border-radius: 4px;
+    border-radius: 12px;
+    box-shadow:
+      0 8px 30px rgba(201, 160, 142, 0.15),
+      0 2px 8px rgba(201, 160, 142, 0.1);
   }
 
   @media (min-width: 768px) {
     .founder__image {
-      height: 560px;
+      height: 640px;
       object-fit: cover;
     }
   }
@@ -93,17 +107,36 @@
     .founder__content { padding: 20px 0; }
   }
 
+  .founder__line {
+    width: 48px;
+    height: 1.5px;
+    background: var(--color-rose);
+    margin-bottom: 24px;
+  }
+
   .founder__name {
     font-family: var(--font-serif);
-    font-weight: 400;
-    font-style: italic;
-    font-size: clamp(26px, 3vw, 32px);
+    font-weight: 500;
+    font-style: normal;
+    font-size: clamp(28px, 3.5vw, 36px);
     color: var(--color-rose);
     margin-bottom: 8px;
     line-height: 1.2;
   }
 
-  .founder__role {
-    margin-bottom: var(--space-md);
+  .founder__content .body-text {
+    font-size: 15px;
+  }
+
+  @media (min-width: 768px) {
+    .founder__content .body-text {
+      font-size: 17px;
+    }
+  }
+
+  .botanical-divider {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-lg) 0;
   }
 </style>

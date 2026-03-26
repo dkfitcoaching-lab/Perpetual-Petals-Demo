@@ -1,8 +1,13 @@
 ---
-/* Full-bleed hero image with soft gradient edges */
+/**
+ * Full-bleed hero image with warm overlay, soft edge fades,
+ * and parallax scroll effect via requestAnimationFrame.
+ */
 ---
 
-<section class="hero-image reveal" aria-label="Featured arrangement">
+<section class="hero-image" aria-label="Featured arrangement">
+  <div class="hero-image__warm-overlay" aria-hidden="true"></div>
+  <div class="hero-image__edge-fade" aria-hidden="true"></div>
   <picture>
     <source
       type="image/webp"
@@ -25,42 +30,61 @@
 </section>
 
 <style>
+  /* ============================================
+     HERO IMAGE — Full Width
+     ============================================ */
+
   .hero-image {
     width: 100%;
     overflow: hidden;
     position: relative;
   }
 
-  .hero-image::after {
-    content: '';
+  /* Warm overlay: subtle pink-to-dark gradient */
+  .hero-image__warm-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
       to bottom,
-      var(--color-cream) 0%,
-      transparent 12%,
-      transparent 88%,
-      var(--color-cream) 100%
+      rgba(184, 117, 122, 0.04),
+      rgba(26, 21, 22, 0.06)
     );
     pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Soft edge fade: cream at top and bottom */
+  .hero-image__edge-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--color-cream, #FBF7F4) 0%,
+      transparent 6%,
+      transparent 94%,
+      var(--color-cream, #FBF7F4) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
   }
 
   .hero-image img {
     width: 100%;
-    height: 55vh;
+    height: 65vh;
     object-fit: cover;
+    display: block;
   }
 
   @media (min-width: 768px) {
     .hero-image img {
-      height: 80vh;
+      height: 85vh;
     }
   }
 
-  /* Subtle parallax — CSS-only via scroll-driven transform */
+  /* With motion preference: taller heights for parallax headroom */
   @media (prefers-reduced-motion: no-preference) {
     .hero-image img {
-      height: 65vh;
+      height: 70vh;
       transform: translateZ(0);
       will-change: transform;
     }
@@ -74,7 +98,7 @@
 </style>
 
 <script>
-  // Minimal JS parallax — shifts hero image on scroll
+  // Parallax: 20% scroll offset via requestAnimationFrame
   if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
     const hero = document.querySelector('.hero-image img') as HTMLElement | null;
     if (hero) {
@@ -84,7 +108,7 @@
           ticking = true;
           requestAnimationFrame(() => {
             const offset = window.scrollY;
-            hero.style.transform = `translateY(${offset * 0.15}px)`;
+            hero.style.transform = `translateY(${offset * 0.2}px)`;
             ticking = false;
           });
         }

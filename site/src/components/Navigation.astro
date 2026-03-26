@@ -1,12 +1,12 @@
 ---
 /**
  * Navigation component with:
- * - Fixed header with smooth scroll offset
- * - Scroll-spy active section highlighting
- * - Mobile hamburger menu with overlay/backdrop
+ * - Fixed header with glass morphism
+ * - Scroll-spy active section highlighting via IntersectionObserver
+ * - Mobile hamburger menu with slide-in panel
  * - Focus trapping in open mobile menu
  * - Close on Escape key
- * - Responsive across all breakpoints (320–1440px)
+ * - Responsive across all breakpoints (320-1440px)
  */
 
 const navLinks = [
@@ -57,7 +57,7 @@ const navLinks = [
 
 <style>
   /* ============================================
-     FIXED HEADER
+     FIXED HEADER — Glass Morphism
      ============================================ */
 
   .nav-header {
@@ -66,11 +66,11 @@ const navLinks = [
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(253, 249, 246, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(200, 180, 168, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(253, 248, 246, 0.88);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    border-bottom: 1px solid rgba(200, 180, 168, 0.12);
+    transition: box-shadow 0.3s ease;
   }
 
   .nav-header--scrolled {
@@ -84,34 +84,35 @@ const navLinks = [
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
-    height: 64px;
+    height: 72px;
   }
 
   @media (min-width: 768px) {
     .nav {
       padding: 0 48px;
-      height: 72px;
+      height: 76px;
     }
   }
 
   @media (min-width: 1024px) {
     .nav {
       padding: 0 64px;
-      height: 72px;
+      height: 80px;
     }
   }
 
   /* ============================================
-     BRAND
+     BRAND WORDMARK
      ============================================ */
 
   .nav__brand {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: 300;
+    font-size: 22px;
     color: var(--color-ink, #2A2119);
     text-decoration: none;
-    letter-spacing: 1.5px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
     white-space: nowrap;
     z-index: 1002;
     transition: color 0.2s ease;
@@ -121,9 +122,9 @@ const navLinks = [
     color: var(--color-rose, #855E4A);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .nav__brand {
-      font-size: 22px;
+      font-size: 26px;
     }
   }
 
@@ -210,16 +211,20 @@ const navLinks = [
     padding: 0;
   }
 
-  /* Mobile: slide-in panel */
+  /* Mobile: slide-in panel from right with gradient bg */
   @media (max-width: 767px) {
     .nav__menu {
       position: fixed;
       top: 0;
       right: 0;
       width: min(320px, 85vw);
-      height: 100dvh;
       height: 100vh;
-      background: var(--color-cream, #FBF7F4);
+      height: 100dvh;
+      background: linear-gradient(
+        180deg,
+        var(--color-cream, #FBF7F4) 0%,
+        #F9EDE7 100%
+      );
       padding: 96px 32px 48px;
       display: flex;
       flex-direction: column;
@@ -258,10 +263,10 @@ const navLinks = [
 
   .nav__link {
     font-family: 'Raleway', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     text-decoration: none;
     color: var(--color-ink-soft, #5C4D42);
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     transition: color 0.2s ease;
     position: relative;
@@ -301,21 +306,27 @@ const navLinks = [
     }
   }
 
-  /* Desktop link styles */
+  /* Tablet link styles */
   @media (min-width: 768px) {
     .nav__link {
       font-size: 10px;
       padding: 8px 10px;
     }
 
+    /* Underline with gradient: transparent -> rose -> transparent */
     .nav__link::after {
       content: '';
       position: absolute;
       left: 10px;
       right: 10px;
       bottom: 4px;
-      height: 1px;
-      background-color: var(--color-rose, #855E4A);
+      height: 1.5px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--color-rose, #855E4A) 50%,
+        transparent 100%
+      );
       transform: scaleX(0);
       transform-origin: center;
       transition: transform 0.3s ease;
@@ -327,6 +338,7 @@ const navLinks = [
     }
   }
 
+  /* Desktop link styles */
   @media (min-width: 1024px) {
     .nav__link {
       font-size: 11px;
@@ -352,7 +364,7 @@ const navLinks = [
   (function () {
     'use strict';
 
-    const HEADER_HEIGHT = 72;
+    const HEADER_HEIGHT = 80;
     const header = document.getElementById('navHeader');
     const toggle = document.getElementById('navToggle');
     const menu = document.getElementById('navMenu');
@@ -361,7 +373,7 @@ const navLinks = [
 
     if (!header || !toggle || !menu || !backdrop) return;
 
-    // ── Mobile Menu Toggle ──────────────────────
+    // -- Mobile Menu Toggle --
     let isOpen = false;
 
     function openMenu() {
@@ -399,14 +411,14 @@ const navLinks = [
     // Close on backdrop click
     backdrop.addEventListener('click', closeMenu);
 
-    // ── Close on Escape ─────────────────────────
+    // -- Close on Escape --
     document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
         closeMenu();
       }
     });
 
-    // ── Focus Trapping ──────────────────────────
+    // -- Focus Trapping --
     document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (!isOpen || e.key !== 'Tab') return;
 
@@ -437,7 +449,7 @@ const navLinks = [
       });
     });
 
-    // ── Smooth Scroll with Header Offset ────────
+    // -- Smooth Scroll with Header Offset --
     document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', (e: Event) => {
         const href = anchor.getAttribute('href');
@@ -456,58 +468,41 @@ const navLinks = [
       });
     });
 
-    // ── Header Shadow on Scroll ─────────────────
-    let ticking = false;
+    // -- Header Shadow on Scroll --
+    let scrollTicking = false;
 
     function onScroll() {
-      if (ticking) return;
-      ticking = true;
+      if (scrollTicking) return;
+      scrollTicking = true;
 
       requestAnimationFrame(() => {
-        // Header shadow
         header.classList.toggle('nav-header--scrolled', window.scrollY > 10);
-
-        // Scroll spy
-        updateActiveSection();
-
-        ticking = false;
+        scrollTicking = false;
       });
     }
 
-    // ── Scroll Spy ──────────────────────────────
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>('section[aria-label], section[id]')
-    );
+    window.addEventListener('scroll', onScroll, { passive: true });
 
-    function updateActiveSection() {
-      const scrollPos = window.scrollY + HEADER_HEIGHT + 100;
+    // -- Scroll Spy via IntersectionObserver --
+    const sectionIds = ['about', 'founder', 'experience', 'services', 'portfolio', 'apply'];
+    const sectionElements: HTMLElement[] = [];
 
-      let activeId = '';
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) sectionElements.push(el);
+    });
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section.offsetTop <= scrollPos) {
-          // Map section aria-labels/classes to nav href ids
-          activeId = getSectionId(section);
-          break;
-        }
+    // Also find sections by aria-label or class for broader matching
+    document.querySelectorAll<HTMLElement>('section[aria-label], section[id]').forEach((section) => {
+      const resolvedId = getSectionId(section);
+      if (resolvedId && sectionIds.includes(resolvedId) && !sectionElements.includes(section)) {
+        sectionElements.push(section);
       }
-
-      navLinks.forEach((link) => {
-        const section = link.getAttribute('data-section');
-        if (section === activeId) {
-          link.classList.add('nav__link--active');
-        } else {
-          link.classList.remove('nav__link--active');
-        }
-      });
-    }
+    });
 
     function getSectionId(section: HTMLElement): string {
-      // Direct id match
-      if (section.id) return section.id;
+      if (section.id && sectionIds.includes(section.id)) return section.id;
 
-      // Map aria-label or class to nav section ids
       const label = (section.getAttribute('aria-label') || '').toLowerCase();
       const cls = section.className;
 
@@ -516,15 +511,53 @@ const navLinks = [
       if (label.includes('how it works') || cls.includes('experience')) return 'experience';
       if (label.includes('service') || cls.includes('services')) return 'services';
       if (label.includes('gallery') || cls.includes('gallery')) return 'portfolio';
-      if (label.includes('testimonial') || cls.includes('testimonial')) return '';
-      if (label.includes('welcome') || cls.includes('opening')) return '';
+      if (label.includes('apply') || cls.includes('apply')) return 'apply';
 
       return '';
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    let currentActive = '';
 
-    // Initial check
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Collect all currently intersecting sections
+        const visible: { id: string; top: number }[] = [];
+
+        entries.forEach((entry) => {
+          const section = entry.target as HTMLElement;
+          const id = getSectionId(section) || section.id;
+          if (entry.isIntersecting && id) {
+            visible.push({ id, top: entry.boundingClientRect.top });
+          }
+        });
+
+        if (visible.length > 0) {
+          // Pick the one closest to the top of the viewport
+          visible.sort((a, b) => Math.abs(a.top) - Math.abs(b.top));
+          const newActive = visible[0].id;
+
+          if (newActive !== currentActive) {
+            currentActive = newActive;
+            navLinks.forEach((link) => {
+              const section = link.getAttribute('data-section');
+              if (section === currentActive) {
+                link.classList.add('nav__link--active');
+              } else {
+                link.classList.remove('nav__link--active');
+              }
+            });
+          }
+        }
+      },
+      {
+        rootMargin: `-${HEADER_HEIGHT}px 0px -40% 0px`,
+        threshold: [0, 0.1, 0.25, 0.5],
+      }
+    );
+
+    sectionElements.forEach((section) => observer.observe(section));
+
+    // Initial scroll check
     onScroll();
   })();
 </script>

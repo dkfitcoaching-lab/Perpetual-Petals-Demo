@@ -1,15 +1,27 @@
 ---
-/* Testimonial — needs a REAL quote. Using placeholder until client provides one. */
+/**
+ * Testimonial section — dark rose background with decorative elements.
+ */
 ---
 
-<section class="testimonial section section-white" aria-label="Testimonial">
+<section class="testimonial section-dark-rose" aria-label="Client Testimonial">
   <div class="testimonial__inner reveal">
-    <span class="testimonial__mark testimonial__mark--open" aria-hidden="true">&ldquo;</span>
+    <!-- Decorative SVG petal — left -->
+    <svg class="testimonial__petal testimonial__petal--left" width="120" height="200" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M60 0C60 0 120 60 120 120C120 180 60 200 60 200C60 200 0 180 0 120C0 60 60 0 60 0Z" fill="currentColor"/>
+    </svg>
+
+    <!-- Decorative SVG petal — right -->
+    <svg class="testimonial__petal testimonial__petal--right" width="120" height="200" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M60 0C60 0 120 60 120 120C120 180 60 200 60 200C60 200 0 180 0 120C0 60 60 0 60 0Z" fill="currentColor"/>
+    </svg>
+
+    <span class="overline">Client Testimonial</span>
+    <span class="testimonial__mark" aria-hidden="true">&ldquo;</span>
     <blockquote class="testimonial__quote">
       The flowers she brings into our home aren't just arrangements&thinsp;&mdash;&thinsp;they change the entire feeling of a room. It's the one thing I never knew I needed.
     </blockquote>
-    <span class="testimonial__mark testimonial__mark--close" aria-hidden="true">&rdquo;</span>
-    <p class="label testimonial__attribution">&mdash; Windermere Member</p>
+    <p class="testimonial__attribution">&mdash; Windermere Member</p>
   </div>
 </section>
 
@@ -17,48 +29,80 @@
   .testimonial {
     text-align: center;
     position: relative;
+    background: var(--color-dark-rose, #2A1E20);
+    padding: var(--space-2xl, 120px) 24px;
+    overflow: hidden;
   }
 
   .testimonial__inner {
-    max-width: 720px;
+    max-width: 800px;
     margin: 0 auto;
     position: relative;
-    padding: 0 var(--space-md);
+    padding: 0 24px;
   }
 
-  .testimonial__mark {
-    font-family: var(--font-serif);
-    font-size: 80px;
-    color: var(--color-rose);
-    opacity: 0.3;
+  /* Decorative petals */
+  .testimonial__petal {
     position: absolute;
-    line-height: 1;
+    color: var(--color-dark-text, #F2E4E0);
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .testimonial__petal--left {
+    left: -80px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-15deg);
+  }
+
+  .testimonial__petal--right {
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%) rotate(15deg) scaleX(-1);
+  }
+
+  @media (min-width: 768px) {
+    .testimonial__petal--left {
+      left: -40px;
+    }
+    .testimonial__petal--right {
+      right: -40px;
+    }
+  }
+
+  /* Opening quote mark */
+  .testimonial__mark {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    color: var(--color-gold, #C9A87C);
+    opacity: 0.2;
+    line-height: 0.6;
+    margin-bottom: 16px;
     user-select: none;
   }
 
-  .testimonial__mark--open {
-    top: -44px;
-    left: -8px;
-  }
-
-  .testimonial__mark--close {
-    bottom: -24px;
-    right: -8px;
-  }
-
+  /* Quote text */
   .testimonial__quote {
-    font-family: var(--font-serif);
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
     font-style: italic;
-    font-size: clamp(22px, 4vw, 36px);
-    line-height: 1.55;
-    color: var(--color-ink);
+    font-size: clamp(24px, 5vw, 42px);
+    line-height: 1.75;
+    color: var(--color-dark-text, #F2E4E0);
     border: none;
     margin: 0;
     padding: 0;
   }
 
+  /* Attribution */
   .testimonial__attribution {
-    margin-top: var(--space-md);
+    margin-top: 32px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-gold, #C9A87C);
   }
 </style>

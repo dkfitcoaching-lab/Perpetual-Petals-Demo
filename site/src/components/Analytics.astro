@@ -144,10 +144,10 @@ const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
     align-items: center;
     justify-content: center;
     gap: 24px;
-    padding: 16px 32px;
+    padding: 20px 36px;
     background: var(--color-cream, #FBF7F4);
     border-top: 1px solid var(--color-card-border, #E8DCD5);
-    box-shadow: 0 -2px 12px rgba(42, 33, 25, 0.06);
+    box-shadow: 0 -4px 20px rgba(42, 33, 25, 0.1);
     font-family: 'Raleway', sans-serif;
     transform: translateY(100%);
     opacity: 0;
@@ -163,7 +163,7 @@ const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
 
   .consent-banner__text {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 14px;
     color: var(--color-ink-soft, #5C4D42);
     letter-spacing: 0.01em;
     line-height: 1.5;
@@ -184,15 +184,15 @@ const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
     text-transform: uppercase;
     padding: 10px 20px;
     min-height: 44px;
-    border-radius: 2px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   }
 
   .consent-banner__btn--accept {
-    background: var(--color-rose, #855E4A);
+    background: var(--color-rose, #B8757A);
     color: var(--color-white, #FFFFFF);
-    border: 1px solid var(--color-rose, #855E4A);
+    border: 1px solid var(--color-rose, #B8757A);
   }
 
   .consent-banner__btn--accept:hover {
@@ -221,6 +221,13 @@ const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
 
     .consent-banner__text {
       font-size: 0.82rem;
+    }
+  }
+
+  @media (min-width: 601px) {
+    .consent-banner {
+      border-radius: 8px;
+      margin: 0 16px 16px;
     }
   }
 </style>

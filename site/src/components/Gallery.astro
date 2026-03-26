@@ -53,9 +53,10 @@ const images: GalleryImage[] = [
 ];
 ---
 
-<section class="gallery" id="portfolio" aria-label="Portfolio">
+<section class="gallery section-dark" id="portfolio" aria-label="Portfolio">
   <div class="gallery__inner">
-    <h2 class="gallery__heading">Portfolio</h2>
+    <p class="overline">Portfolio</p>
+    <h2 class="gallery__heading">A Selection of Our Work</h2>
     <div class="gallery__grid">
       {images.map((image) => (
         <div class="gallery__item" role="button" tabindex="0" aria-label={`View ${image.alt}`}>
@@ -81,16 +82,16 @@ const images: GalleryImage[] = [
 
 <style>
   .gallery {
-    padding: 100px 24px;
-    background: var(--color-linen, #F5ECE6);
+    padding: var(--space-2xl, 120px) 24px;
+    background: var(--color-dark, #1A1516);
   }
 
   @media (min-width: 768px) {
-    .gallery { padding: 100px 48px; }
+    .gallery { padding: var(--space-2xl, 120px) 48px; }
   }
 
   @media (min-width: 1024px) {
-    .gallery { padding: 100px 64px; }
+    .gallery { padding: var(--space-2xl, 120px) 64px; }
   }
 
   .gallery__inner {
@@ -101,9 +102,9 @@ const images: GalleryImage[] = [
   .gallery__heading {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     text-align: center;
-    color: var(--color-ink, #2A2119);
+    color: var(--color-dark-text, #F2E4E0);
     margin-bottom: 48px;
     letter-spacing: 0.04em;
   }
@@ -111,35 +112,55 @@ const images: GalleryImage[] = [
   .gallery__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 16px;
   }
 
   @media (min-width: 768px) {
     .gallery__grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      gap: 16px;
     }
   }
 
   @media (min-width: 1024px) {
     .gallery__grid {
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 16px;
     }
   }
 
   .gallery__item {
+    position: relative;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .gallery__item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(200, 140, 160, 0.15) 0%,
+      rgba(200, 140, 160, 0) 60%
+    );
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+    border-radius: 8px;
+    z-index: 1;
   }
 
   .gallery__item img {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    border-radius: 4px;
-    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    border-radius: 8px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   @media (min-width: 768px) {
@@ -147,6 +168,7 @@ const images: GalleryImage[] = [
 
     .gallery__item:first-child {
       grid-column: span 2;
+      grid-row: span 2;
     }
 
     .gallery__item:first-child img {
@@ -159,6 +181,7 @@ const images: GalleryImage[] = [
 
     .gallery__item:first-child {
       grid-column: span 2;
+      grid-row: span 2;
     }
 
     .gallery__item:first-child img {
@@ -167,9 +190,18 @@ const images: GalleryImage[] = [
   }
 
   @media (hover: hover) {
+    .gallery__item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 40px rgba(200, 140, 160, 0.25),
+                  0 0 80px rgba(200, 140, 160, 0.08);
+    }
+
+    .gallery__item:hover::after {
+      opacity: 1;
+    }
+
     .gallery__item:hover img {
-      transform: scale(1.015);
-      box-shadow: 0 12px 40px rgba(212,171,139,0.12);
+      transform: scale(1.03);
     }
   }
 </style>

@@ -10,9 +10,10 @@
  */
 ---
 
-<section class="application" id="apply" aria-label="Apply for membership">
+<section class="application section" id="apply" aria-label="Apply for membership">
   <div class="application__inner">
-    <h2 class="section-heading">Request Membership</h2>
+    <span class="overline">Apply for Membership</span>
+    <h2 class="heading-section">Request Membership</h2>
     <p class="application__subtext">Availability is intentionally limited. Applications are reviewed within 48 hours.</p>
 
     <div class="application__form-wrapper" id="formWrapper">
@@ -59,7 +60,7 @@
         </div>
 
         <div class="application__submit">
-          <button type="submit" class="btn" id="submitBtn">
+          <button type="submit" class="btn btn-filled application__btn" id="submitBtn">
             <span class="btn__text">Submit Application</span>
             <span class="btn__spinner" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -88,7 +89,7 @@
     <div class="application__error" id="errorMessage" aria-live="polite">
       <p class="application__error-heading">Something went wrong</p>
       <p class="application__error-text">We couldn't submit your application. Please check your connection and try again.</p>
-      <button type="button" class="btn btn--retry" id="retryBtn">Try Again</button>
+      <button type="button" class="btn btn-outline btn--retry" id="retryBtn">Try Again</button>
     </div>
   </div>
 </section>
@@ -98,8 +99,7 @@
      MEMBERSHIP APPLICATION
      ============================================ */
   .application {
-    padding: 80px 24px;
-    background: var(--color-linen, #F5ECE6);
+    padding: 120px 24px;
   }
 
   @media (min-width: 768px) {
@@ -107,7 +107,7 @@
   }
 
   @media (min-width: 1024px) {
-    .application { padding: 140px 64px; }
+    .application { padding: 120px 64px; }
   }
 
   .application__inner {
@@ -116,43 +116,32 @@
     text-align: center;
   }
 
-  .section-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 32px;
-    color: var(--color-ink, #2A2119);
-    margin-bottom: 12px;
-    letter-spacing: 1px;
-  }
-
-  @media (min-width: 768px) {
-    .section-heading { font-size: 40px; }
-  }
-
   .application__subtext {
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--color-ink-muted, #635145);
     line-height: 2.0;
     margin-bottom: 48px;
   }
 
   @media (min-width: 768px) {
-    .application__subtext { font-size: 15px; }
+    .application__subtext { font-size: 16px; }
   }
 
   /* Form wrapper */
   .application__form-wrapper {
     background: var(--color-white, #FFFFFF);
-    padding: 40px 24px;
-    border-radius: 2px;
-    box-shadow: 0 4px 30px rgba(139,110,79,0.06);
+    padding: 48px 24px;
+    border-radius: 12px;
+    box-shadow:
+      0 4px 24px rgba(184, 117, 122, 0.06),
+      0 12px 48px rgba(139, 110, 79, 0.05);
     transition: opacity 0.4s ease, transform 0.4s ease;
   }
 
   @media (min-width: 768px) {
-    .application__form-wrapper { padding: 56px; }
+    .application__form-wrapper { padding: 64px; }
   }
 
   .application__form-wrapper.hiding {
@@ -173,16 +162,16 @@
   .form-group label {
     display: block;
     font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: var(--color-rose, #855E4A);
+    color: var(--color-rose, #B8757A);
     margin-bottom: 6px;
   }
 
   .required {
-    color: var(--color-rose, #855E4A);
+    color: var(--color-rose, #B8757A);
   }
 
   .form-group input,
@@ -194,7 +183,7 @@
     color: var(--color-ink, #2A2119);
     background: transparent;
     border: none;
-    border-bottom: 1px solid var(--color-card-border, #E8DCD5);
+    border-bottom: 1.5px solid var(--color-card-border, #E8DCD5);
     padding: 14px 0;
     outline: none;
     transition: border-bottom-color 0.3s, box-shadow 0.3s;
@@ -204,16 +193,16 @@
 
   .form-group input:focus-visible,
   .form-group textarea:focus-visible {
-    border-bottom-color: var(--color-rose, #855E4A);
-    box-shadow: 0 2px 0 0 rgba(133,94,74,0.4);
-    outline: 2px solid var(--color-rose, #855E4A);
+    border-bottom-color: var(--color-rose, #B8757A);
+    box-shadow: 0 2px 0 0 rgba(184, 117, 122, 0.4);
+    outline: 2px solid var(--color-rose, #B8757A);
     outline-offset: 4px;
   }
 
   .form-group input:focus,
   .form-group textarea:focus {
-    border-bottom-color: var(--color-rose, #855E4A);
-    box-shadow: 0 2px 0 0 rgba(133,94,74,0.3);
+    border-bottom-color: var(--color-rose, #B8757A);
+    box-shadow: 0 2px 0 0 rgba(184, 117, 122, 0.3);
   }
 
   .form-group input::placeholder,
@@ -231,8 +220,8 @@
   /* Validation states */
   .form-group.has-error input,
   .form-group.has-error textarea {
-    border-bottom-color: #A5554A;
-    box-shadow: 0 2px 0 0 rgba(196,122,110,0.3);
+    border-bottom-color: #9D6B62;
+    box-shadow: 0 2px 0 0 rgba(157, 107, 98, 0.3);
   }
 
   .form-error {
@@ -240,7 +229,7 @@
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-size: 12px;
-    color: #A5554A;
+    color: #9D6B62;
     margin-top: 6px;
     min-height: 0;
     opacity: 0;
@@ -264,38 +253,25 @@
     opacity: 0.7;
   }
 
-  /* Submit button */
+  /* Submit button — local overrides only */
   .application__submit {
     text-align: center;
     margin-top: 48px;
   }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: var(--color-rose, #855E4A);
-    color: var(--color-white, #FFFFFF);
-    border: none;
-    border-radius: 30px;
-    padding: 16px 48px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.3s, opacity 0.3s;
+  .application__btn {
+    border-radius: 6px;
     min-width: 220px;
     position: relative;
+    transition: background 0.3s, opacity 0.3s, transform 0.3s, box-shadow 0.3s;
   }
 
-  .btn:hover {
-    background: #C49A7A;
+  .application__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(184, 117, 122, 0.25);
   }
 
-  .btn:disabled {
+  .application__btn:disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }
@@ -305,11 +281,11 @@
     animation: spin 0.8s linear infinite;
   }
 
-  .btn.loading .btn__text {
+  .application__btn.loading .btn__text {
     opacity: 0;
   }
 
-  .btn.loading .btn__spinner {
+  .application__btn.loading .btn__spinner {
     display: block;
     position: absolute;
   }
@@ -331,19 +307,19 @@
 
   .application__confirm-icon {
     margin-bottom: 24px;
-    color: var(--color-rose, #855E4A);
+    color: var(--color-rose, #B8757A);
   }
 
   .confirm-circle {
     stroke-dasharray: 138;
     stroke-dashoffset: 138;
-    animation: drawCircle 0.6s ease-out 0.1s forwards;
+    animation: drawCircle 0.8s ease-out 0.1s forwards;
   }
 
   .confirm-check {
     stroke-dasharray: 30;
     stroke-dashoffset: 30;
-    animation: drawCheck 0.4s ease-out 0.5s forwards;
+    animation: drawCheck 0.5s ease-out 0.6s forwards;
   }
 
   @keyframes drawCircle {
@@ -378,7 +354,7 @@
   .application__confirm-heading {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: 28px;
+    font-size: 32px;
     color: var(--color-ink, #2A2119);
     margin-bottom: 16px;
   }
@@ -421,16 +397,8 @@
   }
 
   .btn--retry {
-    background: transparent;
-    color: var(--color-rose, #855E4A);
-    border: 1px solid var(--color-rose, #855E4A);
     padding: 12px 36px;
     min-width: auto;
-  }
-
-  .btn--retry:hover {
-    background: var(--color-rose, #855E4A);
-    color: var(--color-white, #FFFFFF);
   }
 
   /* Mobile adjustments */
