@@ -34,9 +34,24 @@ const year = new Date().getFullYear();
           <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
         </svg>
       </a>
+      <a
+        href="https://www.pinterest.com/perpetualpetals_fl/"
+        aria-label="Follow Perpetual Petals on Pinterest"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.25 2.67 7.9 6.44 9.34-.09-.78-.17-1.99.04-2.85.18-.78 1.19-5.06 1.19-5.06s-.3-.61-.3-1.52c0-1.42.82-2.49 1.85-2.49.87 0 1.29.66 1.29 1.44 0 .88-.56 2.19-.85 3.41-.24 1.02.51 1.85 1.52 1.85 1.82 0 3.22-1.92 3.22-4.69 0-2.45-1.76-4.17-4.27-4.17-2.91 0-4.61 2.18-4.61 4.43 0 .88.34 1.82.76 2.33.08.1.09.19.07.29-.08.32-.25 1.02-.29 1.16-.05.19-.15.23-.35.14-1.31-.61-2.13-2.53-2.13-4.07 0-3.31 2.41-6.36 6.94-6.36 3.64 0 6.48 2.6 6.48 6.07 0 3.62-2.28 6.53-5.45 6.53-1.06 0-2.07-.55-2.41-1.21l-.66 2.5c-.24.91-.88 2.06-1.32 2.76.99.31 2.04.47 3.13.47 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+        </svg>
+      </a>
     </div>
 
     <p class="footer__copyright">&copy; {year} Perpetual Petals. All rights reserved.</p>
+    <p class="footer__legal">
+      <a href="#" aria-label="Privacy Policy">Privacy</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="#" aria-label="Terms of Service">Terms</a>
+    </p>
     <p class="footer__credit">
       Website by <a href="https://vermillionaxis.com" target="_blank" rel="noopener noreferrer">Vermillion Axis Technologies</a>
     </p>
@@ -67,8 +82,7 @@ const year = new Date().getFullYear();
     font-weight: 300;
     font-size: 28px;
     color: var(--color-ink);
-    letter-spacing: 5px;
-    text-transform: uppercase;
+    letter-spacing: 3px;
     margin-bottom: 6px;
   }
 
@@ -121,4 +135,21 @@ const year = new Date().getFullYear();
   }
 
   .footer__credit a:hover { opacity: 0.7; }
+
+  .footer__legal {
+    font-size: 11px;
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-sm);
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .footer__legal a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+
+  .footer__legal a:hover { opacity: 0.7; }
 </style>

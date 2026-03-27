@@ -56,7 +56,7 @@ const images: GalleryImage[] = [
 <section class="gallery section-dark" id="portfolio" aria-label="Portfolio">
   <div class="gallery__inner">
     <p class="overline">Portfolio</p>
-    <h2 class="gallery__heading">A Selection of Our Work</h2>
+    <h2 class="gallery__heading">Our Portfolio</h2>
     <div class="gallery__grid">
       {images.map((image) => (
         <div class="gallery__item" role="button" tabindex="0" aria-label={`View ${image.alt}`}>
@@ -112,20 +112,20 @@ const images: GalleryImage[] = [
   .gallery__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
   }
 
   @media (min-width: 768px) {
     .gallery__grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 20px;
     }
   }
 
   @media (min-width: 1024px) {
     .gallery__grid {
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 20px;
     }
   }
 
@@ -197,7 +197,7 @@ const images: GalleryImage[] = [
     }
 
     .gallery__item:hover::after {
-      opacity: 1;
+      opacity: 0.6;
     }
 
     .gallery__item:hover img {
