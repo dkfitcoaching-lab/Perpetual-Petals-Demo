@@ -4,79 +4,99 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Perpetual Petals — Document Title</title>
-
 <!--
-  ╔══════════════════════════════════════════════════════════════╗
-  ║  PERPETUAL PETALS — Luxury PDF Generation Framework        ║
-  ║  Prepared by Vermillion Axis Technologies                   ║
-  ║                                                             ║
-  ║  HOW TO USE:                                                ║
-  ║  1. Duplicate this file for each document (1-5)             ║
-  ║  2. Replace the <title> tag above                           ║
-  ║  3. Update the COVER PAGE section below                     ║
-  ║  4. Insert your content in the BODY CONTENT section         ║
-  ║  5. Open in Chrome → Print → Save as PDF                   ║
-  ║     - Set margins to "None"                                 ║
-  ║     - Enable "Background graphics" checkbox                 ║
-  ║     - Paper size: Letter (8.5 x 11)                         ║
-  ║  6. The template handles all page breaks, headers,          ║
-  ║     footers, and luxury styling automatically               ║
-  ╚══════════════════════════════════════════════════════════════╝
--->
+PERPETUAL PETALS — LUXURY PDF FRAMEWORK v2.0
+Vermillion Axis Technologies | vermillionaxis.tech
 
-<!-- Google Fonts fallback (Cormorant Garamond + Raleway) -->
+FOR AI AGENTS: This is a branded PDF template for Perpetual Petals business documents.
+When inserting content, follow these rules exactly:
+
+COVER PAGE — Change these 3 values per document:
+  .cover__title     → Document name (e.g. "Executive Proposal")
+  .cover__subtitle  → Subtitle (e.g. "Digital Presence Strategy")
+  title tag         → "Perpetual Petals — [Document Name]"
+
+COVER TITLES PER DOCUMENT:
+  Doc 1: "Executive Proposal" / "Digital Presence Strategy"
+  Doc 2: "Market Analysis" / "Competitive Intelligence & ROI Projections"
+  Doc 3: "Statement of Work" / "Scope, Deliverables & Terms"
+  Doc 4: "Content Brief" / "Photography, Copy & Asset Requirements"
+  Doc 5: "Growth Roadmap" / "12-Month Expansion Strategy"
+
+CONTENT STRUCTURE — Use these tags:
+  <span class="overline">LABEL TEXT</span>     → Gold overline above section heading
+  <h2>Section Title</h2>                        → Major section heading (rose underline bar)
+  <h3>Subsection</h3>                           → Subsection heading
+  <h4>Label</h4>                                → Small uppercase label (rose)
+  <p class="lead">Opening text</p>              → Italic serif lead paragraph
+  <p>Body text</p>                              → Standard body paragraph
+  <strong>bold</strong>                          → Bold emphasis
+  <em>accent</em>                               → Rose italic accent
+  <ul><li>Item</li></ul>                         → Bullet list (rose markers)
+  <ol><li>Item</li></ol>                         → Numbered list
+  <blockquote>Quote text</blockquote>            → Rose-glow callout box
+  <div class="stat-row no-break">               → Metric highlight row (see example below)
+  <table>                                        → Data table with linen header
+  <div class="info-box no-break">               → Linen info/payment box
+  <div class="two-col no-break">                → Side-by-side comparison
+  <div class="signature-block no-break">        → Contract signature lines
+  <div class="page-break"></div>                → Force new page
+  class="no-break"                              → Prevent splitting across pages
+
+BOTANICAL DIVIDERS — Insert between major sections:
+  <div class="botanical-divider">...</div>       → Already defined, just copy the div
+
+PAGE FOOTER — Already included at bottom. Do not remove or modify.
+
+CHROME PRINT SETTINGS:
+  Paper size: Letter (8.5 × 11 in)
+  Margins: None
+  Background graphics: ON (checked)
+  Scale: 100%
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
-/* ================================================================
-   PERPETUAL PETALS — LUXURY PDF DESIGN SYSTEM
-   ================================================================ */
-
-/* ---------- Design Tokens ---------- */
 :root {
-  --color-ink:          #1C1410;
-  --color-ink-light:    #4A3F36;
-  --color-ink-muted:    #635145;
-  --color-rose:         #B8757A;
-  --color-rose-deep:    #9E5A60;
-  --color-rose-light:   #D4A0A5;
-  --color-rose-glow:    rgba(184, 117, 122, 0.12);
-  --color-gold:         #C9A87C;
-  --color-gold-light:   #DEC9A6;
-  --color-cream:        #FDF8F6;
-  --color-linen:        #F7EFEB;
-  --color-blush:        #F2E4E0;
-  --color-white:        #FFFFFF;
-  --color-dark:         #1A1516;
-  --color-noir:         #0D0B0A;
-  --color-dark-rose:    #2A1E20;
-  --color-divider:      #DDD0C7;
-
-  --font-serif:  'Cormorant Garamond', 'Georgia', serif;
-  --font-sans:   'Raleway', 'Helvetica Neue', sans-serif;
+  --color-ink: #1C1410;
+  --color-ink-light: #4A3F36;
+  --color-ink-muted: #635145;
+  --color-rose: #B8757A;
+  --color-rose-deep: #9E5A60;
+  --color-rose-light: #D4A0A5;
+  --color-rose-glow: rgba(184, 117, 122, 0.12);
+  --color-gold: #C9A87C;
+  --color-gold-light: #DEC9A6;
+  --color-cream: #FDF8F6;
+  --color-linen: #F7EFEB;
+  --color-blush: #F2E4E0;
+  --color-white: #FFFFFF;
+  --color-dark: #1A1516;
+  --color-noir: #0D0B0A;
+  --color-dark-rose: #2A1E20;
+  --color-dark-text: #F2E4E0;
+  --color-dark-muted: #A89092;
+  --color-card-border: #E8DCD5;
+  --color-divider: #DDD0C7;
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-sans: 'Raleway', 'Helvetica Neue', sans-serif;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
 }
 
-/* ---------- Page Setup ---------- */
-@page {
-  size: letter;
-  margin: 0.85in 1in 1in 1in;
-}
+@page { size: letter; margin: 0.75in 0.9in 1in 0.9in; }
+@page :first { margin: 0; }
 
-@page :first {
-  margin: 0;
-}
-
-/* ---------- Reset ---------- */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
-  font-size: 11pt;
+  font-size: 10.5pt;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
@@ -84,16 +104,17 @@ html {
 body {
   font-family: var(--font-sans);
   font-weight: 300;
-  color: var(--color-ink);
+  color: var(--color-ink-light);
   line-height: 1.7;
   letter-spacing: 0.01em;
-  background: var(--color-white);
+  background: var(--color-cream);
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(184, 117, 122, 0.04), transparent 70%);
 }
-
 
 /* ================================================================
    COVER PAGE
    ================================================================ */
+
 .cover {
   width: 100vw;
   height: 100vh;
@@ -109,283 +130,312 @@ body {
   overflow: hidden;
 }
 
-/* Subtle decorative border frame */
 .cover::before {
-  content: '';
-  position: absolute;
-  top: 48px;
-  left: 48px;
-  right: 48px;
-  bottom: 48px;
-  border: 1px solid rgba(201, 168, 124, 0.2);
-  pointer-events: none;
-}
-
-/* Corner accents */
-.cover::after {
   content: '';
   position: absolute;
   top: 40px;
   left: 40px;
   right: 40px;
   bottom: 40px;
-  background:
-    linear-gradient(var(--color-gold), var(--color-gold)) top left,
-    linear-gradient(var(--color-gold), var(--color-gold)) top right,
-    linear-gradient(var(--color-gold), var(--color-gold)) bottom left,
-    linear-gradient(var(--color-gold), var(--color-gold)) bottom right;
-  background-size: 24px 1px, 24px 1px, 24px 1px, 24px 1px;
-  background-repeat: no-repeat;
-  background-position: top left, top right, bottom left, bottom right;
+  border: 1px solid rgba(201, 168, 124, 0.18);
   pointer-events: none;
-  opacity: 0.35;
+}
+
+.cover__ornament {
+  color: var(--color-gold);
+  margin-bottom: 48px;
+  opacity: 0.85;
+}
+
+.cover__ornament svg {
+  width: 160px;
+  height: 32px;
+  display: block;
 }
 
 .cover__brand {
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: 14pt;
-  letter-spacing: 6px;
+  font-size: 44pt;
+  letter-spacing: 4px;
+  color: var(--color-blush);
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+
+.cover__est {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 8pt;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--color-gold);
-  margin-bottom: 60px;
-  opacity: 0.8;
+  margin-bottom: 56px;
+  opacity: 0.7;
+}
+
+.cover__rule {
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold);
+  border: none;
+  margin-bottom: 40px;
+  opacity: 0.4;
 }
 
 .cover__title {
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: 36pt;
-  line-height: 1.2;
-  letter-spacing: 2px;
-  color: var(--color-blush);
-  max-width: 560px;
-  margin-bottom: 24px;
+  font-size: 28pt;
+  line-height: 1.25;
+  letter-spacing: 1px;
+  color: var(--color-dark-text);
+  max-width: 480px;
+  margin-bottom: 12px;
 }
 
 .cover__subtitle {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 11pt;
+  font-size: 9pt;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--color-rose-light);
-  margin-bottom: 80px;
-}
-
-.cover__rule {
-  width: 64px;
-  height: 1px;
-  background: var(--color-gold);
-  border: none;
-  margin-bottom: 32px;
-  opacity: 0.5;
+  margin-bottom: 72px;
 }
 
 .cover__meta {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 8.5pt;
+  font-size: 7.5pt;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--color-rose-light);
-  opacity: 0.6;
-  line-height: 2.2;
+  color: var(--color-dark-muted);
+  line-height: 2.4;
 }
 
-.cover__meta span {
-  display: block;
-}
+.cover__meta span { display: block; }
 
+.cover__confidential {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 6pt;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-rose);
+  opacity: 0.35;
+  text-align: center;
+}
 
 /* ================================================================
-   DOCUMENT BODY CONTENT
+   DOCUMENT BODY
    ================================================================ */
+
 .document {
   max-width: 100%;
-  padding-top: 0;
 }
 
-/* ---------- Section Headings ---------- */
+.confidential {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 6.5pt;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-rose);
+  opacity: 0.5;
+  text-align: center;
+  margin-bottom: 28px;
+  padding-top: 4px;
+}
+
+/* ---------- Overline (matches website .overline class) ---------- */
+
+.overline {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 9pt;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+/* ---------- Headings ---------- */
+
 h1 {
   font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 26pt;
+  font-weight: 300;
+  font-size: 24pt;
   color: var(--color-ink);
   letter-spacing: 1px;
   margin-bottom: 8px;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 h2 {
   font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 18pt;
-  color: var(--color-rose-deep);
+  font-weight: 300;
+  font-size: 17pt;
+  color: var(--color-ink);
   letter-spacing: 0.5px;
-  margin-top: 36px;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--color-divider);
+  margin-top: 32px;
+  margin-bottom: 6px;
+  padding-bottom: 14px;
   line-height: 1.3;
+  text-align: center;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: var(--color-rose);
+  margin: 10px auto 0;
+  border-radius: 1px;
 }
 
 h3 {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: 13pt;
+  font-size: 12.5pt;
   color: var(--color-ink);
   letter-spacing: 0.3px;
-  margin-top: 24px;
-  margin-bottom: 8px;
+  margin-top: 22px;
+  margin-bottom: 6px;
   line-height: 1.4;
 }
 
 h4 {
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 10pt;
-  letter-spacing: 2px;
+  font-size: 8pt;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--color-rose);
-  margin-top: 20px;
+  margin-top: 18px;
   margin-bottom: 6px;
 }
 
 /* ---------- Body Text ---------- */
+
 p {
-  margin-bottom: 12px;
-  font-size: 10.5pt;
+  margin-bottom: 10px;
+  font-size: 10pt;
   line-height: 1.75;
   color: var(--color-ink-light);
 }
 
-p + p {
-  margin-top: 0;
-}
+p + p { margin-top: 0; }
 
-/* Lead paragraph — use for opening statements */
 p.lead {
   font-family: var(--font-serif);
-  font-size: 13pt;
+  font-size: 12pt;
   font-weight: 300;
   font-style: italic;
   color: var(--color-ink-muted);
   line-height: 1.8;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  text-align: center;
 }
 
-strong {
-  font-weight: 500;
-  color: var(--color-ink);
-}
-
-em {
-  font-style: italic;
-  color: var(--color-rose-deep);
-}
+strong { font-weight: 500; color: var(--color-ink); }
+em { font-style: italic; color: var(--color-rose-deep); }
 
 /* ---------- Lists ---------- */
+
 ul, ol {
-  margin: 8px 0 16px 20px;
-  font-size: 10.5pt;
+  margin: 6px 0 14px 18px;
+  font-size: 10pt;
   line-height: 1.75;
   color: var(--color-ink-light);
 }
 
-li {
-  margin-bottom: 4px;
-  padding-left: 4px;
-}
+li { margin-bottom: 3px; padding-left: 4px; }
+li::marker { color: var(--color-rose); }
 
-li::marker {
-  color: var(--color-rose);
-}
+/* ---------- Blockquote ---------- */
 
-/* ---------- Blockquote / Callout ---------- */
 blockquote {
-  margin: 20px 0;
-  padding: 20px 28px;
+  margin: 18px 0;
+  padding: 18px 24px;
   background: var(--color-rose-glow);
   border-left: 3px solid var(--color-rose);
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   font-family: var(--font-serif);
-  font-size: 12pt;
+  font-size: 11.5pt;
   font-style: italic;
   color: var(--color-ink-muted);
   line-height: 1.7;
 }
 
 /* ---------- Tables ---------- */
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 16px 0 24px;
-  font-size: 9.5pt;
+  margin: 14px 0 20px;
+  font-size: 9pt;
 }
 
-thead {
-  background: var(--color-linen);
-}
+thead { background: var(--color-linen); }
 
 th {
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 8pt;
+  font-size: 7pt;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--color-rose-deep);
   text-align: left;
-  padding: 10px 14px;
+  padding: 9px 12px;
   border-bottom: 2px solid var(--color-divider);
 }
 
 td {
-  padding: 10px 14px;
+  padding: 9px 12px;
   border-bottom: 1px solid var(--color-divider);
   color: var(--color-ink-light);
   line-height: 1.6;
   vertical-align: top;
+  font-size: 9pt;
 }
 
-tbody tr:last-child td {
-  border-bottom: 2px solid var(--color-divider);
-}
+tbody tr:last-child td { border-bottom: 2px solid var(--color-divider); }
 
-/* Highlight row for totals or emphasis */
 tr.highlight td {
   background: var(--color-rose-glow);
   font-weight: 500;
   color: var(--color-ink);
 }
 
-/* ---------- Horizontal Rule / Section Divider ---------- */
-hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--color-divider) 20%, var(--color-divider) 80%, transparent 100%);
-  margin: 32px 0;
-}
+/* ---------- Stat Row ---------- */
 
-/* ---------- Stat / Metric Highlight ---------- */
 .stat-row {
   display: flex;
-  gap: 24px;
-  margin: 20px 0 28px;
+  gap: 16px;
+  margin: 18px 0 24px;
 }
 
 .stat {
   flex: 1;
   text-align: center;
-  padding: 20px 16px;
+  padding: 18px 12px 16px;
   background: var(--color-linen);
-  border-radius: 4px;
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-md);
 }
 
 .stat__number {
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: 28pt;
+  font-size: 24pt;
   color: var(--color-rose-deep);
   line-height: 1.1;
   margin-bottom: 4px;
@@ -394,45 +444,50 @@ hr {
 .stat__label {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 7.5pt;
+  font-size: 7pt;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--color-ink-muted);
 }
 
-/* ---------- Info Box / Sidebar ---------- */
+/* ---------- Info Box ---------- */
+
 .info-box {
-  margin: 20px 0;
-  padding: 20px 24px;
+  margin: 18px 0;
+  padding: 18px 22px;
   background: var(--color-linen);
-  border: 1px solid var(--color-divider);
-  border-radius: 4px;
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-md);
 }
 
-.info-box h4 {
-  margin-top: 0;
-  margin-bottom: 8px;
+.info-box h4 { margin-top: 0; margin-bottom: 8px; }
+.info-box p { margin-bottom: 3px; font-size: 9.5pt; }
+
+/* ---------- Service Card (matches website) ---------- */
+
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  margin: 14px 0;
 }
 
-.info-box p {
-  margin-bottom: 4px;
-  font-size: 10pt;
-}
+.card h4 { margin-top: 0; }
+
+/* ---------- Two Column ---------- */
+
+.two-col { display: flex; gap: 24px; margin: 14px 0; }
+.two-col > div { flex: 1; }
 
 /* ---------- Signature Block ---------- */
-.signature-block {
-  margin-top: 48px;
-  display: flex;
-  gap: 48px;
-}
 
-.signature {
-  flex: 1;
-}
+.signature-block { margin-top: 40px; display: flex; gap: 40px; }
+.signature { flex: 1; }
 
 .signature__line {
   border-top: 1px solid var(--color-ink);
-  margin-top: 48px;
+  margin-top: 44px;
   margin-bottom: 6px;
   width: 100%;
 }
@@ -440,128 +495,120 @@ hr {
 .signature__name {
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 10pt;
+  font-size: 9.5pt;
   color: var(--color-ink);
 }
 
 .signature__title {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 9pt;
+  font-size: 8.5pt;
   color: var(--color-ink-muted);
 }
 
 .signature__date {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 8.5pt;
-  color: var(--color-ink-muted);
-  margin-top: 12px;
-}
-
-/* ---------- Page Break Utilities ---------- */
-.page-break {
-  page-break-before: always;
-}
-
-.no-break {
-  page-break-inside: avoid;
-}
-
-/* ---------- Section Number Badge ---------- */
-.section-num {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-weight: 400;
   font-size: 8pt;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  background: var(--color-dark);
-  padding: 4px 12px;
-  border-radius: 2px;
-  margin-bottom: 8px;
-}
-
-/* ---------- Two Column Layout ---------- */
-.two-col {
-  display: flex;
-  gap: 32px;
-  margin: 16px 0;
-}
-
-.two-col > div {
-  flex: 1;
-}
-
-/* ---------- Footer / Page Number ---------- */
-.page-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0 1in 0.5in 1in;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-sans);
-  font-size: 7pt;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
   color: var(--color-ink-muted);
-  opacity: 0.5;
+  margin-top: 10px;
 }
 
-/* ---------- Confidential Watermark ---------- */
-.confidential {
+/* ---------- Botanical Divider (from website) ---------- */
+
+.botanical-divider {
+  text-align: center;
+  margin: 28px auto;
+  opacity: 0.5;
+  line-height: 0;
+}
+
+.botanical-divider svg { width: 160px; height: 32px; }
+
+/* ---------- Horizontal Rule ---------- */
+
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-divider) 20%, var(--color-divider) 80%, transparent);
+  margin: 24px 0;
+}
+
+/* ---------- Page Break ---------- */
+
+.page-break { page-break-before: always; }
+.no-break { page-break-inside: avoid; }
+
+/* ---------- Page Footer ---------- */
+
+.page-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-divider);
+  text-align: center;
+}
+
+.page-footer__ornament {
+  margin: 0 auto 16px;
+  line-height: 0;
+}
+
+.page-footer__ornament svg { width: 120px; height: 24px; }
+
+.page-footer__brand {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 16pt;
+  color: var(--color-ink);
+  letter-spacing: 3px;
+  margin-bottom: 2px;
+}
+
+.page-footer__est {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 7pt;
   letter-spacing: 3px;
   text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 4px;
+}
+
+.page-footer__location {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 8pt;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: 10px;
+}
+
+.page-footer__credit {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 7pt;
   color: var(--color-rose);
-  opacity: 0.6;
-  text-align: center;
-  margin-bottom: 32px;
+  letter-spacing: 1px;
 }
 
-/* ---------- Print Overrides ---------- */
+/* ================================================================
+   PRINT
+   ================================================================ */
+
 @media print {
-  body {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .cover {
-    width: 100%;
-    height: 100%;
-  }
-
-  .page-footer {
-    display: none; /* Chrome handles running footers poorly — remove if not needed */
-  }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--color-cream); }
+  .cover { width: 100%; height: 100%; }
 }
 
-/* ---------- Screen Preview Helpers (won't print) ---------- */
+/* ================================================================
+   SCREEN PREVIEW
+   ================================================================ */
+
 @media screen {
-  body {
-    max-width: 8.5in;
-    margin: 0 auto;
-    padding: 1in;
-    background: #e8e0dc;
-  }
-
-  .cover {
-    margin: -1in;
-    margin-bottom: 0;
-    width: calc(100% + 2in);
-  }
-
-  .page-break {
-    border-top: 2px dashed var(--color-divider);
-    margin-top: 32px;
-    padding-top: 32px;
-  }
+  body { max-width: 8.5in; margin: 40px auto; padding: 0.9in; box-shadow: 0 4px 40px rgba(0,0,0,0.12); }
+  .cover { margin: -0.9in; margin-bottom: 0; width: calc(100% + 1.8in); }
+  .page-break { border-top: 1px dashed var(--color-divider); margin-top: 28px; padding-top: 28px; }
 }
 </style>
 </head>
@@ -569,67 +616,66 @@ hr {
 
 <!-- ================================================================
      COVER PAGE
-     Change the title, subtitle, and document number per document
      ================================================================ -->
 <div class="cover">
+  <!-- Gold botanical ornament from Opening.astro (5-petal flower + flanking lines) -->
+  <div class="cover__ornament">
+    <svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="16" x2="56" y2="16" stroke="currentColor" stroke-width="0.5"/>
+      <g transform="translate(80, 16)">
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(-36)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8"/>
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(-18)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8"/>
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(0)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8"/>
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(18)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8"/>
+        <ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(36)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8"/>
+        <circle cx="0" cy="0" r="1.2" fill="currentColor" opacity="0.6"/>
+      </g>
+      <line x1="104" y1="16" x2="160" y2="16" stroke="currentColor" stroke-width="0.5"/>
+    </svg>
+  </div>
   <div class="cover__brand">Perpetual Petals</div>
+  <div class="cover__est">Est. 2024</div>
+  <hr class="cover__rule">
   <h1 class="cover__title">Executive Proposal</h1>
   <p class="cover__subtitle">Digital Presence Strategy</p>
-  <hr class="cover__rule">
   <div class="cover__meta">
-    <span>Prepared for Lori Fronzak, Founder</span>
+    <span>Prepared for Lori Fronzak, Founder &amp; Creative Director</span>
     <span>Prepared by Vermillion Axis Technologies</span>
-    <span>March 2026 &mdash; Confidential</span>
+    <span>March 2026</span>
   </div>
+  <div class="cover__confidential">Confidential</div>
 </div>
 
-
 <!-- ================================================================
-     DOCUMENT BODY — INSERT YOUR CONTENT BELOW
+     DOCUMENT BODY
      ================================================================ -->
 <div class="document">
 
   <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
 
-
-  <!-- ============================================================
-       EXAMPLE SECTION — Delete or replace with your real content
-       ============================================================ -->
-
-  <span class="section-num">Section 01</span>
+  <span class="overline">Section 01</span>
   <h2>Section Title Goes Here</h2>
 
   <p class="lead">This is a lead paragraph. Use it for the opening statement of each major section. It renders in italic serif for a refined, editorial feel.</p>
 
-  <p>This is standard body text. Replace this with your actual document content. The framework handles all typography, spacing, and luxury branding automatically. Just write naturally using the HTML tags shown in these examples.</p>
+  <p>This is standard body text. Replace with your actual document content. Use <strong>bold for emphasis</strong> and <em>rose italic for key terms</em>. The framework handles all typography, spacing, and branding automatically.</p>
 
   <h3>Subsection Heading</h3>
 
-  <p>Subsection content goes here. Use <strong>bold</strong> for emphasis and <em>rose-colored italic</em> for key terms or metrics.</p>
+  <p>Subsection content. The heading hierarchy matches the Perpetual Petals website exactly: section headings in Cormorant Garamond with a centered rose underline bar, subsections in medium-weight serif, and label headings in uppercase Raleway.</p>
 
   <ul>
     <li>Bullet point with rose-colored marker</li>
-    <li>Another point — lists auto-style with luxury spacing</li>
+    <li>Second point with proper luxury spacing</li>
     <li>Third point for demonstration</li>
   </ul>
 
-  <ol>
-    <li>Numbered lists work identically</li>
-    <li>Use for sequential steps or ranked items</li>
-  </ol>
-
-  <blockquote>
-    "This is a callout or pull-quote block. Use it for key insights, client testimonials, or critical data points that need visual emphasis."
-  </blockquote>
-
   <h4>Label Heading</h4>
-  <p>This small uppercase heading is great for labeling data categories, timeline phases, or tier names.</p>
+  <p>Small uppercase headings for categories, phases, tiers, or data labels.</p>
 
+  <blockquote>"Callout block for key insights, testimonials, or critical data. Rose-glow background with rose left border, matching the website aesthetic."</blockquote>
 
-  <!-- ============================================================
-       STAT HIGHLIGHT ROW — Great for ROI numbers, KPIs, pricing
-       ============================================================ -->
-
+  <!-- Stat highlight row -->
   <div class="stat-row no-break">
     <div class="stat">
       <div class="stat__number">$120K</div>
@@ -645,11 +691,7 @@ hr {
     </div>
   </div>
 
-
-  <!-- ============================================================
-       TABLE — For pricing, timelines, comparisons
-       ============================================================ -->
-
+  <!-- Table -->
   <table>
     <thead>
       <tr>
@@ -661,15 +703,15 @@ hr {
     </thead>
     <tbody>
       <tr>
-        <td>Discovery</td>
-        <td>Weeks 1-2</td>
-        <td>Brand audit, competitive analysis, strategy</td>
+        <td>Discovery &amp; Strategy</td>
+        <td>Weeks 1–2</td>
+        <td>Brand audit, competitive analysis, positioning</td>
         <td>Included</td>
       </tr>
       <tr>
-        <td>Design</td>
-        <td>Weeks 2-5</td>
-        <td>Visual identity, UI/UX, prototypes</td>
+        <td>Design &amp; Development</td>
+        <td>Weeks 2–5</td>
+        <td>Visual identity, UI/UX, custom build</td>
         <td>Included</td>
       </tr>
       <tr class="highlight">
@@ -681,11 +723,7 @@ hr {
     </tbody>
   </table>
 
-
-  <!-- ============================================================
-       INFO BOX — For payment terms, legal notes, key details
-       ============================================================ -->
-
+  <!-- Info box -->
   <div class="info-box no-break">
     <h4>Payment Schedule</h4>
     <p><strong>40%</strong> upon signing &mdash; $48,000</p>
@@ -693,11 +731,7 @@ hr {
     <p><strong>30%</strong> upon launch &mdash; $36,000</p>
   </div>
 
-
-  <!-- ============================================================
-       TWO COLUMN LAYOUT — For comparisons or side-by-side data
-       ============================================================ -->
-
+  <!-- Two column comparison -->
   <div class="two-col no-break">
     <div>
       <h4>Current State</h4>
@@ -709,43 +743,78 @@ hr {
     </div>
   </div>
 
-
-  <!-- ============================================================
-       PAGE BREAK — Insert between major sections
-       ============================================================ -->
+  <!-- Botanical divider between sections (exact SVG from Footer.astro) -->
+  <div class="botanical-divider">
+    <svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/>
+      <ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/>
+      <ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/>
+      <ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/>
+      <circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/>
+      <circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/>
+      <circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/>
+      <path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/>
+      <path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/>
+    </svg>
+  </div>
 
   <div class="page-break"></div>
 
-  <span class="section-num">Section 02</span>
-  <h2>Next Section Starts Here</h2>
+  <span class="overline">Section 02</span>
+  <h2>Next Section After Page Break</h2>
 
-  <p>After a page break, the next section begins on a fresh page. Use <code>class="page-break"</code> on a div wherever you want a clean page break in the PDF.</p>
+  <p>Content continues on a new page. Use <code>&lt;div class="page-break"&gt;&lt;/div&gt;</code> between major sections.</p>
 
   <hr>
 
-  <p>Use the <code>&lt;hr&gt;</code> tag for a subtle gradient divider within a page when you want visual separation without a full page break.</p>
+  <p>Use <code>&lt;hr&gt;</code> for a subtle gradient divider within a page when you want visual separation without a full page break.</p>
 
+  <!-- Card component (matches website service cards) -->
+  <div class="card no-break">
+    <h4>Card Component</h4>
+    <p>White background, card border, rounded corners. Matches the website service card aesthetic. Use for highlighted content blocks, tier descriptions, or feature callouts.</p>
+  </div>
 
-  <!-- ============================================================
-       SIGNATURE BLOCK — For SOW / contracts
-       ============================================================ -->
-
+  <!-- Signature block for SOW/contracts -->
   <div class="signature-block no-break">
     <div class="signature">
       <div class="signature__line"></div>
       <div class="signature__name">Lori Fronzak</div>
-      <div class="signature__title">Founder & Creative Director, Perpetual Petals</div>
+      <div class="signature__title">Founder &amp; Creative Director, Perpetual Petals</div>
       <div class="signature__date">Date: _______________</div>
     </div>
     <div class="signature">
       <div class="signature__line"></div>
       <div class="signature__name">Vermillion Axis Technologies</div>
-      <div class="signature__title">Digital Strategy & Development</div>
+      <div class="signature__title">Digital Strategy &amp; Development</div>
       <div class="signature__date">Date: _______________</div>
     </div>
   </div>
 
-</div><!-- /.document -->
+</div>
+
+<!-- ================================================================
+     PAGE FOOTER — Exact replica of website footer
+     ================================================================ -->
+<div class="page-footer">
+  <div class="page-footer__ornament">
+    <svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/>
+      <ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/>
+      <ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/>
+      <ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/>
+      <circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/>
+      <circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/>
+      <circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/>
+      <path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/>
+      <path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/>
+    </svg>
+  </div>
+  <div class="page-footer__brand">Perpetual Petals</div>
+  <div class="page-footer__est">Est. 2024</div>
+  <div class="page-footer__location">Windermere, Florida</div>
+  <div class="page-footer__credit">Website by Vermillion Axis Technologies &mdash; vermillionaxis.tech</div>
+</div>
 
 </body>
 </html>
