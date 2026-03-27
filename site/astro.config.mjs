@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://perpetual-petals.com',
+  site: 'https://dkfitcoaching-lab.github.io',
+  base: '/Perpetual-Petals-Demo',
   build: {
     assets: '_assets',
   },
