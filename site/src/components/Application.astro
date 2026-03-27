@@ -70,7 +70,7 @@
             </span>
           </button>
         </div>
-        <p class="application__privacy">Your information is kept strictly confidential.</p>
+        <p class="application__privacy">Your privacy is sacred to us.</p>
       </form>
     </div>
 
@@ -122,7 +122,7 @@
     font-weight: 300;
     font-size: 15px;
     color: var(--color-ink-muted, #635145);
-    line-height: 2.0;
+    line-height: 1.7;
     margin-bottom: 48px;
   }
 
@@ -134,11 +134,11 @@
   .application__form-wrapper {
     background: var(--color-white, #FFFFFF);
     padding: 40px 24px;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     box-shadow:
       0 4px 24px rgba(184, 117, 122, 0.06),
       0 12px 48px rgba(139, 110, 79, 0.05);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity var(--duration) var(--ease-out), transform var(--duration) var(--ease-out);
   }
 
   @media (min-width: 768px) {
@@ -168,7 +168,7 @@
     letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--color-rose, #B8757A);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .required {
@@ -187,7 +187,7 @@
     border-bottom: 1.5px solid var(--color-card-border, #E8DCD5);
     padding: 14px 0;
     outline: none;
-    transition: border-bottom-color 0.3s, box-shadow 0.3s;
+    transition: border-bottom-color var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out);
     border-radius: 0;
     -webkit-appearance: none;
   }
@@ -195,15 +195,12 @@
   .form-group input:focus-visible,
   .form-group textarea:focus-visible {
     border-bottom-color: var(--color-rose, #B8757A);
-    box-shadow: 0 2px 0 0 rgba(184, 117, 122, 0.4);
-    outline: 2px solid var(--color-rose, #B8757A);
-    outline-offset: 4px;
+    box-shadow: 0 1px 0 0 var(--color-rose, #B8757A);
   }
 
   .form-group input:focus,
   .form-group textarea:focus {
     border-bottom-color: var(--color-rose, #B8757A);
-    box-shadow: 0 2px 0 0 rgba(184, 117, 122, 0.3);
   }
 
   .form-group input::placeholder,
@@ -221,8 +218,8 @@
   /* Validation states */
   .form-group.has-error input,
   .form-group.has-error textarea {
-    border-bottom-color: #9D6B62;
-    box-shadow: 0 2px 0 0 rgba(157, 107, 98, 0.3);
+    border-bottom-color: var(--color-rose-deep, #9E5A60);
+    box-shadow: 0 1px 0 0 var(--color-rose-deep, #9E5A60);
   }
 
   .form-error {
@@ -230,12 +227,12 @@
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-size: 12px;
-    color: #9D6B62;
+    color: var(--color-rose-deep, #9E5A60);
     margin-top: 6px;
     min-height: 0;
     opacity: 0;
     transform: translateY(-4px);
-    transition: opacity 0.25s ease, transform 0.25s ease, min-height 0.25s ease;
+    transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out), min-height 0.25s var(--ease-out);
   }
 
   .form-error.visible {
@@ -264,7 +261,10 @@
     border-radius: 6px;
     min-width: 220px;
     position: relative;
-    transition: background 0.3s, opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: background var(--duration) var(--ease-out),
+                opacity var(--duration) var(--ease-out),
+                transform var(--duration) var(--ease-out),
+                box-shadow var(--duration) var(--ease-out);
   }
 
   .application__btn:hover {
@@ -279,7 +279,7 @@
 
   .btn__spinner {
     display: none;
-    animation: spin 0.8s linear infinite;
+    animation: spin 0.8s ease-in-out infinite;
   }
 
   .application__btn.loading .btn__text {
@@ -314,13 +314,13 @@
   .confirm-circle {
     stroke-dasharray: 138;
     stroke-dashoffset: 138;
-    animation: drawCircle 0.8s ease-out 0.1s forwards;
+    animation: drawCircle 0.8s var(--ease-out) 0.1s forwards;
   }
 
   .confirm-check {
     stroke-dasharray: 30;
     stroke-dashoffset: 30;
-    animation: drawCheck 0.5s ease-out 0.6s forwards;
+    animation: drawCheck 0.5s var(--ease-out) 0.6s forwards;
   }
 
   @keyframes drawCircle {
@@ -334,7 +334,7 @@
   .application__confirm-line {
     opacity: 0;
     transform: translateY(10px);
-    animation: confirmFadeIn 0.6s ease-out forwards;
+    animation: confirmFadeIn 0.6s var(--ease-out) forwards;
   }
 
   .application__confirm-line:nth-child(2) {
@@ -365,7 +365,7 @@
     font-weight: 300;
     font-size: 15px;
     color: var(--color-ink-soft, #5C4D42);
-    line-height: 2.0;
+    line-height: 1.7;
   }
 
   /* Error state */
@@ -377,7 +377,7 @@
 
   .application__error.active {
     display: block;
-    animation: confirmFadeIn 0.4s ease-out forwards;
+    animation: confirmFadeIn 0.4s var(--ease-out) forwards;
   }
 
   .application__error-heading {
@@ -393,7 +393,7 @@
     font-weight: 300;
     font-size: 15px;
     color: var(--color-ink-soft, #5C4D42);
-    line-height: 2.0;
+    line-height: 1.7;
     margin-bottom: 32px;
   }
 

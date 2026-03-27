@@ -118,13 +118,13 @@ img {
   --font-serif: 'Cormorant Garamond', serif;
   --font-sans:  'Raleway', sans-serif;
 
-  /* Spacing scale */
+  /* Spacing scale (8px grid) */
   --space-sm:   8px;
   --space-md:   16px;
   --space-lg:   32px;
   --space-xl:   64px;
-  --space-2xl:  120px;
-  --space-3xl:  180px;
+  --space-2xl:  112px;
+  --space-3xl:  160px;
 
   /* Layout */
   --max-width:      1200px;
@@ -152,7 +152,6 @@ body {
   font-weight: 300;
   font-size: 17px;
   line-height: 1.7;
-  letter-spacing: 0.3px;
   color: var(--color-ink-soft);
   background-color: var(--color-cream);
   overflow-x: hidden;
@@ -282,7 +281,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 11px;
-  letter-spacing: 2.5px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--color-ink-muted);
 }
@@ -424,32 +423,26 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- Scroll Reveal Animations ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(30px) scale(0.98);
-  filter: blur(2px);
+  transform: translateY(24px);
   transition: opacity 0.8s var(--ease-out),
-              transform 0.8s var(--ease-out),
-              filter 0.8s var(--ease-out);
+              transform 0.8s var(--ease-out);
 }
 
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: translateY(0);
 }
 
 .reveal-stagger .reveal-child {
   opacity: 0;
-  transform: translateY(30px) scale(0.98);
-  filter: blur(2px);
+  transform: translateY(24px);
   transition: opacity 0.8s var(--ease-out),
-              transform 0.8s var(--ease-out),
-              filter 0.8s var(--ease-out);
+              transform 0.8s var(--ease-out);
 }
 
 .reveal-stagger.visible .reveal-child {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: translateY(0);
 }
 
 /* ---------- Botanical Divider ---------- */
@@ -560,8 +553,11 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out), background 0.3s, border-color 0.3s;
+  transform: translateY(8px);
+  transition: opacity var(--duration) var(--ease-out),
+              transform var(--duration) var(--ease-out),
+              background var(--duration) var(--ease-out),
+              border-color var(--duration) var(--ease-out);
   pointer-events: none;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
@@ -593,6 +589,5 @@ h1, h2, h3, h4, h5, h6 {
   .reveal-stagger .reveal-child {
     opacity: 1 !important;
     transform: none !important;
-    filter: none !important;
   }
 }

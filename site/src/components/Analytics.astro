@@ -9,7 +9,7 @@ const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
 <!-- Cookie Consent Banner -->
 <div id="cookie-consent" class="consent-banner" role="dialog" aria-label="Cookie consent" aria-hidden="true">
   <p class="consent-banner__text">
-    We use cookies to understand how you interact with our site and improve your experience.
+    This site uses cookies to enhance your browsing experience.
   </p>
   <div class="consent-banner__actions">
     <button id="consent-decline" class="consent-banner__btn consent-banner__btn--decline" type="button">
@@ -151,7 +151,7 @@ const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
     font-family: 'Raleway', sans-serif;
     transform: translateY(100%);
     opacity: 0;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition: transform var(--duration) var(--ease-out), opacity var(--duration) var(--ease-out);
     pointer-events: none;
   }
 
@@ -178,7 +178,7 @@ const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
 
   .consent-banner__btn {
     font-family: 'Raleway', sans-serif;
-    font-size: 0.8rem;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -186,7 +186,7 @@ const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
     min-height: 44px;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    transition: background var(--duration) var(--ease-out), color var(--duration) var(--ease-out), border-color var(--duration) var(--ease-out);
   }
 
   .consent-banner__btn--accept {
@@ -220,7 +220,7 @@ const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
     }
 
     .consent-banner__text {
-      font-size: 0.82rem;
+      font-size: 13px;
     }
   }
 

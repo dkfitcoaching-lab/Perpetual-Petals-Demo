@@ -69,7 +69,7 @@
       transparent 70%
     );
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s var(--ease-out);
     pointer-events: none;
     will-change: opacity, background;
   }
@@ -91,9 +91,9 @@
 
   .opening__ornament {
     color: var(--color-gold, #C9A87C);
-    margin: 24px auto 20px;
+    margin: 24px auto 24px;
     opacity: 0;
-    animation: ornamentReveal 1s ease 1s forwards;
+    animation: ornamentReveal 1s var(--ease-out) 1s forwards;
     position: relative;
     z-index: 1;
   }
@@ -125,7 +125,7 @@
     text-transform: uppercase;
     color: var(--color-rose, #855E4A);
     opacity: 0;
-    animation: fadeInUp 0.8s ease 1.3s forwards;
+    animation: fadeInUp 0.8s var(--ease-out) 1.3s forwards;
     position: relative;
     z-index: 1;
   }
@@ -137,9 +137,9 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--color-ink-muted, #9A8E85);
-    margin-top: 6px;
+    margin-top: 8px;
     opacity: 0;
-    animation: fadeInUp 0.8s ease 1.5s forwards;
+    animation: fadeInUp 0.8s var(--ease-out) 1.5s forwards;
     position: relative;
     z-index: 1;
   }
@@ -163,8 +163,8 @@
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
-    animation: fadeIn 0.8s ease 2s forwards, scrollPulse 2.5s ease-in-out 2.8s infinite;
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    animation: fadeIn 0.8s var(--ease-out) 2s forwards, scrollPulse 3s ease-in-out 2.8s infinite;
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
   }
 
   .scroll-indicator.hidden {
@@ -262,8 +262,8 @@
         const scrollY = window.scrollY;
         const viewportHeight = window.innerHeight;
 
-        // Hide scroll indicator after user scrolls past ~10% of viewport
-        if (!scrollHidden && scrollIndicator && scrollY > viewportHeight * 0.1) {
+        // Hide scroll indicator after user scrolls past 20% of viewport
+        if (!scrollHidden && scrollIndicator && scrollY > viewportHeight * 0.2) {
           scrollIndicator.classList.add('hidden');
           scrollHidden = true;
         }

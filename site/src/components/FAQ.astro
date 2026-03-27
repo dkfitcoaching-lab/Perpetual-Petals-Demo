@@ -67,18 +67,18 @@ const faqs: FAQItem[] = [
   .faq-section {
     max-width: 720px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 24px;
   }
 
   .faq-title {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 40px;
   }
 
   .faq-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
   }
 
   /* --- Details / Accordion Item --- */
@@ -86,7 +86,7 @@ const faqs: FAQItem[] = [
     border: 1px solid var(--color-card-border, #E8DCD5);
     border-radius: 8px;
     overflow: hidden;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color var(--duration) var(--ease-out), border-color var(--duration) var(--ease-out);
   }
 
   .faq-item[open] {
@@ -99,8 +99,8 @@ const faqs: FAQItem[] = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
+    gap: 16px;
+    padding: 20px 24px;
     cursor: pointer;
     font-size: 18px;
     font-weight: 500;
@@ -108,7 +108,7 @@ const faqs: FAQItem[] = [
     line-height: 1.5;
     list-style: none;
     user-select: none;
-    transition: color 0.2s ease, background-color 0.2s ease;
+    transition: color var(--duration) var(--ease-out), background-color var(--duration) var(--ease-out);
   }
 
   /* Remove default marker in all browsers */
@@ -145,20 +145,20 @@ const faqs: FAQItem[] = [
     border-radius: 50%;
     background: var(--color-rose-glow, rgba(184, 117, 122, 0.12));
     color: var(--color-rose, #B8757A);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s var(--ease-out), background-color 0.3s var(--ease-out);
   }
 
   .faq-item[open] > .faq-question .faq-icon {
     transform: rotate(180deg);
-    background-color: var(--color-blush, #EFE0D8);
+    background-color: rgba(184, 117, 122, 0.18);
   }
 
   /* --- Answer Panel — CSS Grid animation trick --- */
   .faq-answer {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 0.35s ease, padding 0.35s ease;
-    padding: 0 1.5rem;
+    transition: grid-template-rows 0.35s var(--ease-out), padding 0.35s var(--ease-out);
+    padding: 0 24px;
   }
 
   .faq-answer > p {
@@ -166,13 +166,12 @@ const faqs: FAQItem[] = [
     margin: 0;
     font-size: 17px;
     line-height: 1.7;
-    letter-spacing: 0.3px;
     color: var(--color-ink-soft, #5C4D42);
   }
 
   .faq-item[open] > .faq-answer {
     grid-template-rows: 1fr;
-    padding: 0 1.5rem 1.25rem;
+    padding: 0 24px 20px;
   }
 
   /*
@@ -198,21 +197,21 @@ const faqs: FAQItem[] = [
   /* --- Responsive --- */
   @media (max-width: 640px) {
     .faq-section {
-      padding: 0 1rem;
+      padding: 0 16px;
     }
 
     .faq-question {
-      padding: 1rem 1.25rem;
+      padding: 16px 20px;
       font-size: 16px;
     }
 
     .faq-answer {
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     .faq-item[open] > .faq-answer {
-      padding: 0 1.25rem 1rem;
+      padding: 0 20px 16px;
     }
   }
 </style>
