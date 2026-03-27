@@ -19,6 +19,7 @@ const year = new Date().getFullYear();
     </div>
 
     <p class="footer__brand">Perpetual Petals</p>
+    <p class="footer__est">Est. 2024</p>
     <p class="footer__location">Windermere, Florida</p>
 
     <div class="footer__social">
@@ -53,7 +54,7 @@ const year = new Date().getFullYear();
       <a href="#" aria-label="Terms of Service">Terms</a>
     </p>
     <p class="footer__credit">
-      Website by <a href="https://vermillionaxis.com" target="_blank" rel="noopener noreferrer">Vermillion Axis Technologies</a>
+      Website by <a href="https://vermillionaxis.tech" target="_blank" rel="noopener noreferrer">Vermillion Axis Technologies</a>
     </p>
   </div>
 </footer>
@@ -83,7 +84,17 @@ const year = new Date().getFullYear();
     font-size: 28px;
     color: var(--color-ink);
     letter-spacing: 3px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+  }
+
+  .footer__est {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 8px;
   }
 
   .footer__location {

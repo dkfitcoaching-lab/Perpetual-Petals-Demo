@@ -58,8 +58,9 @@ const images: GalleryImage[] = [
     <p class="overline">Portfolio</p>
     <h2 class="gallery__heading">Our Portfolio</h2>
     <div class="gallery__grid">
-      {images.map((image) => (
+      {images.map((image, index) => (
         <div class="gallery__item" role="button" tabindex="0" aria-label={`View ${image.alt}`}>
+          <span class="gallery__counter">{String(index + 1).padStart(2, '0')}</span>
           <picture>
             <source type="image/webp" srcset={image.webpSrcset} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" />
             <source type={image.fallbackType} srcset={image.fallbackSrcset} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" />
@@ -72,6 +73,7 @@ const images: GalleryImage[] = [
               decoding="async"
             />
           </picture>
+          <span class="gallery__caption">{image.alt}</span>
         </div>
       ))}
     </div>
@@ -126,6 +128,51 @@ const images: GalleryImage[] = [
     .gallery__grid {
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
+    }
+  }
+
+  .gallery__counter {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--color-gold-light, #DEC9A6);
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out);
+    pointer-events: none;
+  }
+
+  .gallery__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 24px 16px 16px;
+    background: linear-gradient(to top, rgba(26, 21, 22, 0.7), transparent);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: var(--color-dark-text, #F2E4E0);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+    pointer-events: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  @media (hover: hover) {
+    .gallery__item:hover .gallery__counter,
+    .gallery__item:hover .gallery__caption {
+      opacity: 1;
+    }
+    .gallery__item:hover .gallery__caption {
+      transform: translateY(0);
     }
   }
 

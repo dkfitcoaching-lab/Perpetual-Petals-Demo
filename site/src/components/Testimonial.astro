@@ -1,10 +1,21 @@
 ---
 /**
  * Testimonial section — dark rose background with decorative elements.
+ * Two quotes with subtle fade transition.
  */
+const testimonials = [
+  {
+    quote: "The flowers she brings into our home aren't just arrangements\u2009\u2014\u2009they change the entire feeling of a room. Every placement feels like it was always meant to be there.",
+    attribution: 'Windermere Member',
+  },
+  {
+    quote: "Lori has an extraordinary sense for what a space needs. She walks in, studies the light, and creates something that makes the entire room feel new again.",
+    attribution: 'Isleworth Resident',
+  },
+];
 ---
 
-<section class="testimonial section-dark-rose" aria-label="Client Testimonial">
+<section class="testimonial section-dark-rose" aria-label="Client Testimonials">
   <div class="testimonial__inner reveal">
     <!-- Decorative SVG petal — left -->
     <svg class="testimonial__petal testimonial__petal--left" width="120" height="200" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -16,12 +27,30 @@
       <path d="M60 0C60 0 120 60 120 120C120 180 60 200 60 200C60 200 0 180 0 120C0 60 60 0 60 0Z" fill="currentColor"/>
     </svg>
 
-    <span class="overline">Client Testimonial</span>
+    <span class="overline">Client Testimonials</span>
     <span class="testimonial__mark" aria-hidden="true">&ldquo;</span>
-    <blockquote class="testimonial__quote">
-      The flowers she brings into our home aren't just arrangements&thinsp;&mdash;&thinsp;they change the entire feeling of a room. Every placement feels like it was always meant to be there.
-    </blockquote>
-    <p class="testimonial__attribution">&mdash; Windermere Member</p>
+
+    <div class="testimonial__carousel" id="testimonialCarousel">
+      {testimonials.map((t, i) => (
+        <div class={`testimonial__slide ${i === 0 ? 'testimonial__slide--active' : ''}`} data-slide={i}>
+          <blockquote class="testimonial__quote">
+            {t.quote}
+          </blockquote>
+          <p class="testimonial__attribution">&mdash; {t.attribution}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="testimonial__dots" aria-label="Testimonial navigation">
+      {testimonials.map((_, i) => (
+        <button
+          class={`testimonial__dot ${i === 0 ? 'testimonial__dot--active' : ''}`}
+          data-dot={i}
+          type="button"
+          aria-label={`View testimonial ${i + 1}`}
+        />
+      ))}
+    </div>
   </div>
 </section>
 
@@ -30,7 +59,7 @@
     text-align: center;
     position: relative;
     background: var(--color-dark-rose, #2A1E20);
-    padding: var(--space-2xl, 120px) 24px;
+    padding: var(--space-2xl, 112px) 24px;
     overflow: hidden;
   }
 
@@ -62,12 +91,8 @@
   }
 
   @media (min-width: 768px) {
-    .testimonial__petal--left {
-      left: -40px;
-    }
-    .testimonial__petal--right {
-      right: -40px;
-    }
+    .testimonial__petal--left { left: -40px; }
+    .testimonial__petal--right { right: -40px; }
   }
 
   /* Opening quote mark */
@@ -80,6 +105,28 @@
     line-height: 0.6;
     margin-bottom: 16px;
     user-select: none;
+  }
+
+  /* Carousel */
+  .testimonial__carousel {
+    position: relative;
+    min-height: 200px;
+  }
+
+  .testimonial__slide {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 0.6s var(--ease-out);
+    pointer-events: none;
+  }
+
+  .testimonial__slide--active {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
   }
 
   /* Quote text */
@@ -105,4 +152,81 @@
     text-transform: uppercase;
     color: var(--color-gold, #C9A87C);
   }
+
+  /* Navigation dots */
+  .testimonial__dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .testimonial__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--color-gold, #C9A87C);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background var(--duration) var(--ease-out), transform var(--duration) var(--ease-out);
+  }
+
+  .testimonial__dot--active {
+    background: var(--color-gold, #C9A87C);
+    transform: scale(1.2);
+  }
+
+  .testimonial__dot:hover {
+    background: var(--color-gold, #C9A87C);
+  }
+
+  .testimonial__dot:focus-visible {
+    outline: 2px solid var(--color-rose-light, #D4A0A5);
+    outline-offset: 3px;
+  }
 </style>
+
+<script>
+  (function () {
+    const carousel = document.getElementById('testimonialCarousel');
+    if (!carousel) return;
+
+    const slides = carousel.querySelectorAll<HTMLElement>('.testimonial__slide');
+    const dots = document.querySelectorAll<HTMLButtonElement>('.testimonial__dot');
+    let current = 0;
+    let timer: ReturnType<typeof setInterval>;
+
+    function goTo(index: number) {
+      slides[current].classList.remove('testimonial__slide--active');
+      dots[current].classList.remove('testimonial__dot--active');
+      current = index;
+      slides[current].classList.add('testimonial__slide--active');
+      dots[current].classList.add('testimonial__dot--active');
+    }
+
+    function next() {
+      goTo((current + 1) % slides.length);
+    }
+
+    // Auto-advance every 8 seconds
+    function startTimer() {
+      timer = setInterval(next, 8000);
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      startTimer();
+    }
+
+    // Dot click handlers
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        goTo(i);
+        resetTimer();
+      });
+    });
+
+    startTimer();
+  })();
+</script>

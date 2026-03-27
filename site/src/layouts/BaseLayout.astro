@@ -56,6 +56,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <link rel="preload" href="/fonts/cormorant-garamond-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/raleway-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 
+  <!-- Preload hero image -->
+  <link rel="preload" href="/images/hero-arrangement.png" as="image" type="image/png">
+
   <!-- Structured Data: LocalBusiness -->
   <script type="application/ld+json">
     {
@@ -122,6 +125,29 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal-stagger').forEach(el => staggerObserver.observe(el));
+
+        // Founder image parallax
+        const founderImg = document.querySelector('.founder__image') as HTMLElement | null;
+        if (founderImg) {
+          const founderSection = founderImg.closest('.founder') as HTMLElement | null;
+          if (founderSection) {
+            const parallaxObserver = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  window.addEventListener('scroll', function founderParallax() {
+                    const rect = founderSection.getBoundingClientRect();
+                    const viewH = window.innerHeight;
+                    if (rect.bottom < 0 || rect.top > viewH) return;
+                    const progress = (viewH - rect.top) / (viewH + rect.height);
+                    const shift = (progress - 0.5) * 40;
+                    founderImg.style.transform = `translateY(${shift}px) translateZ(0)`;
+                  }, { passive: true });
+                }
+              });
+            }, { threshold: 0 });
+            parallaxObserver.observe(founderSection);
+          }
+        }
       }
     }
   </script>

@@ -108,6 +108,7 @@ img {
   --color-blush:        #F2E4E0;
   --color-white:        #FFFFFF;
   --color-dark:         #1A1516;
+  --color-noir:         #0D0B0A;
   --color-dark-rose:    #2A1E20;
   --color-dark-text:    #F2E4E0;
   --color-dark-muted:   #A89092;
@@ -378,6 +379,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-linen {
   background-color: var(--color-linen);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-linen) 0%,
+    rgba(247, 239, 235, 0.6) 50%,
+    var(--color-cream) 100%
+  );
 }
 
 .section-white {
@@ -386,6 +393,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-dark {
   background-color: var(--color-dark);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-dark) 0%,
+    var(--color-noir) 100%
+  );
   color: var(--color-dark-text);
 }
 
