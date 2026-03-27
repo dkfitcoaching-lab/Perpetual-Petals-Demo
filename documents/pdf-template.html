@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perpetual Petals — Document Title</title>
+
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  PERPETUAL PETALS — Luxury PDF Generation Framework        ║
+  ║  Prepared by Vermillion Axis Technologies                   ║
+  ║                                                             ║
+  ║  HOW TO USE:                                                ║
+  ║  1. Duplicate this file for each document (1-5)             ║
+  ║  2. Replace the <title> tag above                           ║
+  ║  3. Update the COVER PAGE section below                     ║
+  ║  4. Insert your content in the BODY CONTENT section         ║
+  ║  5. Open in Chrome → Print → Save as PDF                   ║
+  ║     - Set margins to "None"                                 ║
+  ║     - Enable "Background graphics" checkbox                 ║
+  ║     - Paper size: Letter (8.5 x 11)                         ║
+  ║  6. The template handles all page breaks, headers,          ║
+  ║     footers, and luxury styling automatically               ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+
+<!-- Google Fonts fallback (Cormorant Garamond + Raleway) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================
+   PERPETUAL PETALS — LUXURY PDF DESIGN SYSTEM
+   ================================================================ */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  --color-ink:          #1C1410;
+  --color-ink-light:    #4A3F36;
+  --color-ink-muted:    #635145;
+  --color-rose:         #B8757A;
+  --color-rose-deep:    #9E5A60;
+  --color-rose-light:   #D4A0A5;
+  --color-rose-glow:    rgba(184, 117, 122, 0.12);
+  --color-gold:         #C9A87C;
+  --color-gold-light:   #DEC9A6;
+  --color-cream:        #FDF8F6;
+  --color-linen:        #F7EFEB;
+  --color-blush:        #F2E4E0;
+  --color-white:        #FFFFFF;
+  --color-dark:         #1A1516;
+  --color-noir:         #0D0B0A;
+  --color-dark-rose:    #2A1E20;
+  --color-divider:      #DDD0C7;
+
+  --font-serif:  'Cormorant Garamond', 'Georgia', serif;
+  --font-sans:   'Raleway', 'Helvetica Neue', sans-serif;
+}
+
+/* ---------- Page Setup ---------- */
+@page {
+  size: letter;
+  margin: 0.85in 1in 1in 1in;
+}
+
+@page :first {
+  margin: 0;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 11pt;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--color-ink);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  background: var(--color-white);
+}
+
+
+/* ================================================================
+   COVER PAGE
+   ================================================================ */
+.cover {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(170deg, var(--color-dark) 0%, var(--color-noir) 60%, var(--color-dark-rose) 100%);
+  color: var(--color-blush);
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle decorative border frame */
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 48px;
+  left: 48px;
+  right: 48px;
+  bottom: 48px;
+  border: 1px solid rgba(201, 168, 124, 0.2);
+  pointer-events: none;
+}
+
+/* Corner accents */
+.cover::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background:
+    linear-gradient(var(--color-gold), var(--color-gold)) top left,
+    linear-gradient(var(--color-gold), var(--color-gold)) top right,
+    linear-gradient(var(--color-gold), var(--color-gold)) bottom left,
+    linear-gradient(var(--color-gold), var(--color-gold)) bottom right;
+  background-size: 24px 1px, 24px 1px, 24px 1px, 24px 1px;
+  background-repeat: no-repeat;
+  background-position: top left, top right, bottom left, bottom right;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.cover__brand {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 14pt;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 60px;
+  opacity: 0.8;
+}
+
+.cover__title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 36pt;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  color: var(--color-blush);
+  max-width: 560px;
+  margin-bottom: 24px;
+}
+
+.cover__subtitle {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-rose-light);
+  margin-bottom: 80px;
+}
+
+.cover__rule {
+  width: 64px;
+  height: 1px;
+  background: var(--color-gold);
+  border: none;
+  margin-bottom: 32px;
+  opacity: 0.5;
+}
+
+.cover__meta {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 8.5pt;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-rose-light);
+  opacity: 0.6;
+  line-height: 2.2;
+}
+
+.cover__meta span {
+  display: block;
+}
+
+
+/* ================================================================
+   DOCUMENT BODY CONTENT
+   ================================================================ */
+.document {
+  max-width: 100%;
+  padding-top: 0;
+}
+
+/* ---------- Section Headings ---------- */
+h1 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 26pt;
+  color: var(--color-ink);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 18pt;
+  color: var(--color-rose-deep);
+  letter-spacing: 0.5px;
+  margin-top: 36px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-divider);
+  line-height: 1.3;
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 13pt;
+  color: var(--color-ink);
+  letter-spacing: 0.3px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 10pt;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-rose);
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
+/* ---------- Body Text ---------- */
+p {
+  margin-bottom: 12px;
+  font-size: 10.5pt;
+  line-height: 1.75;
+  color: var(--color-ink-light);
+}
+
+p + p {
+  margin-top: 0;
+}
+
+/* Lead paragraph — use for opening statements */
+p.lead {
+  font-family: var(--font-serif);
+  font-size: 13pt;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-ink-muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+strong {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+em {
+  font-style: italic;
+  color: var(--color-rose-deep);
+}
+
+/* ---------- Lists ---------- */
+ul, ol {
+  margin: 8px 0 16px 20px;
+  font-size: 10.5pt;
+  line-height: 1.75;
+  color: var(--color-ink-light);
+}
+
+li {
+  margin-bottom: 4px;
+  padding-left: 4px;
+}
+
+li::marker {
+  color: var(--color-rose);
+}
+
+/* ---------- Blockquote / Callout ---------- */
+blockquote {
+  margin: 20px 0;
+  padding: 20px 28px;
+  background: var(--color-rose-glow);
+  border-left: 3px solid var(--color-rose);
+  border-radius: 0 4px 4px 0;
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  font-style: italic;
+  color: var(--color-ink-muted);
+  line-height: 1.7;
+}
+
+/* ---------- Tables ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 9.5pt;
+}
+
+thead {
+  background: var(--color-linen);
+}
+
+th {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 8pt;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-rose-deep);
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--color-divider);
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-divider);
+  color: var(--color-ink-light);
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+tbody tr:last-child td {
+  border-bottom: 2px solid var(--color-divider);
+}
+
+/* Highlight row for totals or emphasis */
+tr.highlight td {
+  background: var(--color-rose-glow);
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* ---------- Horizontal Rule / Section Divider ---------- */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-divider) 20%, var(--color-divider) 80%, transparent 100%);
+  margin: 32px 0;
+}
+
+/* ---------- Stat / Metric Highlight ---------- */
+.stat-row {
+  display: flex;
+  gap: 24px;
+  margin: 20px 0 28px;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  padding: 20px 16px;
+  background: var(--color-linen);
+  border-radius: 4px;
+}
+
+.stat__number {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 28pt;
+  color: var(--color-rose-deep);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.stat__label {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 7.5pt;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+/* ---------- Info Box / Sidebar ---------- */
+.info-box {
+  margin: 20px 0;
+  padding: 20px 24px;
+  background: var(--color-linen);
+  border: 1px solid var(--color-divider);
+  border-radius: 4px;
+}
+
+.info-box h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.info-box p {
+  margin-bottom: 4px;
+  font-size: 10pt;
+}
+
+/* ---------- Signature Block ---------- */
+.signature-block {
+  margin-top: 48px;
+  display: flex;
+  gap: 48px;
+}
+
+.signature {
+  flex: 1;
+}
+
+.signature__line {
+  border-top: 1px solid var(--color-ink);
+  margin-top: 48px;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+.signature__name {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 10pt;
+  color: var(--color-ink);
+}
+
+.signature__title {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 9pt;
+  color: var(--color-ink-muted);
+}
+
+.signature__date {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 8.5pt;
+  color: var(--color-ink-muted);
+  margin-top: 12px;
+}
+
+/* ---------- Page Break Utilities ---------- */
+.page-break {
+  page-break-before: always;
+}
+
+.no-break {
+  page-break-inside: avoid;
+}
+
+/* ---------- Section Number Badge ---------- */
+.section-num {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 8pt;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  background: var(--color-dark);
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+/* ---------- Two Column Layout ---------- */
+.two-col {
+  display: flex;
+  gap: 32px;
+  margin: 16px 0;
+}
+
+.two-col > div {
+  flex: 1;
+}
+
+/* ---------- Footer / Page Number ---------- */
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 1in 0.5in 1in;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 7pt;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  opacity: 0.5;
+}
+
+/* ---------- Confidential Watermark ---------- */
+.confidential {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 7pt;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-rose);
+  opacity: 0.6;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* ---------- Print Overrides ---------- */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cover {
+    width: 100%;
+    height: 100%;
+  }
+
+  .page-footer {
+    display: none; /* Chrome handles running footers poorly — remove if not needed */
+  }
+}
+
+/* ---------- Screen Preview Helpers (won't print) ---------- */
+@media screen {
+  body {
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 1in;
+    background: #e8e0dc;
+  }
+
+  .cover {
+    margin: -1in;
+    margin-bottom: 0;
+    width: calc(100% + 2in);
+  }
+
+  .page-break {
+    border-top: 2px dashed var(--color-divider);
+    margin-top: 32px;
+    padding-top: 32px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     COVER PAGE
+     Change the title, subtitle, and document number per document
+     ================================================================ -->
+<div class="cover">
+  <div class="cover__brand">Perpetual Petals</div>
+  <h1 class="cover__title">Executive Proposal</h1>
+  <p class="cover__subtitle">Digital Presence Strategy</p>
+  <hr class="cover__rule">
+  <div class="cover__meta">
+    <span>Prepared for Lori Fronzak, Founder</span>
+    <span>Prepared by Vermillion Axis Technologies</span>
+    <span>March 2026 &mdash; Confidential</span>
+  </div>
+</div>
+
+
+<!-- ================================================================
+     DOCUMENT BODY — INSERT YOUR CONTENT BELOW
+     ================================================================ -->
+<div class="document">
+
+  <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+
+
+  <!-- ============================================================
+       EXAMPLE SECTION — Delete or replace with your real content
+       ============================================================ -->
+
+  <span class="section-num">Section 01</span>
+  <h2>Section Title Goes Here</h2>
+
+  <p class="lead">This is a lead paragraph. Use it for the opening statement of each major section. It renders in italic serif for a refined, editorial feel.</p>
+
+  <p>This is standard body text. Replace this with your actual document content. The framework handles all typography, spacing, and luxury branding automatically. Just write naturally using the HTML tags shown in these examples.</p>
+
+  <h3>Subsection Heading</h3>
+
+  <p>Subsection content goes here. Use <strong>bold</strong> for emphasis and <em>rose-colored italic</em> for key terms or metrics.</p>
+
+  <ul>
+    <li>Bullet point with rose-colored marker</li>
+    <li>Another point — lists auto-style with luxury spacing</li>
+    <li>Third point for demonstration</li>
+  </ul>
+
+  <ol>
+    <li>Numbered lists work identically</li>
+    <li>Use for sequential steps or ranked items</li>
+  </ol>
+
+  <blockquote>
+    "This is a callout or pull-quote block. Use it for key insights, client testimonials, or critical data points that need visual emphasis."
+  </blockquote>
+
+  <h4>Label Heading</h4>
+  <p>This small uppercase heading is great for labeling data categories, timeline phases, or tier names.</p>
+
+
+  <!-- ============================================================
+       STAT HIGHLIGHT ROW — Great for ROI numbers, KPIs, pricing
+       ============================================================ -->
+
+  <div class="stat-row no-break">
+    <div class="stat">
+      <div class="stat__number">$120K</div>
+      <div class="stat__label">Total Investment</div>
+    </div>
+    <div class="stat">
+      <div class="stat__number">564%</div>
+      <div class="stat__label">Projected ROI</div>
+    </div>
+    <div class="stat">
+      <div class="stat__number">8</div>
+      <div class="stat__label">Months to Break-Even</div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       TABLE — For pricing, timelines, comparisons
+       ============================================================ -->
+
+  <table>
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Timeline</th>
+        <th>Deliverables</th>
+        <th>Investment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Discovery</td>
+        <td>Weeks 1-2</td>
+        <td>Brand audit, competitive analysis, strategy</td>
+        <td>Included</td>
+      </tr>
+      <tr>
+        <td>Design</td>
+        <td>Weeks 2-5</td>
+        <td>Visual identity, UI/UX, prototypes</td>
+        <td>Included</td>
+      </tr>
+      <tr class="highlight">
+        <td><strong>Total</strong></td>
+        <td><strong>6 Weeks</strong></td>
+        <td><strong>Complete digital presence</strong></td>
+        <td><strong>$120,000</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- ============================================================
+       INFO BOX — For payment terms, legal notes, key details
+       ============================================================ -->
+
+  <div class="info-box no-break">
+    <h4>Payment Schedule</h4>
+    <p><strong>40%</strong> upon signing &mdash; $48,000</p>
+    <p><strong>30%</strong> upon design approval &mdash; $36,000</p>
+    <p><strong>30%</strong> upon launch &mdash; $36,000</p>
+  </div>
+
+
+  <!-- ============================================================
+       TWO COLUMN LAYOUT — For comparisons or side-by-side data
+       ============================================================ -->
+
+  <div class="two-col no-break">
+    <div>
+      <h4>Current State</h4>
+      <p>Template-based website with no brand differentiation or membership infrastructure.</p>
+    </div>
+    <div>
+      <h4>Future State</h4>
+      <p>World-class digital presence positioning Perpetual Petals as the definitive luxury floral membership.</p>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE BREAK — Insert between major sections
+       ============================================================ -->
+
+  <div class="page-break"></div>
+
+  <span class="section-num">Section 02</span>
+  <h2>Next Section Starts Here</h2>
+
+  <p>After a page break, the next section begins on a fresh page. Use <code>class="page-break"</code> on a div wherever you want a clean page break in the PDF.</p>
+
+  <hr>
+
+  <p>Use the <code>&lt;hr&gt;</code> tag for a subtle gradient divider within a page when you want visual separation without a full page break.</p>
+
+
+  <!-- ============================================================
+       SIGNATURE BLOCK — For SOW / contracts
+       ============================================================ -->
+
+  <div class="signature-block no-break">
+    <div class="signature">
+      <div class="signature__line"></div>
+      <div class="signature__name">Lori Fronzak</div>
+      <div class="signature__title">Founder & Creative Director, Perpetual Petals</div>
+      <div class="signature__date">Date: _______________</div>
+    </div>
+    <div class="signature">
+      <div class="signature__line"></div>
+      <div class="signature__name">Vermillion Axis Technologies</div>
+      <div class="signature__title">Digital Strategy & Development</div>
+      <div class="signature__date">Date: _______________</div>
+    </div>
+  </div>
+
+</div><!-- /.document -->
+
+</body>
+</html>
