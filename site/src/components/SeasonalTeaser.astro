@@ -1,0 +1,64 @@
+---
+/**
+ * Seasonal Collection Teaser — Shows the site is curated and alive.
+ * Updates seasonally to reflect the current palette and mood.
+ */
+const currentSeason = (() => {
+  const month = new Date().getMonth();
+  if (month >= 2 && month <= 4) return { name: 'Spring', year: new Date().getFullYear() };
+  if (month >= 5 && month <= 7) return { name: 'Summer', year: new Date().getFullYear() };
+  if (month >= 8 && month <= 10) return { name: 'Autumn', year: new Date().getFullYear() };
+  return { name: 'Winter', year: new Date().getFullYear() };
+})();
+
+const seasonalCopy: Record<string, string> = {
+  Spring: 'Soft peonies, ranunculus, and garden roses in blush and ivory. The spring palette celebrates renewal — arrangements that feel like the first warm morning after a long winter.',
+  Summer: 'Bold dahlias, lush hydrangeas, and sun-warmed roses. Summer compositions bring depth and vibrancy, designed to complement the light that fills your home.',
+  Autumn: 'Rich burgundy ranunculus, antique roses, and textured foliage. Autumn arrangements carry warmth and intimacy — a grounding presence as the season turns.',
+  Winter: 'Elegant amaryllis, white roses, and frosted eucalyptus. Winter designs are spare and sculptural, bringing quiet beauty to the stillness of the season.',
+};
+---
+
+<section class="seasonal section section-linen" aria-label="Current seasonal collection">
+  <div class="seasonal__inner reveal">
+    <span class="overline">{currentSeason.name} {currentSeason.year}</span>
+    <h2 class="seasonal__heading">The Current Collection</h2>
+    <div class="seasonal__line" aria-hidden="true"></div>
+    <p class="body-text seasonal__copy">{seasonalCopy[currentSeason.name]}</p>
+  </div>
+</section>
+
+<style>
+  .seasonal {
+    text-align: center;
+  }
+
+  .seasonal__inner {
+    max-width: var(--max-width-text);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  .seasonal__heading {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--color-ink);
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+
+  .seasonal__line {
+    width: 48px;
+    height: 1px;
+    background: var(--color-gold);
+    margin: 0 auto 32px;
+  }
+
+  .seasonal__copy {
+    max-width: 560px;
+    margin: 0 auto;
+    font-style: italic;
+    color: var(--color-ink-muted);
+  }
+</style>

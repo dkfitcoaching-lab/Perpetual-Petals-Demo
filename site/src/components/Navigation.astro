@@ -1,0 +1,557 @@
+---
+/**
+ * Navigation component with:
+ * - Fixed header with glass morphism
+ * - Scroll-spy active section highlighting via IntersectionObserver
+ * - Mobile hamburger menu with slide-in panel
+ * - Focus trapping in open mobile menu
+ * - Close on Escape key
+ * - Responsive across all breakpoints (320-1440px)
+ */
+
+const navLinks = [
+  { href: '#about', label: 'About' },
+  { href: '#founder', label: 'Founder' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#services', label: 'Services' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#apply', label: 'Apply' },
+];
+---
+
+<header class="nav-header" id="navHeader">
+  <nav class="nav" aria-label="Main navigation">
+    <a href="/" class="nav__brand" aria-label="Perpetual Petals — return to top">
+      Perpetual Petals
+    </a>
+
+    <!-- Mobile menu toggle -->
+    <button
+      class="nav__toggle"
+      id="navToggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="navMenu"
+      aria-label="Open navigation menu"
+    >
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <!-- Backdrop overlay for mobile menu -->
+    <div class="nav__backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+    <!-- Navigation menu -->
+    <ul class="nav__menu" id="navMenu" role="list">
+      {navLinks.map(({ href, label }) => (
+        <li class="nav__item" role="listitem">
+          <a class="nav__link" href={href} data-section={href.slice(1)}>
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  /* ============================================
+     FIXED HEADER — Glass Morphism
+     ============================================ */
+
+  .nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(253, 248, 246, 0.88);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    border-bottom: 1px solid rgba(200, 180, 168, 0.12);
+    transition: box-shadow var(--duration) var(--ease-out);
+  }
+
+  .nav-header--scrolled {
+    box-shadow: 0 1px 8px rgba(44, 36, 32, 0.06);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 72px;
+  }
+
+  @media (min-width: 768px) {
+    .nav {
+      padding: 0 48px;
+      height: 80px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .nav {
+      padding: 0 64px;
+      height: 80px;
+    }
+  }
+
+  /* ============================================
+     BRAND WORDMARK
+     ============================================ */
+
+  .nav__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--color-ink, #2A2119);
+    text-decoration: none;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    z-index: 1002;
+    transition: color var(--duration) var(--ease-out);
+  }
+
+  .nav__brand:hover {
+    color: var(--color-rose, #855E4A);
+  }
+
+  @media (min-width: 1024px) {
+    .nav__brand {
+      font-size: 26px;
+    }
+  }
+
+  /* ============================================
+     HAMBURGER TOGGLE (mobile only)
+     ============================================ */
+
+  .nav__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav__toggle-bar {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background-color: var(--color-ink, #2A2119);
+    transition: transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
+    transform-origin: center;
+  }
+
+  /* Animate to X when open */
+  .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  @media (min-width: 768px) {
+    .nav__toggle {
+      display: none;
+    }
+  }
+
+  /* ============================================
+     BACKDROP OVERLAY
+     ============================================ */
+
+  .nav__backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(44, 36, 32, 0.4);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out);
+  }
+
+  .nav__backdrop--visible {
+    display: block;
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .nav__backdrop {
+      display: none !important;
+    }
+  }
+
+  /* ============================================
+     NAVIGATION MENU
+     ============================================ */
+
+  .nav__menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Mobile: slide-in panel from right with gradient bg */
+  @media (max-width: 767px) {
+    .nav__menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(320px, 85vw);
+      height: 100vh;
+      height: 100dvh;
+      background: linear-gradient(
+        180deg,
+        var(--color-cream, #FBF7F4) 0%,
+        #F9EDE7 100%
+      );
+      padding: 96px 32px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      z-index: 1001;
+      transform: translateX(100%);
+      transition: transform 0.3s var(--ease-out);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      box-shadow: -4px 0 24px rgba(44, 36, 32, 0.08);
+    }
+
+    .nav__menu--open {
+      transform: translateX(0);
+    }
+  }
+
+  /* Desktop: horizontal list */
+  @media (min-width: 768px) {
+    .nav__menu {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .nav__menu {
+      gap: 8px;
+    }
+  }
+
+  /* ============================================
+     NAV LINKS
+     ============================================ */
+
+  .nav__link {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-ink-soft, #5C4D42);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color var(--duration) var(--ease-out);
+    position: relative;
+  }
+
+  .nav__link:hover,
+  .nav__link:focus-visible {
+    color: var(--color-ink, #2A2119);
+  }
+
+  .nav__link:focus-visible {
+    outline: 2px solid var(--color-rose, #855E4A);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* Active state (scroll spy) */
+  .nav__link--active {
+    color: var(--color-ink, #2A2119);
+  }
+
+  /* Mobile link styles */
+  @media (max-width: 767px) {
+    .nav__link {
+      display: block;
+      font-size: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(200, 180, 168, 0.2);
+    }
+
+    .nav__item:last-child .nav__link {
+      border-bottom: none;
+    }
+
+    .nav__link--active {
+      color: var(--color-rose, #855E4A);
+    }
+  }
+
+  /* Tablet link styles */
+  @media (min-width: 768px) {
+    .nav__link {
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+
+    /* Underline with gradient: transparent -> rose -> transparent */
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 4px;
+      height: 1.5px;
+      background: var(--color-rose);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .nav__link:hover::after,
+    .nav__link--active::after {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Desktop link styles */
+  @media (min-width: 1024px) {
+    .nav__link {
+      font-size: 12px;
+      padding: 8px 14px;
+    }
+
+    .nav__link::after {
+      left: 14px;
+      right: 14px;
+    }
+  }
+
+  /* ============================================
+     BODY SCROLL LOCK (when mobile menu open)
+     ============================================ */
+
+  :global(body.nav-menu-open) {
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  (function () {
+    'use strict';
+
+    const HEADER_HEIGHT = 80;
+    const header = document.getElementById('navHeader');
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    const backdrop = document.getElementById('navBackdrop');
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav__link');
+
+    if (!header || !toggle || !menu || !backdrop) return;
+
+    // -- Mobile Menu Toggle --
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close navigation menu');
+      menu.classList.add('nav__menu--open');
+      backdrop.classList.add('nav__backdrop--visible');
+      backdrop.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('nav-menu-open');
+
+      // Focus the first link after transition
+      setTimeout(() => {
+        const firstLink = menu.querySelector<HTMLAnchorElement>('.nav__link');
+        firstLink?.focus();
+      }, 300);
+    }
+
+    function closeMenu() {
+      if (!isOpen) return;
+      isOpen = false;
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
+      menu.classList.remove('nav__menu--open');
+      backdrop.classList.remove('nav__backdrop--visible');
+      backdrop.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('nav-menu-open');
+      toggle.focus();
+    }
+
+    toggle.addEventListener('click', () => {
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    // Close on backdrop click
+    backdrop.addEventListener('click', closeMenu);
+
+    // -- Close on Escape --
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
+      }
+    });
+
+    // -- Focus Trapping --
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (!isOpen || e.key !== 'Tab') return;
+
+      const focusableEls = [
+        toggle,
+        ...Array.from(menu.querySelectorAll<HTMLAnchorElement>('a[href]')),
+      ];
+      const firstEl = focusableEls[0];
+      const lastEl = focusableEls[focusableEls.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstEl) {
+          e.preventDefault();
+          lastEl.focus();
+        }
+      } else {
+        if (document.activeElement === lastEl) {
+          e.preventDefault();
+          firstEl.focus();
+        }
+      }
+    });
+
+    // Close menu on link click (mobile)
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (isOpen) closeMenu();
+      });
+    });
+
+    // -- Smooth Scroll with Header Offset --
+    document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e: Event) => {
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // -- Header Shadow on Scroll --
+    let scrollTicking = false;
+
+    function onScroll() {
+      if (scrollTicking) return;
+      scrollTicking = true;
+
+      requestAnimationFrame(() => {
+        header.classList.toggle('nav-header--scrolled', window.scrollY > 10);
+        scrollTicking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // -- Scroll Spy via IntersectionObserver --
+    const sectionIds = ['about', 'founder', 'experience', 'services', 'portfolio', 'apply'];
+    const sectionElements: HTMLElement[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) sectionElements.push(el);
+    });
+
+    // Also find sections by aria-label or class for broader matching
+    document.querySelectorAll<HTMLElement>('section[aria-label], section[id]').forEach((section) => {
+      const resolvedId = getSectionId(section);
+      if (resolvedId && sectionIds.includes(resolvedId) && !sectionElements.includes(section)) {
+        sectionElements.push(section);
+      }
+    });
+
+    function getSectionId(section: HTMLElement): string {
+      if (section.id && sectionIds.includes(section.id)) return section.id;
+
+      const label = (section.getAttribute('aria-label') || '').toLowerCase();
+      const cls = section.className;
+
+      if (label.includes('about') || cls.includes('introduction')) return 'about';
+      if (label.includes('founder') || cls.includes('founder')) return 'founder';
+      if (label.includes('how it works') || cls.includes('experience')) return 'experience';
+      if (label.includes('service') || cls.includes('services')) return 'services';
+      if (label.includes('gallery') || cls.includes('gallery')) return 'portfolio';
+      if (label.includes('apply') || cls.includes('apply')) return 'apply';
+
+      return '';
+    }
+
+    let currentActive = '';
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Collect all currently intersecting sections
+        const visible: { id: string; top: number }[] = [];
+
+        entries.forEach((entry) => {
+          const section = entry.target as HTMLElement;
+          const id = getSectionId(section) || section.id;
+          if (entry.isIntersecting && id) {
+            visible.push({ id, top: entry.boundingClientRect.top });
+          }
+        });
+
+        if (visible.length > 0) {
+          // Pick the one closest to the top of the viewport
+          visible.sort((a, b) => Math.abs(a.top) - Math.abs(b.top));
+          const newActive = visible[0].id;
+
+          if (newActive !== currentActive) {
+            currentActive = newActive;
+            navLinks.forEach((link) => {
+              const section = link.getAttribute('data-section');
+              if (section === currentActive) {
+                link.classList.add('nav__link--active');
+              } else {
+                link.classList.remove('nav__link--active');
+              }
+            });
+          }
+        }
+      },
+      {
+        rootMargin: `-${HEADER_HEIGHT}px 0px -40% 0px`,
+        threshold: [0, 0.1, 0.25, 0.5],
+      }
+    );
+
+    sectionElements.forEach((section) => observer.observe(section));
+
+    // Initial scroll check
+    onScroll();
+  })();
+</script>

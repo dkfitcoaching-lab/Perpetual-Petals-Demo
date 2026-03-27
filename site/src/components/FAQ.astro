@@ -1,0 +1,265 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: "How does the membership work?",
+    answer: "Perpetual Petals is a private floral membership. Once approved, arrangements are designed and delivered on a recurring cadence — weekly, bi-weekly, monthly, or seasonally — based on your preference. Each placement is curated specifically for your home."
+  },
+  {
+    question: "What flowers do you use?",
+    answer: "We source premium garden roses, seasonal blooms, and delicate natural greenery from trusted growers. Every arrangement reflects what is freshest and most beautiful in the current season, ensuring a living, evolving presence in your space."
+  },
+  {
+    question: "Can I choose my arrangements?",
+    answer: "The design process is collaborative yet guided. During your initial consultation, Lori learns your aesthetic, your home, and your preferences. From there, each arrangement is composed intuitively — no two are ever alike."
+  },
+  {
+    question: "How often are arrangements refreshed?",
+    answer: "Frequency is entirely up to you. Most members choose weekly or bi-weekly placements to keep their flowers vibrant and alive. Seasonal and monthly options are also available for a more measured cadence."
+  },
+  {
+    question: "Do you serve areas outside Windermere?",
+    answer: "Our membership is centered in Windermere, Florida and the surrounding communities. Select areas beyond Windermere may be considered on a case-by-case basis — please inquire for availability."
+  },
+  {
+    question: "How do I become a member?",
+    answer: "Submit an application through our membership form. Availability is intentionally limited. Once received, we will reach out within 48 hours to schedule a complimentary consultation and discuss how Perpetual Petals can enhance your home."
+  }
+];
+---
+
+<section class="faq-section section" aria-labelledby="faq-heading">
+  <p class="overline">Common Questions</p>
+  <h2 id="faq-heading" class="heading-section faq-title">Frequently Asked Questions</h2>
+
+  <div class="faq-list">
+    {faqs.map((faq, index) => (
+      <details class="faq-item" name="faq">
+        <summary
+          class="faq-question"
+          id={`faq-question-${index}`}
+        >
+          <span class="faq-question-text">{faq.question}</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </summary>
+        <div
+          class="faq-answer"
+          id={`faq-answer-${index}`}
+          role="region"
+          aria-labelledby={`faq-question-${index}`}
+        >
+          <p>{faq.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .faq-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* --- Details / Accordion Item --- */
+  .faq-item {
+    border: 1px solid var(--color-card-border, #E8DCD5);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: background-color var(--duration) var(--ease-out), border-color var(--duration) var(--ease-out);
+  }
+
+  .faq-item[open] {
+    background-color: var(--color-cream, #FBF7F4);
+    border-color: var(--color-divider, #DDD0C7);
+  }
+
+  /* --- Summary / Question --- */
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-ink, #2A2119);
+    line-height: 1.5;
+    list-style: none;
+    user-select: none;
+    transition: color var(--duration) var(--ease-out), background-color var(--duration) var(--ease-out);
+  }
+
+  /* Remove default marker in all browsers */
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::marker {
+    content: "";
+  }
+
+  .faq-question:hover {
+    background-color: rgba(184, 117, 122, 0.04);
+  }
+
+  .faq-question:focus-visible {
+    outline: 2px solid var(--color-rose, #B8757A);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  .faq-question-text {
+    flex: 1;
+  }
+
+  /* --- Chevron Icon --- */
+  .faq-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-rose-glow, rgba(184, 117, 122, 0.12));
+    color: var(--color-rose, #B8757A);
+    transition: transform 0.3s var(--ease-out), background-color 0.3s var(--ease-out);
+  }
+
+  .faq-item[open] > .faq-question .faq-icon {
+    transform: rotate(180deg);
+    background-color: rgba(184, 117, 122, 0.18);
+  }
+
+  /* --- Answer Panel — CSS Grid animation trick --- */
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s var(--ease-out), padding 0.35s var(--ease-out);
+    padding: 0 24px;
+  }
+
+  .faq-answer > p {
+    overflow: hidden;
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-ink-soft, #5C4D42);
+  }
+
+  .faq-item[open] > .faq-answer {
+    grid-template-rows: 1fr;
+    padding: 0 24px 20px;
+  }
+
+  /*
+   * Safari <17.2 doesn't animate grid-template-rows on <details>.
+   * For those browsers the content simply appears/disappears without
+   * animation — this is an acceptable graceful degradation since the
+   * component remains fully functional.
+   *
+   * Safari 17.2+ supports the ::details-content pseudo and animates
+   * the grid trick correctly.
+   */
+
+  /* --- Reduced motion --- */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item,
+    .faq-question,
+    .faq-icon,
+    .faq-answer {
+      transition: none;
+    }
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 640px) {
+    .faq-section {
+      padding: 0 16px;
+    }
+
+    .faq-question {
+      padding: 16px 20px;
+      font-size: 16px;
+    }
+
+    .faq-answer {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .faq-item[open] > .faq-answer {
+      padding: 0 20px 16px;
+    }
+  }
+</style>
+
+<script>
+  // Enhance <details name="faq"> for browsers that don't support
+  // the `name` attribute (mutual exclusivity). Modern Chrome, Edge,
+  // and Safari 17.2+ support it natively; this script is a polyfill
+  // for older browsers.
+  function initFAQAccordion() {
+    const details = document.querySelectorAll<HTMLDetailsElement>('details.faq-item[name="faq"]');
+
+    // Feature-detect: if the browser supports `name` on <details>,
+    // we don't need the polyfill. We test by opening two items
+    // and checking if the browser auto-closes the first.
+    if (details.length >= 2) {
+      const first = details[0];
+      const second = details[1];
+      first.open = true;
+      second.open = true;
+      const nativeSupport = !first.open;
+      // Reset state
+      first.open = false;
+      second.open = false;
+
+      if (!nativeSupport) {
+        // Polyfill: close others when one opens
+        details.forEach((el) => {
+          el.addEventListener('toggle', () => {
+            if (el.open) {
+              details.forEach((other) => {
+                if (other !== el && other.open) {
+                  other.open = false;
+                }
+              });
+            }
+          });
+        });
+      }
+    }
+  }
+
+  // Run on initial load and on Astro page transitions
+  document.addEventListener('DOMContentLoaded', initFAQAccordion);
+  document.addEventListener('astro:page-load', initFAQAccordion);
+
+  // If script runs after DOMContentLoaded (e.g. module script)
+  if (document.readyState !== 'loading') {
+    initFAQAccordion();
+  }
+</script>

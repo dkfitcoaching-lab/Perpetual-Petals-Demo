@@ -1,0 +1,166 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__ornament" aria-hidden="true">
+      <svg viewBox="0 0 160 32" width="160" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="var(--color-rose)" stroke-width="0.75" opacity="0.45"/>
+        <ellipse cx="80" cy="16" rx="6" ry="14" fill="var(--color-rose)" opacity="0.08"/>
+        <ellipse cx="80" cy="16" rx="6" ry="14" fill="var(--color-rose)" opacity="0.06" transform="rotate(60 80 16)"/>
+        <ellipse cx="80" cy="16" rx="6" ry="14" fill="var(--color-rose)" opacity="0.06" transform="rotate(-60 80 16)"/>
+        <circle cx="80" cy="16" r="2.5" fill="var(--color-rose)" opacity="0.18"/>
+        <circle cx="30" cy="18" r="1.2" fill="var(--color-rose)" opacity="0.2"/>
+        <circle cx="130" cy="18" r="1.2" fill="var(--color-rose)" opacity="0.2"/>
+        <path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="var(--color-rose)" stroke-width="0.5" opacity="0.2"/>
+        <path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="var(--color-rose)" stroke-width="0.5" opacity="0.2"/>
+      </svg>
+    </div>
+
+    <p class="footer__brand">Perpetual Petals</p>
+    <p class="footer__est">Est. 2024</p>
+    <p class="footer__location">Windermere, Florida</p>
+
+    <div class="footer__social">
+      <a
+        href="https://www.instagram.com/perpetualpetals_fl/"
+        aria-label="Follow Perpetual Petals on Instagram"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="5"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <a
+        href="https://www.pinterest.com/perpetualpetals_fl/"
+        aria-label="Follow Perpetual Petals on Pinterest"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.25 2.67 7.9 6.44 9.34-.09-.78-.17-1.99.04-2.85.18-.78 1.19-5.06 1.19-5.06s-.3-.61-.3-1.52c0-1.42.82-2.49 1.85-2.49.87 0 1.29.66 1.29 1.44 0 .88-.56 2.19-.85 3.41-.24 1.02.51 1.85 1.52 1.85 1.82 0 3.22-1.92 3.22-4.69 0-2.45-1.76-4.17-4.27-4.17-2.91 0-4.61 2.18-4.61 4.43 0 .88.34 1.82.76 2.33.08.1.09.19.07.29-.08.32-.25 1.02-.29 1.16-.05.19-.15.23-.35.14-1.31-.61-2.13-2.53-2.13-4.07 0-3.31 2.41-6.36 6.94-6.36 3.64 0 6.48 2.6 6.48 6.07 0 3.62-2.28 6.53-5.45 6.53-1.06 0-2.07-.55-2.41-1.21l-.66 2.5c-.24.91-.88 2.06-1.32 2.76.99.31 2.04.47 3.13.47 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+        </svg>
+      </a>
+    </div>
+
+    <p class="footer__copyright">&copy; {year} Perpetual Petals. All rights reserved.</p>
+    <p class="footer__legal">
+      <a href="#" aria-label="Privacy Policy">Privacy</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="#" aria-label="Terms of Service">Terms</a>
+    </p>
+    <p class="footer__credit">
+      Website by <a href="https://vermillionaxis.tech" target="_blank" rel="noopener noreferrer">Vermillion Axis Technologies</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 100px var(--space-md) 60px;
+    background: var(--color-linen);
+    text-align: center;
+    border-top: 1px solid var(--color-divider);
+  }
+
+  .footer__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .footer__ornament {
+    margin: 0 auto 40px;
+    width: 160px;
+    line-height: 0;
+  }
+
+  .footer__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 28px;
+    color: var(--color-ink);
+    letter-spacing: 3px;
+    margin-bottom: 4px;
+  }
+
+  .footer__est {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 8px;
+  }
+
+  .footer__location {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .footer__social {
+    margin-bottom: var(--space-md);
+  }
+
+  .footer__social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    color: var(--color-rose);
+    transition: color var(--duration) var(--ease-out), transform var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out);
+  }
+
+  .footer__social a:hover {
+    color: var(--color-rose-dark);
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px var(--color-rose-glow);
+  }
+
+  .footer__copyright {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer__credit {
+    font-size: 10px;
+    color: var(--color-rose);
+    letter-spacing: 1px;
+  }
+
+  .footer__credit a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity var(--duration) var(--ease-out);
+  }
+
+  .footer__credit a:hover { opacity: 0.7; }
+
+  .footer__legal {
+    font-size: 11px;
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-sm);
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .footer__legal a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity var(--duration) var(--ease-out);
+  }
+
+  .footer__legal a:hover { opacity: 0.7; }
+</style>

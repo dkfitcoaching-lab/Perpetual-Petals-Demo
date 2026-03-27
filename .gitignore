@@ -1,0 +1,10 @@
+site/node_modules/
+site/dist/
+site/.astro/
+.env
+.env.*
+.DS_Store
+*.log
+node_modules/
+package-lock.json
+!/site/package-lock.json

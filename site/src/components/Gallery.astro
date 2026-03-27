@@ -1,0 +1,259 @@
+---
+/**
+ * Gallery component with lightbox integration.
+ * Displays a responsive grid of portfolio images with lazy loading
+ * and click-to-expand lightbox functionality.
+ * Uses local responsive images with WebP support.
+ */
+import Lightbox from './Lightbox.astro';
+
+interface GalleryImage {
+  src: string;
+  webpSrcset: string;
+  fallbackSrcset: string;
+  fallbackType: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+const images: GalleryImage[] = [
+  {
+    src: '/images/gallery-1.png',
+    webpSrcset: '/images/gallery-1-400w.webp 400w, /images/gallery-1-800w.webp 800w, /images/gallery-1-1200w.webp 1200w',
+    fallbackSrcset: '/images/gallery-1-400w.png 400w, /images/gallery-1-800w.png 800w, /images/gallery-1-1200w.png 1200w',
+    fallbackType: 'image/png',
+    alt: 'Garden rose arrangement in a ceramic vessel',
+    width: 1600, height: 1200,
+  },
+  {
+    src: '/images/gallery-2.jpeg',
+    webpSrcset: '/images/gallery-2-400w.webp 400w, /images/gallery-2-800w.webp 800w',
+    fallbackSrcset: '/images/gallery-2-400w.jpeg 400w, /images/gallery-2-800w.jpeg 800w',
+    fallbackType: 'image/jpeg',
+    alt: 'Seasonal floral arrangement with soft pink tones',
+    width: 800, height: 600,
+  },
+  {
+    src: '/images/gallery-3.jpeg',
+    webpSrcset: '/images/gallery-3-400w.webp 400w, /images/gallery-3-800w.webp 800w',
+    fallbackSrcset: '/images/gallery-3-400w.jpeg 400w, /images/gallery-3-800w.jpeg 800w',
+    fallbackType: 'image/jpeg',
+    alt: 'Luxury floral design with natural greenery',
+    width: 800, height: 600,
+  },
+  {
+    src: '/images/gallery-4.jpeg',
+    webpSrcset: '/images/gallery-4-400w.webp 400w, /images/gallery-4-800w.webp 800w',
+    fallbackSrcset: '/images/gallery-4-400w.jpeg 400w, /images/gallery-4-800w.jpeg 800w',
+    fallbackType: 'image/jpeg',
+    alt: 'Romantic floral composition for a living space',
+    width: 800, height: 600,
+  },
+];
+---
+
+<section class="gallery section-dark" id="portfolio" aria-label="Portfolio">
+  <div class="gallery__inner">
+    <p class="overline">Portfolio</p>
+    <h2 class="gallery__heading">Our Portfolio</h2>
+    <div class="gallery__grid">
+      {images.map((image, index) => (
+        <div class="gallery__item" role="button" tabindex="0" aria-label={`View ${image.alt}`}>
+          <span class="gallery__counter">{String(index + 1).padStart(2, '0')}</span>
+          <picture>
+            <source type="image/webp" srcset={image.webpSrcset} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" />
+            <source type={image.fallbackType} srcset={image.fallbackSrcset} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" />
+            <img
+              src={image.src}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+          <span class="gallery__caption">{image.alt}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<Lightbox />
+
+<style>
+  .gallery {
+    padding: var(--space-2xl, 120px) 24px;
+    background: var(--color-dark, #1A1516);
+  }
+
+  @media (min-width: 768px) {
+    .gallery { padding: var(--space-2xl, 120px) 48px; }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery { padding: var(--space-2xl, 120px) 64px; }
+  }
+
+  .gallery__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .gallery__heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    color: var(--color-dark-text, #F2E4E0);
+    margin-bottom: 48px;
+    letter-spacing: 0.04em;
+  }
+
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .gallery__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+  }
+
+  .gallery__counter {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--color-gold-light, #DEC9A6);
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out);
+    pointer-events: none;
+  }
+
+  .gallery__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 24px 16px 16px;
+    background: linear-gradient(to top, rgba(26, 21, 22, 0.7), transparent);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: var(--color-dark-text, #F2E4E0);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+    pointer-events: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  @media (hover: hover) {
+    .gallery__item:hover .gallery__counter,
+    .gallery__item:hover .gallery__caption {
+      opacity: 1;
+    }
+    .gallery__item:hover .gallery__caption {
+      transform: translateY(0);
+    }
+  }
+
+  .gallery__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: transform 0.5s var(--ease-out),
+                box-shadow 0.5s var(--ease-out);
+  }
+
+  .gallery__item:focus-visible {
+    outline: 2px solid var(--color-rose);
+    outline-offset: 4px;
+  }
+
+  .gallery__item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-rose-glow) 0%,
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out);
+    pointer-events: none;
+    border-radius: var(--radius-md);
+    z-index: 1;
+  }
+
+  .gallery__item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  @media (min-width: 768px) {
+    .gallery__item img { height: 420px; }
+
+    .gallery__item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery__item:first-child img {
+      height: 100%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery__item img { height: 380px; }
+
+    .gallery__item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery__item:first-child img {
+      height: 100%;
+    }
+  }
+
+  @media (hover: hover) {
+    .gallery__item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 40px rgba(184, 117, 122, 0.2),
+                  0 0 64px rgba(184, 117, 122, 0.06);
+    }
+
+    .gallery__item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery__item:hover img {
+      transform: scale(1.04);
+    }
+  }
+</style>

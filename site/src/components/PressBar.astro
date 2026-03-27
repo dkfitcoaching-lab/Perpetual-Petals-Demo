@@ -1,0 +1,94 @@
+---
+/**
+ * Press & Recognition Bar — Social proof through association.
+ * Subtle horizontal bar signaling press-worthiness.
+ * Placeholders for future press logos; currently uses text-based references.
+ */
+const mentions = [
+  'Orlando Magazine',
+  'Windermere Living',
+  'Central Florida Lifestyle',
+];
+---
+
+<section class="press-bar" aria-label="Press and recognition">
+  <div class="press-bar__inner">
+    <p class="press-bar__label">As seen in</p>
+    <div class="press-bar__logos">
+      {mentions.map((name) => (
+        <span class="press-bar__mention">{name}</span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .press-bar {
+    padding: 48px 24px;
+    border-top: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+    background: var(--color-cream);
+  }
+
+  .press-bar__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .press-bar__inner {
+      flex-direction: row;
+      justify-content: center;
+      gap: 48px;
+    }
+  }
+
+  .press-bar__label {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    white-space: nowrap;
+  }
+
+  .press-bar__logos {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .press-bar__logos {
+      gap: 48px;
+    }
+  }
+
+  .press-bar__mention {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.5px;
+    opacity: 0.6;
+    transition: opacity var(--duration) var(--ease-out);
+  }
+
+  .press-bar__mention:hover {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .press-bar__mention {
+      font-size: 20px;
+    }
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+/**
+ * Introduction section — brand philosophy with botanical SVG divider.
+ */
+---
+
+<section class="introduction section" id="about" aria-label="About Perpetual Petals">
+  <div class="introduction__inner">
+    <span class="overline">Our Philosophy</span>
+    <p class="body-text">
+      Perpetual Petals is a private floral membership serving a limited number of homes in Windermere, Florida.
+    </p>
+    <p class="body-text">
+      Using premium garden roses, seasonal blooms, and delicate natural greenery, every design is composed to feel airy, romantic, and quietly luxurious. Arrangements are delivered, refreshed, and exchanged on a regular cadence&thinsp;&mdash;&thinsp;allowing flowers to become a living element of your space rather than a fleeting detail.
+    </p>
+  </div>
+</section>
+
+<!-- Botanical SVG divider -->
+<div class="introduction-divider" aria-hidden="true">
+  <svg class="introduction-divider__svg" viewBox="0 0 160 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="12" x2="58" y2="12" stroke="currentColor" stroke-width="0.5" />
+    <g transform="translate(80, 12)">
+      <ellipse cx="0" cy="-4" rx="2.2" ry="5.5" transform="rotate(-25)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+      <ellipse cx="0" cy="-4" rx="2.2" ry="5.5" transform="rotate(0)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+      <ellipse cx="0" cy="-4" rx="2.2" ry="5.5" transform="rotate(25)" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.8" />
+      <circle cx="0" cy="0" r="1" fill="currentColor" opacity="0.5" />
+    </g>
+    <line x1="102" y1="12" x2="160" y2="12" stroke="currentColor" stroke-width="0.5" />
+  </svg>
+</div>
+
+<style>
+  .introduction {
+    text-align: center;
+  }
+
+  .introduction__inner {
+    max-width: var(--max-width-text, 640px);
+    margin: 0 auto;
+    padding: 0 var(--space-md, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .introduction__inner .overline {
+    margin-bottom: 0;
+  }
+
+  .introduction__inner .body-text + .body-text {
+    margin-top: 0;
+  }
+
+  /* Botanical SVG Divider */
+  .introduction-divider {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-md, 32px) 0;
+    color: var(--color-rose, #855E4A);
+  }
+
+  .introduction-divider__svg {
+    width: 160px;
+    height: 24px;
+    display: block;
+  }
+</style>
