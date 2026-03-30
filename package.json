@@ -1,0 +1,20 @@
+{
+  "name": "perpetual-petals-demo",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "generate-pdfs": "node scripts/generate-pdfs.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:38629/git/dkfitcoaching-lab/Perpetual-Petals-Demo"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "marked": "^17.0.5",
+    "puppeteer-core": "^24.40.0"
+  }
+}
