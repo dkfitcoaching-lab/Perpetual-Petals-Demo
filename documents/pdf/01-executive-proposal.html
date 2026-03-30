@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Perpetual Petals — Executive Proposal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap');
+
+@page { size: letter; margin: 0; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 10.5pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  font-family: 'Raleway', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  color: #4A3F36;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  background: #FDF8F6;
+}
+
+/* ======== COVER PAGE ======== */
+.cover {
+  width: 8.5in; height: 11in;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  background: linear-gradient(170deg, #1A1516 0%, #0D0B0A 60%, #2A1E20 100%);
+  color: #F2E4E0;
+  page-break-after: always;
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: ''; position: absolute;
+  top: 36px; left: 36px; right: 36px; bottom: 36px;
+  border: 1px solid rgba(201,168,124,0.18);
+}
+.cover__ornament { margin-bottom: 40px; opacity: 0.85; }
+.cover__ornament svg { width: 140px; height: 28px; display: block; }
+.cover__brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 40pt; letter-spacing: 4px;
+  color: #F2E4E0; margin-bottom: 4px; line-height: 1.1;
+}
+.cover__est {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 7.5pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #C9A87C; margin-bottom: 48px; opacity: 0.7;
+}
+.cover__rule {
+  width: 40px; height: 1px; background: #C9A87C;
+  border: none; margin-bottom: 36px; opacity: 0.4;
+}
+.cover__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 26pt; line-height: 1.25;
+  letter-spacing: 1px; color: #F2E4E0; max-width: 440px; margin-bottom: 10px;
+}
+.cover__subtitle {
+  font-family: 'Raleway', sans-serif; font-weight: 300;
+  font-size: 8.5pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #D4A0A5; margin-bottom: 64px;
+}
+.cover__meta {
+  font-family: 'Raleway', sans-serif; font-weight: 300;
+  font-size: 7pt; letter-spacing: 2px; text-transform: uppercase;
+  color: #A89092; line-height: 2.4;
+}
+.cover__meta span { display: block; }
+.cover__confidential {
+  position: absolute; bottom: 24px; left: 0; right: 0;
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 5.5pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #B8757A; opacity: 0.35; text-align: center;
+}
+
+/* ======== CONTENT PAGES ======== */
+.page {
+  width: 8.5in; min-height: 11in;
+  padding: 0.8in 1.05in 1.1in 1.05in;
+  background: #FDF8F6;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(184,117,122,0.03), transparent 70%);
+  position: relative;
+  page-break-after: always;
+  box-sizing: border-box;
+}
+
+/* Running header */
+.page-header {
+  position: absolute; top: 0.45in; left: 1.05in; right: 1.05in;
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid #E8DCD5;
+}
+.page-header__brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 8pt; letter-spacing: 2px;
+  color: #B8757A; opacity: 0.5;
+}
+.page-header__doc {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 6pt; letter-spacing: 2px; text-transform: uppercase;
+  color: #635145; opacity: 0.4;
+}
+
+/* Running footer */
+.page-footer {
+  position: absolute; bottom: 0.5in; left: 1.05in; right: 1.05in;
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 8px;
+  border-top: 0.5px solid #E8DCD5;
+}
+.page-footer__left {
+  font-family: 'Raleway', sans-serif; font-weight: 300;
+  font-size: 6pt; letter-spacing: 1.5px; text-transform: uppercase;
+  color: #635145; opacity: 0.4;
+}
+.page-footer__center {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  line-height: 0;
+}
+.page-footer__center svg { width: 60px; height: 16px; opacity: 0.3; }
+.page-footer__right {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 7pt; color: #B8757A; opacity: 0.4;
+}
+
+/* ======== DOCUMENT FOOTER (last page) ======== */
+.doc-footer {
+  margin-top: 48px; padding-top: 24px;
+  border-top: 1px solid #DDD0C7; text-align: center;
+}
+.doc-footer__ornament { margin: 0 auto 14px; line-height: 0; }
+.doc-footer__ornament svg { width: 100px; height: 20px; }
+.doc-footer__brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 14pt; color: #1C1410;
+  letter-spacing: 3px; margin-bottom: 2px;
+}
+.doc-footer__est {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 6.5pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #C9A87C; margin-bottom: 3px;
+}
+.doc-footer__location {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 7pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #635145; margin-bottom: 8px;
+}
+.doc-footer__credit {
+  font-family: 'Raleway', sans-serif; font-weight: 300;
+  font-size: 6.5pt; color: #B8757A; letter-spacing: 1px;
+}
+
+/* ======== TYPOGRAPHY ======== */
+.content h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 16pt; color: #1C1410;
+  letter-spacing: 0.5px; text-align: center;
+  margin: 28px 0 6px; padding-bottom: 12px;
+  line-height: 1.3; position: relative;
+}
+.content h2::after {
+  content: ''; display: block;
+  width: 48px; height: 2px; background: #B8757A;
+  margin: 8px auto 0; border-radius: 1px;
+}
+.content h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500; font-size: 12pt; color: #1C1410;
+  letter-spacing: 0.3px; margin: 20px 0 5px; line-height: 1.4;
+}
+.content h4 {
+  font-family: 'Raleway', sans-serif; font-weight: 500;
+  font-size: 7.5pt; letter-spacing: 2.5px; text-transform: uppercase;
+  color: #B8757A; margin: 16px 0 5px;
+}
+.content p {
+  margin-bottom: 9px; font-size: 9.5pt; line-height: 1.75; color: #4A3F36;
+}
+.content p:first-child {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 11pt; font-weight: 300; font-style: italic;
+  color: #635145; line-height: 1.8; margin-bottom: 14px;
+}
+.content strong { font-weight: 500; color: #1C1410; }
+.content em { font-style: italic; color: #9E5A60; }
+
+.content ul, .content ol {
+  margin: 5px 0 12px 16px; font-size: 9.5pt;
+  line-height: 1.75; color: #4A3F36;
+}
+.content li { margin-bottom: 2px; padding-left: 3px; }
+.content li::marker { color: #B8757A; }
+
+.content blockquote {
+  margin: 16px 0; padding: 14px 20px;
+  background: rgba(184,117,122,0.10);
+  border-left: 3px solid #B8757A; border-radius: 0 4px 4px 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 11pt; font-style: italic; color: #635145; line-height: 1.7;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 12px 0 18px; font-size: 8.5pt;
+}
+.content thead { background: #F7EFEB; }
+.content th {
+  font-family: 'Raleway', sans-serif; font-weight: 500;
+  font-size: 6.5pt; letter-spacing: 1.5px; text-transform: uppercase;
+  color: #9E5A60; text-align: left;
+  padding: 8px 10px; border-bottom: 2px solid #DDD0C7;
+}
+.content td {
+  padding: 8px 10px; border-bottom: 1px solid #DDD0C7;
+  color: #4A3F36; line-height: 1.6; vertical-align: top; font-size: 8.5pt;
+}
+.content tbody tr:last-child td { border-bottom: 2px solid #DDD0C7; }
+
+.content hr {
+  border: none; height: 0; margin: 20px auto;
+  text-align: center; overflow: visible;
+}
+.content hr::after {
+  content: ''; display: inline-block;
+  width: 48px; height: 1px;
+  background: linear-gradient(90deg, transparent, #DDD0C7, transparent);
+}
+
+/* ======== CONFIDENTIAL NOTICE ======== */
+.confidential {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 6pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #B8757A; opacity: 0.45; text-align: center;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover__ornament"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="16" x2="56" y2="16" stroke="#C9A87C" stroke-width="0.5"/><g transform="translate(80, 16)"><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(-36)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(-18)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(0)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(18)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(36)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><circle cx="0" cy="0" r="1.2" fill="#C9A87C" opacity="0.6"/></g><line x1="104" y1="16" x2="160" y2="16" stroke="#C9A87C" stroke-width="0.5"/></svg></div>
+  <div class="cover__brand">Perpetual Petals</div>
+  <div class="cover__est">Est. 2024</div>
+  <hr class="cover__rule">
+  <div class="cover__title">Executive Proposal</div>
+  <div class="cover__subtitle">Digital Presence Strategy</div>
+  <div class="cover__meta">
+    <span>Prepared for Lori Fronzak, Founder &amp; Creative Director</span>
+    <span>Prepared by Vermillion Axis Technologies</span>
+    <span>March 2026</span>
+  </div>
+  <div class="cover__confidential">Confidential</div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Executive Proposal</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>1. Executive Summary</h2>
+<p>Perpetual Petals occupies a singular position in the Windermere luxury market — a private floral membership serving ultra-high-net-worth residences across one of the most affluent corridors in the southeastern United States. The caliber of service, the exclusivity of the membership model, and the depth of client relationships place Perpetual Petals in a category that transcends traditional retail floristry. However, our analysis indicates that the current digital presence does not reflect the distinction of the brand or the expectations of the clientele it serves.</p>
+<p>Vermillion Axis Technologies proposes a complete digital presence overhaul engineered to close this gap. The engagement encompasses bespoke website architecture built on modern, enterprise-grade infrastructure; a brand-first design system rooted in quiet luxury principles; performance-optimized delivery targeting sub-second load times; and a content strategy purpose-built to attract, engage, and convert high-net-worth prospective members. Every element of this initiative is designed to function as a cohesive system — not a collection of templates, but a unified digital expression of the Perpetual Petals brand.</p>
+<p>The result is a digital experience that positions Perpetual Petals as the definitive luxury floral membership in the southeastern United States. More critically, the underlying architecture is built to scale — from Windermere to Winter Park, from Naples to Palm Beach, and ultimately to a national footprint. This is not a website redesign. This is the foundation for the next chapter of the brand.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">1</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Executive Proposal</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>2. Market Context</h2>
+<h3>The Windermere Opportunity</h3>
+<p>Windermere, Florida (ZIP 34786) commands a median home value exceeding $1.2 million and is home to Isleworth, Keene&#39;s Point, and Bay Hill — representing one of the highest concentrations of ultra-high-net-worth households in the Southeast. The residents of these communities expect the highest standard of service in every category, from private aviation to personal wellness. Floral design for these homes is not discretionary — it is an extension of how these families live.</p>
+<h3>Industry Landscape</h3>
+<p>The U.S. floral industry represents an $8.5 billion market, with the luxury segment growing at 12% year-over-year. This growth is driven by high-net-worth consumers who view floral design as an essential element of residential aesthetics, not an occasional purchase. The membership model — recurring, curated, relationship-driven — is the natural evolution of this demand.</p>
+<h3>Competitive Gap</h3>
+<p>Our analysis reveals a critical vacuum in the Central Florida market. No luxury florist in the Orlando/Central Florida region maintains a digital presence that matches the service level being delivered. The global standard-bearers — Neill Strain (London), Lewis Miller (New York), McQueens (London) — invest between $100,000 and $250,000 in their web presence and operate exclusively in major metropolitan markets. Windermere is entirely underserved at this tier.</p>
+<h3>First-Mover Advantage</h3>
+<p>The opportunity is clear and time-sensitive. Perpetual Petals is positioned to claim first-mover advantage in luxury residential floral membership across the Florida UHNW corridor: Windermere → Winter Park → Naples → Palm Beach. A digital presence commensurate with the brand establishes market authority before competitors recognize the gap.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">2</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Executive Proposal</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>3. Current Digital Assessment</h2>
+<p>The existing Squarespace-based website reflects an early stage of the brand&#39;s digital evolution. It is functional, and it communicates basic information — but our assessment indicates significant untapped potential. The quality of the Perpetual Petals service, the sophistication of the membership model, and the caliber of the clientele are not represented in the current digital experience.</p>
+<p>This is not a criticism — it is a recognition of where the brand stands relative to where it belongs. The service quality has outpaced the digital presentation, creating a gap between what prospective members experience online and what existing members experience in their homes.</p>
+<p>For context: the leading luxury florists globally invest $100,000 to $250,000 in their digital presence. Neill Strain&#39;s website functions as a brand experience. Lewis Miller&#39;s digital presence reinforces his position as a cultural figure. McQueens&#39; site operates as a luxury retail platform. These are the benchmarks. Perpetual Petals deserves to stand among them — and the Windermere market demands it.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">3</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Executive Proposal</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>4. Our Approach</h2>
+<h3>Architecture: Custom Astro Framework</h3>
+<p>We build on Astro — a modern, performance-first framework — rather than WordPress, Squarespace, or any template-driven platform. The result is a fully bespoke architecture: faster, more secure, and entirely free of the constraints imposed by generic platforms. Every page, every interaction, every transition is purpose-built for Perpetual Petals.</p>
+<h3>Performance</h3>
+<p>Our performance targets are uncompromising:</p>
+<ul>
+<li><strong>Lighthouse score: 95+ across all categories</strong> (Performance, Accessibility, Best Practices, SEO)</li>
+<li>Sub-second initial page loads on standard connections</li>
+<li>Optimized image delivery with modern formats and responsive sizing</li>
+<li>Zero render-blocking resources</li>
+</ul>
+<h3>Accessibility</h3>
+<p>Full WCAG 2.1 AA compliance is non-negotiable. The site will be accessible to all users, meeting or exceeding federal accessibility standards. This is both a legal safeguard and a reflection of the brand&#39;s commitment to excellence without exception.</p>
+<h3>Search Engine Optimization</h3>
+<p>Our SEO strategy targets local search dominance for high-intent queries — &quot;luxury florist Windermere,&quot; &quot;luxury floral membership Orlando,&quot; &quot;high-end floral design Central Florida.&quot; Implementation includes structured data markup, optimized metadata architecture, local business schema, and a content strategy designed to capture and hold top positions in organic search.</p>
+<h3>Design Philosophy: Quiet Luxury</h3>
+<p>The design language follows the principle of quiet luxury — restraint, intentionality, craft. Every pixel is considered. The visual system will communicate exclusivity not through ornamentation, but through space, proportion, and precision. This is design that speaks softly and carries absolute authority.</p>
+<h3>Brand-First Methodology</h3>
+<p>The design system is built from the ground up around Perpetual Petals&#39; identity. No templates are adapted. No themes are modified. The typography, color system, spacing, and interaction patterns emerge directly from the brand&#39;s character — ensuring the digital experience is as bespoke as the floral arrangements it represents.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">4</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Executive Proposal</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>5. Scope of Work</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Brand Strategy &amp; Positioning</strong></td>
+<td>Market positioning analysis, competitive audit, brand voice documentation, messaging framework</td>
+</tr>
+<tr>
+<td><strong>UX Research &amp; Information Architecture</strong></td>
+<td>User journey mapping, site architecture, wireframes, navigation strategy</td>
+</tr>
+<tr>
+<td><strong>Bespoke Visual Design</strong></td>
+<td>Custom design system, page designs, responsive layouts, interaction design — no templates</td>
+</tr>
+<tr>
+<td><strong>Frontend Development</strong></td>
+<td>Astro framework, TypeScript, component architecture, responsive implementation</td>
+</tr>
+<tr>
+<td><strong>Content Architecture &amp; Copywriting</strong></td>
+<td>Page content strategy, brand-aligned copy, image curation direction</td>
+</tr>
+<tr>
+<td><strong>SEO Strategy &amp; Implementation</strong></td>
+<td>Technical SEO, structured data, metadata, local search optimization, keyword strategy</td>
+</tr>
+<tr>
+<td><strong>Analytics &amp; Conversion Tracking</strong></td>
+<td>GA4 implementation, conversion event configuration, membership inquiry tracking</td>
+</tr>
+<tr>
+<td><strong>Performance Optimization</strong></td>
+<td>Image optimization, code splitting, caching strategy, CDN configuration</td>
+</tr>
+<tr>
+<td><strong>Accessibility Compliance</strong></td>
+<td>WCAG 2.1 AA audit, remediation, ongoing compliance verification</td>
+</tr>
+<tr>
+<td><strong>90-Day Post-Launch Optimization</strong></td>
+<td>Performance monitoring, conversion optimization, content refinement, analytics review</td>
+</tr>
+</tbody></table>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">5</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Executive Proposal</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>6. Investment</h2>
+<h3>Project Valuation</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Total project value</strong></td>
+<td>$140,000</td>
+</tr>
+<tr>
+<td><strong>Introductory founding client rate</strong></td>
+<td><strong>$120,000</strong></td>
+</tr>
+</tbody></table>
+<p>This founding client rate reflects a $20,000 reduction extended exclusively to Perpetual Petals as a first engagement with Vermillion Axis Technologies. This rate will not be available for future engagements at this scope.</p>
+<h3>Payment Structure</h3>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>Percentage</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Upon signing</td>
+<td>40%</td>
+<td>$48,000</td>
+</tr>
+<tr>
+<td>Design approval</td>
+<td>30%</td>
+<td>$36,000</td>
+</tr>
+<tr>
+<td>Launch</td>
+<td>30%</td>
+<td>$36,000</td>
+</tr>
+</tbody></table>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">6</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Executive Proposal</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>7. Timeline</h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Phase</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Week 1–2</strong></td>
+<td>Discovery &amp; Strategy — brand immersion, competitive analysis, positioning, creative brief</td>
+</tr>
+<tr>
+<td><strong>Week 2–5</strong></td>
+<td>Design &amp; Development — visual design, frontend architecture, component build, content integration</td>
+</tr>
+<tr>
+<td><strong>Week 5–6</strong></td>
+<td>Content Integration &amp; Optimization — final content, performance tuning, QA, accessibility audit</td>
+</tr>
+<tr>
+<td><strong>Week 6</strong></td>
+<td>Launch — deployment, monitoring, handoff documentation</td>
+</tr>
+<tr>
+<td><strong>Week 6–18</strong></td>
+<td>90-Day Post-Launch Optimization — analytics review, conversion optimization, iterative refinement</td>
+</tr>
+</tbody></table>
+<p>Total engagement duration: 18 weeks from signing to completion of post-launch optimization.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">7</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Executive Proposal</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>8. About Vermillion Axis Technologies</h2>
+<p>Vermillion Axis Technologies delivers enterprise-grade digital infrastructure for premium brands. Our specialization lies at the intersection of luxury, lifestyle, and high-net-worth service verticals — categories where digital presence is not a commodity but a strategic asset.</p>
+<p><strong>Our capabilities span the full stack:</strong></p>
+<ul>
+<li><strong>Strategy</strong> — Market positioning, competitive analysis, brand architecture</li>
+<li><strong>Design</strong> — Bespoke visual systems, interaction design, brand-first methodology</li>
+<li><strong>Development</strong> — Modern frameworks, performance engineering, scalable infrastructure</li>
+<li><strong>Analytics</strong> — Data architecture, conversion optimization, measurable outcomes</li>
+</ul>
+<p>Every project receives dedicated team attention and direct principal access. There are no account managers between you and the people building your digital presence. This is how we work, and it is why the work is exceptional.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">8</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Executive Proposal</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>9. Next Steps</h2>
+<p><strong>To begin, we recommend the following:</strong></p>
+<ol>
+<li><p><strong>Schedule a 30-minute discovery call</strong> to discuss your vision for the Perpetual Petals digital experience and alignment on brand direction.</p>
+</li>
+<li><p><strong>Upon engagement</strong>, we will present a detailed creative brief within 5 business days — including mood boards, competitive positioning analysis, and preliminary site architecture.</p>
+</li>
+<li><p><strong>Design and development begin immediately</strong> following creative brief approval, with consistent communication and review milestones throughout.</p>
+</li>
+</ol>
+<p>We look forward to building something extraordinary together.</p>
+<p><strong>Contact</strong></p>
+<p>Vermillion Axis Technologies
+<a href="https://vermillionaxis.tech">vermillionaxis.tech</a></p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">9</div>
+  </div>
+</div>
+</body>
+</html>

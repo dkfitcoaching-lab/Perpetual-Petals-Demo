@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Perpetual Petals — Statement of Work</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap');
+
+@page { size: letter; margin: 0; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 10.5pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  font-family: 'Raleway', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  color: #4A3F36;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  background: #FDF8F6;
+}
+
+/* ======== COVER PAGE ======== */
+.cover {
+  width: 8.5in; height: 11in;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  background: linear-gradient(170deg, #1A1516 0%, #0D0B0A 60%, #2A1E20 100%);
+  color: #F2E4E0;
+  page-break-after: always;
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: ''; position: absolute;
+  top: 36px; left: 36px; right: 36px; bottom: 36px;
+  border: 1px solid rgba(201,168,124,0.18);
+}
+.cover__ornament { margin-bottom: 40px; opacity: 0.85; }
+.cover__ornament svg { width: 140px; height: 28px; display: block; }
+.cover__brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 40pt; letter-spacing: 4px;
+  color: #F2E4E0; margin-bottom: 4px; line-height: 1.1;
+}
+.cover__est {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 7.5pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #C9A87C; margin-bottom: 48px; opacity: 0.7;
+}
+.cover__rule {
+  width: 40px; height: 1px; background: #C9A87C;
+  border: none; margin-bottom: 36px; opacity: 0.4;
+}
+.cover__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 26pt; line-height: 1.25;
+  letter-spacing: 1px; color: #F2E4E0; max-width: 440px; margin-bottom: 10px;
+}
+.cover__subtitle {
+  font-family: 'Raleway', sans-serif; font-weight: 300;
+  font-size: 8.5pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #D4A0A5; margin-bottom: 64px;
+}
+.cover__meta {
+  font-family: 'Raleway', sans-serif; font-weight: 300;
+  font-size: 7pt; letter-spacing: 2px; text-transform: uppercase;
+  color: #A89092; line-height: 2.4;
+}
+.cover__meta span { display: block; }
+.cover__confidential {
+  position: absolute; bottom: 24px; left: 0; right: 0;
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 5.5pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #B8757A; opacity: 0.35; text-align: center;
+}
+
+/* ======== CONTENT PAGES ======== */
+.page {
+  width: 8.5in; min-height: 11in;
+  padding: 0.8in 1.05in 1.1in 1.05in;
+  background: #FDF8F6;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(184,117,122,0.03), transparent 70%);
+  position: relative;
+  page-break-after: always;
+  box-sizing: border-box;
+}
+
+/* Running header */
+.page-header {
+  position: absolute; top: 0.45in; left: 1.05in; right: 1.05in;
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid #E8DCD5;
+}
+.page-header__brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 8pt; letter-spacing: 2px;
+  color: #B8757A; opacity: 0.5;
+}
+.page-header__doc {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 6pt; letter-spacing: 2px; text-transform: uppercase;
+  color: #635145; opacity: 0.4;
+}
+
+/* Running footer */
+.page-footer {
+  position: absolute; bottom: 0.5in; left: 1.05in; right: 1.05in;
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 8px;
+  border-top: 0.5px solid #E8DCD5;
+}
+.page-footer__left {
+  font-family: 'Raleway', sans-serif; font-weight: 300;
+  font-size: 6pt; letter-spacing: 1.5px; text-transform: uppercase;
+  color: #635145; opacity: 0.4;
+}
+.page-footer__center {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  line-height: 0;
+}
+.page-footer__center svg { width: 60px; height: 16px; opacity: 0.3; }
+.page-footer__right {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 7pt; color: #B8757A; opacity: 0.4;
+}
+
+/* ======== DOCUMENT FOOTER (last page) ======== */
+.doc-footer {
+  margin-top: 48px; padding-top: 24px;
+  border-top: 1px solid #DDD0C7; text-align: center;
+}
+.doc-footer__ornament { margin: 0 auto 14px; line-height: 0; }
+.doc-footer__ornament svg { width: 100px; height: 20px; }
+.doc-footer__brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 14pt; color: #1C1410;
+  letter-spacing: 3px; margin-bottom: 2px;
+}
+.doc-footer__est {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 6.5pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #C9A87C; margin-bottom: 3px;
+}
+.doc-footer__location {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 7pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #635145; margin-bottom: 8px;
+}
+.doc-footer__credit {
+  font-family: 'Raleway', sans-serif; font-weight: 300;
+  font-size: 6.5pt; color: #B8757A; letter-spacing: 1px;
+}
+
+/* ======== TYPOGRAPHY ======== */
+.content h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-size: 16pt; color: #1C1410;
+  letter-spacing: 0.5px; text-align: center;
+  margin: 28px 0 6px; padding-bottom: 12px;
+  line-height: 1.3; position: relative;
+}
+.content h2::after {
+  content: ''; display: block;
+  width: 48px; height: 2px; background: #B8757A;
+  margin: 8px auto 0; border-radius: 1px;
+}
+.content h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500; font-size: 12pt; color: #1C1410;
+  letter-spacing: 0.3px; margin: 20px 0 5px; line-height: 1.4;
+}
+.content h4 {
+  font-family: 'Raleway', sans-serif; font-weight: 500;
+  font-size: 7.5pt; letter-spacing: 2.5px; text-transform: uppercase;
+  color: #B8757A; margin: 16px 0 5px;
+}
+.content p {
+  margin-bottom: 9px; font-size: 9.5pt; line-height: 1.75; color: #4A3F36;
+}
+.content p:first-child {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 11pt; font-weight: 300; font-style: italic;
+  color: #635145; line-height: 1.8; margin-bottom: 14px;
+}
+.content strong { font-weight: 500; color: #1C1410; }
+.content em { font-style: italic; color: #9E5A60; }
+
+.content ul, .content ol {
+  margin: 5px 0 12px 16px; font-size: 9.5pt;
+  line-height: 1.75; color: #4A3F36;
+}
+.content li { margin-bottom: 2px; padding-left: 3px; }
+.content li::marker { color: #B8757A; }
+
+.content blockquote {
+  margin: 16px 0; padding: 14px 20px;
+  background: rgba(184,117,122,0.10);
+  border-left: 3px solid #B8757A; border-radius: 0 4px 4px 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 11pt; font-style: italic; color: #635145; line-height: 1.7;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 12px 0 18px; font-size: 8.5pt;
+}
+.content thead { background: #F7EFEB; }
+.content th {
+  font-family: 'Raleway', sans-serif; font-weight: 500;
+  font-size: 6.5pt; letter-spacing: 1.5px; text-transform: uppercase;
+  color: #9E5A60; text-align: left;
+  padding: 8px 10px; border-bottom: 2px solid #DDD0C7;
+}
+.content td {
+  padding: 8px 10px; border-bottom: 1px solid #DDD0C7;
+  color: #4A3F36; line-height: 1.6; vertical-align: top; font-size: 8.5pt;
+}
+.content tbody tr:last-child td { border-bottom: 2px solid #DDD0C7; }
+
+.content hr {
+  border: none; height: 0; margin: 20px auto;
+  text-align: center; overflow: visible;
+}
+.content hr::after {
+  content: ''; display: inline-block;
+  width: 48px; height: 1px;
+  background: linear-gradient(90deg, transparent, #DDD0C7, transparent);
+}
+
+/* ======== CONFIDENTIAL NOTICE ======== */
+.confidential {
+  font-family: 'Raleway', sans-serif; font-weight: 400;
+  font-size: 6pt; letter-spacing: 3px; text-transform: uppercase;
+  color: #B8757A; opacity: 0.45; text-align: center;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover__ornament"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="16" x2="56" y2="16" stroke="#C9A87C" stroke-width="0.5"/><g transform="translate(80, 16)"><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(-36)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(-18)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(0)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(18)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><ellipse cx="0" cy="-5" rx="2.5" ry="6" transform="rotate(36)" fill="none" stroke="#C9A87C" stroke-width="0.5" opacity="0.8"/><circle cx="0" cy="0" r="1.2" fill="#C9A87C" opacity="0.6"/></g><line x1="104" y1="16" x2="160" y2="16" stroke="#C9A87C" stroke-width="0.5"/></svg></div>
+  <div class="cover__brand">Perpetual Petals</div>
+  <div class="cover__est">Est. 2024</div>
+  <hr class="cover__rule">
+  <div class="cover__title">Statement of Work</div>
+  <div class="cover__subtitle">Scope, Deliverables & Terms</div>
+  <div class="cover__meta">
+    <span>Prepared for Lori Fronzak, Founder &amp; Creative Director</span>
+    <span>Prepared by Vermillion Axis Technologies</span>
+    <span>March 2026</span>
+  </div>
+  <div class="cover__confidential">Confidential</div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <p><strong>Agreement Number:</strong> VAT-SOW-2026-0319
+<strong>Effective Date:</strong> March 27, 2026
+<strong>Document Classification:</strong> Confidential</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">1</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>1. PARTIES</h2>
+<p>This Statement of Work and Service Agreement (&quot;Agreement&quot;) is entered into as of the Effective Date stated above by and between:</p>
+<p><strong>Vermillion Axis Technologies</strong>
+A digital strategy and technology consultancy
+Web: vermillionaxis.tech
+(hereinafter referred to as &quot;Provider&quot; or &quot;VAT&quot;)</p>
+<p>AND</p>
+<p><strong>Perpetual Petals LLC</strong>
+A luxury preserved floral design company
+(hereinafter referred to as &quot;Client&quot;)</p>
+<p>Each individually a &quot;Party&quot; and collectively the &quot;Parties.&quot;</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">2</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>2. SCOPE OF SERVICES</h2>
+<p>Provider shall perform a comprehensive digital presence overhaul for Client, encompassing brand strategy, web design and development, content optimization, and post-launch performance management. The engagement is organized into five sequential phases as described below.</p>
+<h3>Phase 1: Discovery &amp; Strategy (Weeks 1-2)</h3>
+<ul>
+<li>Conduct stakeholder interviews with Client leadership and key personnel</li>
+<li>Perform competitive landscape analysis within the luxury preserved floral and high-end gifting markets</li>
+<li>Audit existing digital assets, including current website, social media profiles, and third-party listings</li>
+<li>Develop detailed buyer personas and customer journey maps for primary audience segments</li>
+<li>Define brand positioning framework, voice guidelines, and messaging hierarchy</li>
+<li>Produce a comprehensive Digital Strategy Document for Client review and approval</li>
+</ul>
+<h3>Phase 2: Design &amp; Development (Weeks 2-5)</h3>
+<ul>
+<li>Create wireframes and high-fidelity design mockups for all primary page templates</li>
+<li>Develop a responsive, mobile-first website on an agreed-upon platform, optimized for luxury brand presentation</li>
+<li>Implement e-commerce functionality, including product catalog, cart, checkout, and payment gateway integration</li>
+<li>Build custom interactive features as specified in the approved wireframes (e.g., arrangement configurator, consultation booking system)</li>
+<li>Integrate Client&#39;s CRM and email marketing platform</li>
+<li>Conduct cross-browser and cross-device quality assurance testing</li>
+<li>Perform accessibility review against WCAG 2.1 AA standards</li>
+</ul>
+<h3>Phase 3: Content &amp; Optimization (Weeks 5-6)</h3>
+<ul>
+<li>Develop and implement an SEO strategy, including keyword research, on-page optimization, metadata, and schema markup</li>
+<li>Write and refine website copy for all pages, aligned with the approved brand voice guidelines</li>
+<li>Optimize all visual assets for web performance without compromising quality</li>
+<li>Configure internal linking architecture and URL structure</li>
+<li>Implement structured data for rich search results targeting luxury floral and gift-related queries</li>
+</ul>
+<h3>Phase 4: Launch &amp; Analytics Setup (Week 6)</h3>
+<ul>
+<li>Execute pre-launch checklist, including final QA, load testing, and security review</li>
+<li>Configure DNS, SSL certificates, and hosting environment for production deployment</li>
+<li>Set up Google Analytics 4, Google Search Console, and conversion tracking</li>
+<li>Implement event tracking for key user interactions (e.g., add-to-cart, consultation requests, newsletter signups)</li>
+<li>Build custom reporting dashboards tailored to Client&#39;s KPIs</li>
+<li>Perform controlled launch with post-deployment monitoring</li>
+</ul>
+<h3>Phase 5: 90-Day Post-Launch Optimization</h3>
+<ul>
+<li>Monitor site performance, uptime, and user behavior analytics on an ongoing basis</li>
+<li>Deliver bi-weekly performance reports with actionable recommendations</li>
+<li>Conduct A/B testing on high-impact pages (minimum of three tests over the 90-day period)</li>
+<li>Implement iterative UX improvements based on real user data and heatmap analysis</li>
+<li>Provide up to 20 hours of additional development support for post-launch refinements</li>
+<li>Perform a comprehensive 90-day performance review and deliver a final optimization report</li>
+</ul>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">3</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>3. DELIVERABLES</h2>
+<p>The following deliverables shall be produced under this Agreement. Each deliverable is subject to the acceptance criteria stated alongside it.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Deliverable</th>
+<th>Acceptance Criteria</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3.1</td>
+<td>Digital Strategy Document</td>
+<td>Approved by Client stakeholders; includes competitive analysis, personas, journey maps, and brand positioning framework</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Wireframes &amp; Design Mockups</td>
+<td>High-fidelity mockups for all primary templates; approved by Client with no more than two rounds of revisions</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Fully Developed Website</td>
+<td>Responsive, mobile-first site passing QA on all major browsers (Chrome, Safari, Firefox, Edge) and devices; meets WCAG 2.1 AA standards</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>E-Commerce Integration</td>
+<td>Functional product catalog, cart, checkout, and payment processing; confirmed through end-to-end transaction testing</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>CRM &amp; Email Platform Integration</td>
+<td>Verified data flow between website forms, CRM records, and email marketing segments</td>
+</tr>
+<tr>
+<td>3.6</td>
+<td>SEO Implementation</td>
+<td>On-page optimization complete for all pages; technical SEO audit score of 90+ on industry-standard tools</td>
+</tr>
+<tr>
+<td>3.7</td>
+<td>Website Copy &amp; Content</td>
+<td>All page copy written, reviewed, and published; aligned with approved brand voice guidelines</td>
+</tr>
+<tr>
+<td>3.8</td>
+<td>Analytics &amp; Reporting Setup</td>
+<td>GA4, Search Console, and conversion tracking verified as operational; custom dashboards delivered</td>
+</tr>
+<tr>
+<td>3.9</td>
+<td>Bi-Weekly Performance Reports</td>
+<td>Six reports delivered over the 90-day post-launch period, each containing metrics analysis and recommendations</td>
+</tr>
+<tr>
+<td>3.10</td>
+<td>90-Day Final Optimization Report</td>
+<td>Comprehensive report summarizing performance trends, completed optimizations, A/B test results, and forward-looking recommendations</td>
+</tr>
+</tbody></table>
+<p>Client shall have five (5) business days from delivery of each deliverable to review and either accept or provide written feedback. Failure to respond within the review period shall constitute acceptance of the deliverable as delivered.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">4</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>4. INVESTMENT &amp; PAYMENT TERMS</h2>
+<h3>4.1 Total Investment</h3>
+<p>The total investment for all services described in this Agreement is <strong>One Hundred Twenty Thousand Dollars ($120,000.00 USD)</strong>.</p>
+<h3>4.2 Payment Schedule</h3>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>Amount</th>
+<th>Percentage</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Upon execution of this Agreement</td>
+<td>$48,000.00</td>
+<td>40%</td>
+<td>At signing</td>
+</tr>
+<tr>
+<td>Upon Client approval of design mockups (Deliverable 3.2)</td>
+<td>$36,000.00</td>
+<td>30%</td>
+<td>Design approval</td>
+</tr>
+<tr>
+<td>Upon website launch (Deliverable 3.3 deployed to production)</td>
+<td>$36,000.00</td>
+<td>30%</td>
+<td>Launch date</td>
+</tr>
+</tbody></table>
+<h3>4.3 Payment Terms</h3>
+<ul>
+<li>All invoices are due within fifteen (15) calendar days of issuance.</li>
+<li>Payments shall be made via wire transfer or ACH to Provider&#39;s designated account.</li>
+<li>Late payments shall incur interest at a rate of 1.5% per month on the outstanding balance.</li>
+<li>Provider reserves the right to suspend work if any payment is more than fifteen (15) days past due, without liability for resulting schedule delays.</li>
+</ul>
+<h3>4.4 Expenses</h3>
+<p>The fees stated above are inclusive of all standard project costs. Any out-of-scope expenses (e.g., premium stock photography licensing, third-party software subscriptions, paid advertising spend) shall be pre-approved by Client in writing before being incurred and will be billed at cost.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">5</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>5. CLIENT RESPONSIBILITIES</h2>
+<p>Client acknowledges that timely fulfillment of the following responsibilities is essential to Provider&#39;s ability to meet the agreed-upon timeline and deliverable standards.</p>
+<h3>5.1 Photography &amp; Visual Assets</h3>
+<ul>
+<li>Provider shall supply a detailed shot list specifying the required photography for all website pages and marketing assets.</li>
+<li>Client is responsible for arranging and completing all photography sessions in accordance with the shot list.</li>
+<li>All final, high-resolution images must be delivered to Provider no later than the end of Week 3.</li>
+</ul>
+<h3>5.2 Testimonials &amp; Social Proof</h3>
+<ul>
+<li>Client shall collect and provide a minimum of eight (8) customer testimonials suitable for publication on the website.</li>
+<li>Testimonials must include the customer&#39;s name (or approved attribution) and written consent for public use.</li>
+<li>All testimonials must be delivered to Provider no later than the end of Week 4.</li>
+</ul>
+<h3>5.3 Content Review &amp; Approval</h3>
+<ul>
+<li>Client shall designate a single point of contact authorized to provide feedback and approvals on behalf of the organization.</li>
+<li>All content, design, and deliverable reviews must be completed and returned to Provider within <strong>forty-eight (48) hours</strong> of submission, unless a longer review period is specified in Section 3.</li>
+<li>Delays in Client review or approval may result in corresponding adjustments to the project timeline.</li>
+</ul>
+<h3>5.4 Access &amp; Credentials</h3>
+<ul>
+<li>Client shall provide timely access to all existing platforms, accounts, and tools required for Provider to perform the services, including but not limited to hosting accounts, domain registrar, CRM, email marketing platform, and social media profiles.</li>
+</ul>
+<h3>5.5 Stakeholder Availability</h3>
+<ul>
+<li>Client shall ensure that designated stakeholders are available for scheduled interviews, review sessions, and approval meetings as outlined in the project timeline.</li>
+</ul>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">6</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>6. INTELLECTUAL PROPERTY</h2>
+<h3>6.1 Ownership Transfer</h3>
+<p>Upon receipt of the final payment in full, all intellectual property rights in the deliverables produced under this Agreement shall transfer to and vest exclusively in Client. This includes, without limitation, all website code, design files, written content, graphics, and documentation created specifically for this engagement.</p>
+<h3>6.2 Pre-Existing IP</h3>
+<p>Provider retains all rights in its pre-existing intellectual property, including proprietary tools, frameworks, methodologies, and code libraries that may be utilized in the performance of services. To the extent any pre-existing IP is incorporated into the deliverables, Provider grants Client a perpetual, non-exclusive, royalty-free license to use such materials solely in connection with the deliverables.</p>
+<h3>6.3 Third-Party Materials</h3>
+<p>Any third-party software, fonts, stock media, or other licensed materials incorporated into the deliverables shall remain subject to their respective license terms. Provider shall identify all such materials and ensure that appropriate licenses are obtained for Client&#39;s intended use.</p>
+<h3>6.4 Rights Prior to Final Payment</h3>
+<p>Until the final payment is received in full, Provider retains ownership of all deliverables and grants Client a limited, revocable license to use completed and approved deliverables solely for their intended purpose.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">7</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>7. CONFIDENTIALITY</h2>
+<h3>7.1 Definition</h3>
+<p>&quot;Confidential Information&quot; means all non-public information disclosed by either Party to the other in connection with this Agreement, whether in written, oral, electronic, or visual form. This includes, without limitation, business strategies, financial information, customer data, pricing structures, trade secrets, proprietary processes, marketing plans, client lists, and any materials marked or reasonably understood to be confidential.</p>
+<h3>7.2 Obligations</h3>
+<p>Each Party agrees to:</p>
+<ul>
+<li>Hold the other Party&#39;s Confidential Information in strict confidence.</li>
+<li>Not disclose Confidential Information to any third party without the prior written consent of the disclosing Party, except to employees, contractors, or advisors who have a legitimate need to know and are bound by confidentiality obligations no less restrictive than those set forth herein.</li>
+<li>Use Confidential Information solely for the purpose of performing obligations or exercising rights under this Agreement.</li>
+<li>Take reasonable measures, no less protective than those used to protect its own confidential information, to prevent unauthorized disclosure or use.</li>
+</ul>
+<h3>7.3 Exceptions</h3>
+<p>Confidential Information does not include information that:</p>
+<ul>
+<li>Is or becomes publicly available through no fault of the receiving Party;</li>
+<li>Was already known to the receiving Party prior to disclosure, as evidenced by written records;</li>
+<li>Is independently developed by the receiving Party without reference to the Confidential Information; or</li>
+<li>Is required to be disclosed by law, regulation, or court order, provided that the receiving Party gives prompt written notice to the disclosing Party and cooperates in seeking a protective order.</li>
+</ul>
+<h3>7.4 Duration</h3>
+<p>The obligations set forth in this Section 7 shall survive the termination or expiration of this Agreement for a period of three (3) years.</p>
+<h3>7.5 Client Privacy</h3>
+<p>Provider acknowledges the premium nature of Client&#39;s brand and clientele. Provider shall not disclose the existence of this engagement, the identity of Client, or any details of the project to any third party without Client&#39;s prior written consent. Any use of the project in Provider&#39;s portfolio, case studies, or marketing materials requires separate written authorization from Client.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">8</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>8. TIMELINE &amp; MILESTONES</h2>
+<p>The following timeline assumes a project start date following execution of this Agreement and receipt of the first payment.</p>
+<h3>Week 1</h3>
+<ul>
+<li>Project kickoff meeting</li>
+<li>Stakeholder interviews commence</li>
+<li>Competitive landscape analysis initiated</li>
+<li>Audit of existing digital assets</li>
+</ul>
+<h3>Week 2</h3>
+<ul>
+<li>Buyer persona and customer journey map development</li>
+<li>Brand positioning framework drafted</li>
+<li>Digital Strategy Document delivered for Client review</li>
+<li>Initial wireframe concepts developed</li>
+</ul>
+<h3>Week 3</h3>
+<ul>
+<li>Client approval of Digital Strategy Document</li>
+<li>High-fidelity design mockups produced for all primary templates</li>
+<li>Client photography sessions completed per shot list</li>
+<li>First round of design review with Client</li>
+</ul>
+<h3>Week 4</h3>
+<ul>
+<li>Design revisions incorporated (if applicable)</li>
+<li>Client approval of final design mockups</li>
+<li>Front-end and back-end development in progress</li>
+<li>E-commerce and CRM integration development begins</li>
+<li>Client delivers testimonials</li>
+</ul>
+<h3>Week 5</h3>
+<ul>
+<li>Development complete; internal QA testing conducted</li>
+<li>SEO implementation and content optimization</li>
+<li>Website copy finalized and loaded</li>
+<li>Cross-browser and accessibility testing</li>
+</ul>
+<h3>Week 6</h3>
+<ul>
+<li>Final Client review and approval of staged site</li>
+<li>Analytics and tracking configuration</li>
+<li>Pre-launch checklist executed</li>
+<li><strong>Website launch</strong></li>
+<li>Post-deployment monitoring initiated</li>
+</ul>
+<h3>Weeks 7-18 (90-Day Post-Launch)</h3>
+<ul>
+<li>Bi-weekly performance reports delivered (Weeks 8, 10, 12, 14, 16, 18)</li>
+<li>A/B testing program executed (minimum three tests)</li>
+<li>Iterative UX optimizations implemented</li>
+<li>Post-launch development support provided (up to 20 hours)</li>
+<li>Final 90-day optimization report delivered at conclusion</li>
+</ul>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">9</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>9. LIMITATION OF LIABILITY</h2>
+<h3>9.1 Limitation</h3>
+<p>To the maximum extent permitted by applicable law, Provider&#39;s total aggregate liability under this Agreement, whether in contract, tort, negligence, strict liability, or otherwise, shall not exceed the total fees actually paid by Client under this Agreement.</p>
+<h3>9.2 Exclusion of Consequential Damages</h3>
+<p>In no event shall either Party be liable to the other for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, loss of revenue, loss of data, or loss of business opportunity, arising out of or related to this Agreement, regardless of whether such damages were foreseeable or whether either Party was advised of the possibility thereof.</p>
+<h3>9.3 Exceptions</h3>
+<p>The limitations set forth in this Section 9 shall not apply to: (a) breaches of Section 7 (Confidentiality); (b) either Party&#39;s indemnification obligations; or (c) damages arising from willful misconduct or gross negligence.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">10</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>10. TERMINATION</h2>
+<h3>10.1 Termination for Convenience</h3>
+<p>Either Party may terminate this Agreement upon thirty (30) days&#39; prior written notice to the other Party. In the event of termination for convenience:</p>
+<ul>
+<li>Client shall pay Provider for all work completed through the effective date of termination, calculated on a proportional basis against the total project fee.</li>
+<li>Provider shall deliver to Client all completed and in-progress deliverables as of the termination date.</li>
+</ul>
+<h3>10.2 Termination for Cause</h3>
+<p>Either Party may terminate this Agreement immediately upon written notice if the other Party:</p>
+<ul>
+<li>Commits a material breach of this Agreement and fails to cure such breach within fifteen (15) calendar days of receiving written notice specifying the breach; or</li>
+<li>Becomes insolvent, files for bankruptcy, or has a receiver appointed for a substantial portion of its assets.</li>
+</ul>
+<h3>10.3 Effect of Termination</h3>
+<p>Upon termination of this Agreement for any reason:</p>
+<ul>
+<li>Each Party shall return or destroy all Confidential Information of the other Party in its possession, except as required for legal or regulatory compliance.</li>
+<li>Sections 6 (Intellectual Property, subject to payment status), 7 (Confidentiality), 9 (Limitation of Liability), and this Section 10.3 shall survive termination.</li>
+<li>Provider shall cooperate in a reasonable transition of services, provided Client has fulfilled all outstanding payment obligations.</li>
+</ul>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">11</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>11. GENERAL PROVISIONS</h2>
+<h3>11.1 Independent Contractor</h3>
+<p>Provider is an independent contractor. Nothing in this Agreement shall be construed to create a partnership, joint venture, agency, or employment relationship between the Parties.</p>
+<h3>11.2 Force Majeure</h3>
+<p>Neither Party shall be liable for any delay or failure to perform resulting from causes beyond its reasonable control, including but not limited to acts of God, natural disasters, pandemics, government actions, labor disputes, or infrastructure failures. The affected Party shall provide prompt notice and use commercially reasonable efforts to mitigate the impact.</p>
+<h3>11.3 Governing Law</h3>
+<p>This Agreement shall be governed by and construed in accordance with the laws of the State in which Provider maintains its principal place of business, without regard to conflict of law principles.</p>
+<h3>11.4 Dispute Resolution</h3>
+<p>Any dispute arising under this Agreement shall first be subject to good-faith negotiation between the Parties for a period of thirty (30) days. If the dispute is not resolved through negotiation, the Parties agree to submit the matter to binding arbitration in accordance with the rules of the American Arbitration Association.</p>
+<h3>11.5 Amendments</h3>
+<p>This Agreement may be amended or modified only by a written instrument signed by authorized representatives of both Parties.</p>
+<h3>11.6 Assignment</h3>
+<p>Neither Party may assign this Agreement or any rights or obligations hereunder without the prior written consent of the other Party, except that Provider may assign this Agreement to a successor in connection with a merger, acquisition, or sale of substantially all of its assets.</p>
+<h3>11.7 Severability</h3>
+<p>If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect.</p>
+<h3>11.8 Entire Agreement</h3>
+<p>This Agreement, together with any exhibits or schedules attached hereto, constitutes the entire agreement between the Parties with respect to its subject matter and supersedes all prior or contemporaneous understandings, agreements, negotiations, representations, and warranties, whether written or oral.</p>
+<h3>11.9 Notices</h3>
+<p>All notices required or permitted under this Agreement shall be in writing and delivered via email with read receipt confirmation or certified mail, return receipt requested, to the addresses provided by each Party.</p>
+<h3>11.10 Waiver</h3>
+<p>The failure of either Party to enforce any provision of this Agreement shall not constitute a waiver of that Party&#39;s right to enforce that provision or any other provision in the future.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">12</div>
+  </div>
+</div>
+
+<div class="page">
+  
+  <div class="page-header">
+    <div class="page-header__brand">Perpetual Petals</div>
+    <div class="page-header__doc">Statement of Work</div>
+  </div>
+  <div class="content">
+    <p class="confidential">Confidential &mdash; Prepared Exclusively for Perpetual Petals</p>
+    <h2>12. SIGNATURES</h2>
+<p>By signing below, the Parties acknowledge that they have read, understood, and agree to be bound by the terms and conditions set forth in this Statement of Work and Service Agreement.</p>
+<h3>VERMILLION AXIS TECHNOLOGIES</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Signature:</strong></td>
+<td>________________________________________</td>
+</tr>
+<tr>
+<td><strong>Printed Name:</strong></td>
+<td>________________________________________</td>
+</tr>
+<tr>
+<td><strong>Title:</strong></td>
+<td>________________________________________</td>
+</tr>
+<tr>
+<td><strong>Date:</strong></td>
+<td>________________________________________</td>
+</tr>
+</tbody></table>
+<h3>PERPETUAL PETALS LLC</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Signature:</strong></td>
+<td>________________________________________</td>
+</tr>
+<tr>
+<td><strong>Printed Name:</strong></td>
+<td>________________________________________</td>
+</tr>
+<tr>
+<td><strong>Title:</strong></td>
+<td>________________________________________</td>
+</tr>
+<tr>
+<td><strong>Date:</strong></td>
+<td>________________________________________</td>
+</tr>
+</tbody></table>
+<p><strong>CONFIDENTIALITY NOTICE:</strong> This document and all information contained herein are strictly confidential and intended solely for the use of the Parties identified above. Unauthorized review, distribution, copying, or disclosure of this document or its contents is prohibited. If you have received this document in error, please notify Vermillion Axis Technologies immediately at vermillionaxis.tech and destroy all copies. This Agreement contains proprietary business terms, pricing structures, and strategic information that are protected under the confidentiality provisions set forth in Section 7.</p>
+
+  </div>
+  
+  <div class="page-footer">
+    <div class="page-footer__left">Vermillion Axis Technologies</div>
+    <div class="page-footer__center"><svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M80 2c-8 0-14 6-22 10s-18 6-28 6M80 2c8 0 14 6 22 10s18 6 28 6" stroke="#B8757A" stroke-width="0.75" opacity="0.45"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.08"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(60 80 16)"/><ellipse cx="80" cy="16" rx="6" ry="14" fill="#B8757A" opacity="0.06" transform="rotate(-60 80 16)"/><circle cx="80" cy="16" r="2.5" fill="#B8757A" opacity="0.18"/><circle cx="30" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><circle cx="130" cy="18" r="1.2" fill="#B8757A" opacity="0.2"/><path d="M30 18c6-1 10 2 16 0s10-5 16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/><path d="M130 18c-6-1-10 2-16 0s-10-5-16-4" stroke="#B8757A" stroke-width="0.5" opacity="0.2"/></svg></div>
+    <div class="page-footer__right">13</div>
+  </div>
+</div>
+</body>
+</html>
